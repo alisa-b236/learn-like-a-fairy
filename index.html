@@ -74,15 +74,40 @@
       animation: draw-arrow 0.65s ease-out forwards;
     }
 
-    /* Steaming effect for coffee cup aroma */
-    @keyframes steam-aroma {
-      0% { opacity: 0; transform: translateY(0) scaleX(1); }
-      50% { opacity: 0.7; transform: translateY(-12px) scaleX(1.3); }
-      100% { opacity: 0; transform: translateY(-26px) scaleX(1.6); }
+    /* Curly steaming effect for coffee cup aroma (rising straight up with gentle wave) */
+    @keyframes steam-aroma-1 {
+      0% { opacity: 0; transform: translate(0, 6px) scale(0.95); }
+      30% { opacity: 0.75; transform: translate(-3px, -6px) scale(1); }
+      70% { opacity: 0.65; transform: translate(3px, -18px) scale(1.04); }
+      100% { opacity: 0; transform: translate(-2px, -30px) scale(1.08); }
     }
-    .steam-1 { animation: steam-aroma 2.4s infinite ease-out; }
-    .steam-2 { animation: steam-aroma 2.4s infinite ease-out 0.8s; }
-    .steam-3 { animation: steam-aroma 2.4s infinite ease-out 1.6s; }
+    @keyframes steam-aroma-2 {
+      0% { opacity: 0; transform: translate(0, 6px) scale(0.95); }
+      35% { opacity: 0.85; transform: translate(3px, -8px) scale(1.02); }
+      70% { opacity: 0.7; transform: translate(-3px, -20px) scale(1.05); }
+      100% { opacity: 0; transform: translate(2px, -34px) scale(1.1); }
+    }
+    @keyframes steam-aroma-3 {
+      0% { opacity: 0; transform: translate(0, 6px) scale(0.95); }
+      30% { opacity: 0.75; transform: translate(-2px, -6px) scale(1); }
+      70% { opacity: 0.6; transform: translate(3px, -17px) scale(1.04); }
+      100% { opacity: 0; transform: translate(-2px, -28px) scale(1.08); }
+    }
+    .steam-1 {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: steam-aroma-1 2.8s infinite ease-in-out;
+    }
+    .steam-2 {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: steam-aroma-2 3.1s infinite ease-in-out 0.9s;
+    }
+    .steam-3 {
+      transform-box: fill-box;
+      transform-origin: center bottom;
+      animation: steam-aroma-3 2.9s infinite ease-in-out 1.8s;
+    }
 
     /* Floating petals for flower aroma */
     @keyframes petal-float-1 {
@@ -113,41 +138,41 @@
     }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start p-3 sm:p-6 text-slate-800">
+<body class="min-h-screen flex flex-col items-center justify-start p-2 sm:p-4 text-slate-800">
 
   <!-- Header -->
-  <header class="w-full max-w-5xl mb-4 text-center">
-    <div class="inline-flex items-center gap-2 px-3 py-1 bg-pink-100/90 border border-pink-300/80 rounded-full text-xs sm:text-sm text-pink-700 font-semibold mb-2 shadow-sm">
+  <header class="w-full max-w-5xl mb-2.5 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-0.5 bg-pink-100/90 border border-pink-300/80 rounded-full text-xs text-pink-700 font-semibold mb-1 shadow-sm">
       <span>🧠 הדמיה אינטראקטיבית בפסיכולוגיה פיזיולוגית</span>
     </div>
-    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-rose-500 bg-clip-text text-transparent">
+    <h1 class="text-xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-rose-500 bg-clip-text text-transparent">
       הדמיית מוח חצוי (Split-Brain)
     </h1>
-    <p class="text-xs sm:text-base text-slate-600 mt-1 max-w-2xl mx-auto font-medium">
+    <p class="text-xs sm:text-sm text-slate-600 mt-0.5 max-w-2xl mx-auto font-medium">
       חקרו כיצד פגיעה בקורפוס קולוסום יוצרת פיצול בין תפיסה חושית, דיווח מילולי ופעולה מוטורית
     </p>
   </header>
 
   <!-- Educational Background Card (Collapsible) -->
-  <div class="w-full max-w-5xl mb-4 bg-white/95 border border-pink-200/90 rounded-2xl p-4 sm:p-5 shadow-md shadow-pink-100/50 transition-all">
+  <div class="w-full max-w-5xl mb-3 bg-white/95 border border-pink-200/90 rounded-2xl p-3 sm:p-4 shadow-md shadow-pink-100/50 transition-all">
     <div class="flex items-center justify-between cursor-pointer select-none" id="theory-toggle">
-      <div class="flex items-center gap-3">
-        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600 font-bold text-lg shadow-inner">📖</span>
-        <h2 class="text-sm sm:text-base font-bold text-pink-950">
-          תופעת המוח החצוי והשלכותיה
+      <div class="flex items-center gap-2.5">
+        <span class="flex h-7 w-7 sm:h-8 sm:w-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600 font-bold text-base sm:text-lg shadow-inner">📖</span>
+        <h2 class="text-xs sm:text-base font-bold text-pink-950">
+          תופעת המוח החצוי והשלכותיה (רקע תיאורטי)
         </h2>
       </div>
       <button id="toggle-btn" class="text-xs sm:text-sm text-pink-700 hover:text-pink-900 flex items-center gap-1 font-semibold px-2.5 py-1 bg-pink-50 hover:bg-pink-100 rounded-lg border border-pink-200 transition">
-        <span id="toggle-text">הסתר רקע</span>
-        <span id="toggle-icon">▲</span>
+        <span id="toggle-text">הצג רקע</span>
+        <span id="toggle-icon">▼</span>
       </button>
     </div>
 
-    <div id="theory-content" class="mt-4 pt-3 border-t border-pink-100 text-xs sm:text-sm text-slate-700 space-y-2.5 leading-relaxed">
+    <div id="theory-content" class="hidden mt-3 pt-3 border-t border-pink-100 text-xs sm:text-sm text-slate-700 space-y-2 leading-relaxed">
       <div class="font-bold text-slate-900 text-sm sm:text-base mb-1">
         מוח חצוי :
       </div>
-      <ul class="space-y-2 list-disc list-inside pr-1 text-slate-700">
+      <ul class="space-y-1.5 list-disc list-inside pr-1 text-slate-700">
         <li>כאשר הקורפוס קולוסום מנותק או נפגע (לדוגמה בעקבות שבץ מוחי), העברת המידע בין ההמיספרות מוגבלת.</li>
         <li>ההמיספרה השמאלית קשורה לרוב ליכולת הדיבור, ואילו ההמיספרה הימנית תומכת בין היתר בעיבוד מרחבי ובפעולות שאינן מחייבות דיווח מילולי.</li>
         <li>גירוי המוצג בשדה הראייה השמאלי מעובד בעיקר בהמיספרה הימנית. האדם עשוי להצביע על הגירוי או לבחור חפץ מתאים, אך להתקשות לומר מה ראה.</li>
@@ -161,41 +186,47 @@
     </div>
   </div>
 
-  <!-- Main Stage: SVG Simulation Canvas -->
-  <main class="w-full max-w-5xl bg-white/95 border border-pink-200/90 rounded-2xl shadow-xl shadow-pink-200/40 p-2 sm:p-4 flex flex-col items-center relative overflow-hidden">
+  <!-- Main Stage: SVG Simulation Canvas + Controls -->
+  <main class="w-full max-w-5xl bg-white/95 border border-pink-200/90 rounded-2xl shadow-xl shadow-pink-200/40 p-2 sm:p-3.5 flex flex-col items-center relative overflow-hidden">
     
-    <!-- Status / Announcement Panel -->
-    <div id="status-panel" class="w-full bg-pink-50/80 border border-pink-200 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm">
-      <div id="status-title" class="text-base sm:text-lg font-bold text-slate-800">
-      מצב ניטרלי: לפניכם אדם שמוחו חצוי, משמאלו פרח ומימינו ספל קפה 
-      </div>
-      <div id="status-subtitle" class="text-xs sm:text-sm text-slate-600 mt-1 font-medium">
-        בקשו מהאדם לבצע פעולות בעזרת
-         הכפתורים למטה כדי לצפות בתגובתו
-      </div>
-    </div>
-
-    <!-- SVG Simulation Area -->
+    <!-- SVG Simulation Area (Responsive height so canvas, status panel & buttons all fit on screen) -->
     <div class="w-full relative flex justify-center items-center overflow-hidden rounded-xl bg-gradient-to-b from-[#fff8fa] to-[#fce7f0]/40 border border-pink-200/80 shadow-inner">
-      <svg id="simulation-svg" viewBox="0 0 900 620" class="w-full h-auto max-h-[590px] select-none" xmlns="http://www.w3.org/2000/svg">
+      <svg id="simulation-svg" viewBox="0 0 900 620" class="w-full h-auto max-h-[38vh] sm:max-h-[45vh] lg:max-h-[48vh] select-none" xmlns="http://www.w3.org/2000/svg">
         <defs>
-          <!-- Gradients in Soft Pastel -->
-          <linearGradient id="blueBrainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#bfdbfe"/>
-            <stop offset="50%" stop-color="#93c5fd"/>
+          <!-- Gradients in Soft Illustrative Pastel -->
+          <linearGradient id="blueBrainGrad" x1="15%" y1="10%" x2="85%" y2="90%">
+            <stop offset="0%" stop-color="#dbeafe"/>
+            <stop offset="45%" stop-color="#93c5fd"/>
             <stop offset="100%" stop-color="#60a5fa"/>
           </linearGradient>
 
-          <linearGradient id="redBrainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stop-color="#fecdd3"/>
-            <stop offset="50%" stop-color="#fca5a5"/>
+          <radialGradient id="blueLobeHighlight" cx="40%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#eff6ff" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#93c5fd" stop-opacity="0"/>
+          </radialGradient>
+
+          <linearGradient id="redBrainGrad" x1="85%" y1="10%" x2="15%" y2="90%">
+            <stop offset="0%" stop-color="#ffe4e6"/>
+            <stop offset="45%" stop-color="#fda4af"/>
             <stop offset="100%" stop-color="#f87171"/>
           </linearGradient>
 
+          <radialGradient id="redLobeHighlight" cx="60%" cy="35%" r="60%">
+            <stop offset="0%" stop-color="#fff1f2" stop-opacity="0.7"/>
+            <stop offset="100%" stop-color="#fda4af" stop-opacity="0"/>
+          </radialGradient>
+
           <!-- Pastel Mint Green Shirt Gradient -->
-          <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stop-color="#e2f7ed"/>
-            <stop offset="100%" stop-color="#c1edd7"/>
+          <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#86efac"/>
+            <stop offset="50%" stop-color="#6ee7b7"/>
+            <stop offset="100%" stop-color="#34d399"/>
+          </linearGradient>
+
+          <!-- Shirt Shadow / Collar Accent -->
+          <linearGradient id="shirtDarkGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#34d399"/>
+            <stop offset="100%" stop-color="#10b981"/>
           </linearGradient>
 
           <!-- Warm Tanned Skin Gradient (טיפה יותר שזוף) -->
@@ -203,6 +234,12 @@
             <stop offset="0%" stop-color="#fed7aa"/>
             <stop offset="45%" stop-color="#fba876"/>
             <stop offset="100%" stop-color="#e28751"/>
+          </linearGradient>
+
+          <!-- Neck Shadow Gradient -->
+          <linearGradient id="neckShadowGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#c2410c" stop-opacity="0.35"/>
+            <stop offset="100%" stop-color="#fba876" stop-opacity="0"/>
           </linearGradient>
 
           <!-- Arrow Markers -->
@@ -229,14 +266,12 @@
         <!-- Left Side Badge (on outer canvas margin) -->
         <g id="badge-left-side">
           <rect x="35" y="260" width="150" height="28" rx="7" fill="#ffffff" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
-          <circle cx="250" cy="550" r="4" fill="#ef4444"/>
           <text x="110" y="280" fill="#b91c1c" font-size="17" font-weight="bold" text-anchor="middle">צד שמאל של האדם</text>
         </g>
 
         <!-- Right Side Badge (on outer canvas margin) -->
         <g id="badge-right-side">
           <rect x="715" y="260" width="150" height="28" rx="7" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
-          <circle cx="650" cy="550" r="4" fill="#3b82f6"/>
           <text x="790" y="280" fill="#1d4ed8" font-size="17" font-weight="bold" text-anchor="middle">צד ימין של האדם</text>
         </g>
 
@@ -251,80 +286,213 @@
           <text x="530" y="31" fill="#dc2626" font-size="20" font-weight="bold" text-anchor="middle">המיספרה ימין</text>
         </g>
 
-        <!-- BRAIN HEMISPHERES (Elevated clearly above the head) -->
-        <!-- LEFT HEMISPHERE (BLUE) -->
+        <!-- BRAIN HEMISPHERES (Realistic illustrative pastel brain with anatomical gyri & sulci) -->
+        <!-- LEFT HEMISPHERE (PASTEL BLUE) -->
         <g id="hemisphere-left" class="transition-all duration-300 origin-center cursor-pointer">
-          <path d="M 440,50 
-                   C 420,37 380,35 345,53
-                   C 310,70 295,105 300,130
-                   C 305,150 330,160 365,157
-                   C 395,155 425,145 440,135 Z" 
-                fill="url(#blueBrainGrad)" stroke="#3b82f6" stroke-width="2.5" filter="url(#shadow)"/>
-          <!-- Gyri / convolutions in left hemisphere -->
-          <path d="M 330,80 Q 365,70 390,90 Q 415,110 435,100" fill="none" stroke="#dbeafe" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-          <path d="M 320,110 Q 350,100 375,120 Q 405,135 435,125" fill="none" stroke="#dbeafe" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-          <path d="M 350,60 Q 385,55 415,65" fill="none" stroke="#dbeafe" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          <!-- Outer Scalloped Cortical Contour -->
+          <path d="M 441,53
+                   C 438,44 424,39 412,43
+                   C 400,36 380,37 368,45
+                   C 352,43 334,51 324,64
+                   C 310,72 300,88 302,104
+                   C 296,118 302,136 315,144
+                   C 324,155 344,160 362,156
+                   C 376,161 398,159 412,153
+                   C 425,156 438,150 441,141
+                   C 443,115 443,78 441,53 Z" 
+                fill="url(#blueBrainGrad)" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round" filter="url(#shadow)"/>
+
+          <!-- Soft 3D Lobe Highlight Overlay -->
+          <path d="M 438,55 C 405,40 345,48 312,85 C 302,110 315,142 355,152 C 395,155 432,146 438,136 Z"
+                fill="url(#blueLobeHighlight)" pointer-events="none"/>
+
+          <!-- Inner Cortical Gyri Highlights (Soft Pastel Glow along folds) -->
+          <g fill="none" stroke="#eff6ff" stroke-width="4" stroke-linecap="round" opacity="0.65">
+            <path d="M 433,61 C 416,52 396,59 382,53 C 368,48 352,55 340,65"/>
+            <path d="M 434,82 C 414,74 398,87 378,79 C 358,72 338,83 318,93"/>
+            <path d="M 434,104 C 412,97 394,111 372,103 C 352,96 332,108 312,120"/>
+            <path d="M 432,124 C 410,118 392,129 370,122 C 352,117 334,126 322,138"/>
+          </g>
+
+          <!-- Anatomical Sulci (Deep Brain Grooves & Branching Creases) -->
+          <g fill="none" stroke="#1d4ed8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72">
+            <!-- Superior Frontal / Parietal Sulcus -->
+            <path d="M 440,66 C 422,57 404,65 388,58 C 372,51 354,58 336,72"/>
+            <path d="M 388,58 C 384,68 375,72 366,75"/>
+            <path d="M 414,61 C 411,52 403,47 396,44"/>
+
+            <!-- Central / Middle Winding Sulcus -->
+            <path d="M 441,89 C 420,81 402,94 382,85 C 362,76 342,88 318,100"/>
+            <path d="M 382,85 C 376,96 365,98 354,102"/>
+            <path d="M 346,85 C 338,76 328,74 318,76"/>
+            <path d="M 412,86 C 408,76 398,73 390,71"/>
+
+            <!-- Lateral / Sylvian Fissure & Temporal Folds -->
+            <path d="M 441,112 C 418,105 398,118 376,109 C 355,101 335,113 310,126"/>
+            <path d="M 376,109 C 370,120 358,123 345,127"/>
+            <path d="M 406,112 C 400,121 388,124 378,125"/>
+
+            <!-- Inferior Temporal / Occipital Sulcus -->
+            <path d="M 304,104 C 318,107 328,116 336,125"/>
+            <path d="M 316,144 C 330,137 346,142 360,134"/>
+            <path d="M 440,132 C 426,126 412,132 398,128"/>
+          </g>
           
           <!-- Speech Center Badge -->
-          <rect x="325" y="130" width="85" height="18" rx="5" fill="#1e3a8a" stroke="#93c5fd" stroke-width="1"/>
-          <text x="367" y="143" fill="#e0f2fe" font-size="12" font-weight="bold" text-anchor="middle">יכולת הדיבור 🗣️</text>
+          <rect x="325" y="131" width="90" height="20" rx="6" fill="#1e3a8a" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+          <text x="370" y="145" fill="#eff6ff" font-size="12" font-weight="bold" text-anchor="middle">יכולת הדיבור 🗣️</text>
         </g>
 
-        <!-- RIGHT HEMISPHERE (RED) -->
+        <!-- RIGHT HEMISPHERE (PASTEL CORAL / ROSE) -->
         <g id="hemisphere-right" class="transition-all duration-300 origin-center cursor-pointer">
-          <path d="M 460,50 
-                   C 480,37 520,35 555,53
-                   C 590,70 605,105 600,130
-                   C 595,150 570,160 535,157
-                   C 505,155 475,145 460,135 Z" 
-                fill="url(#redBrainGrad)" stroke="#ef4444" stroke-width="2.5" filter="url(#shadow)"/>
-          <!-- Gyri / convolutions in right hemisphere -->
-          <path d="M 570,80 Q 535,70 510,90 Q 485,110 465,100" fill="none" stroke="#ffe4e6" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-          <path d="M 580,110 Q 550,100 525,120 Q 495,135 465,125" fill="none" stroke="#ffe4e6" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
-          <path d="M 550,60 Q 515,55 485,65" fill="none" stroke="#ffe4e6" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          <!-- Outer Scalloped Cortical Contour -->
+          <path d="M 459,53
+                   C 462,44 476,39 488,43
+                   C 500,36 520,37 532,45
+                   C 548,43 566,51 576,64
+                   C 590,72 600,88 598,104
+                   C 604,118 598,136 585,144
+                   C 576,155 556,160 538,156
+                   C 524,161 502,159 488,153
+                   C 475,156 462,150 459,141
+                   C 457,115 457,78 459,53 Z" 
+                fill="url(#redBrainGrad)" stroke="#e11d48" stroke-width="2.4" stroke-linejoin="round" filter="url(#shadow)"/>
+
+          <!-- Soft 3D Lobe Highlight Overlay -->
+          <path d="M 462,55 C 495,40 555,48 588,85 C 598,110 585,142 545,152 C 505,155 468,146 462,136 Z"
+                fill="url(#redLobeHighlight)" pointer-events="none"/>
+
+          <!-- Inner Cortical Gyri Highlights (Soft Pastel Glow along folds) -->
+          <g fill="none" stroke="#fff1f2" stroke-width="4" stroke-linecap="round" opacity="0.65">
+            <path d="M 467,61 C 484,52 504,59 518,53 C 532,48 548,55 560,65"/>
+            <path d="M 466,82 C 486,74 502,87 522,79 C 542,72 562,83 582,93"/>
+            <path d="M 466,104 C 488,97 506,111 528,103 C 548,96 568,108 588,120"/>
+            <path d="M 468,124 C 490,118 508,129 530,122 C 548,117 566,126 578,138"/>
+          </g>
+
+          <!-- Anatomical Sulci (Deep Brain Grooves & Branching Creases) -->
+          <g fill="none" stroke="#be123c" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.72">
+            <!-- Superior Frontal / Parietal Sulcus -->
+            <path d="M 460,66 C 478,57 496,65 512,58 C 528,51 546,58 564,72"/>
+            <path d="M 512,58 C 516,68 525,72 534,75"/>
+            <path d="M 486,61 C 489,52 497,47 504,44"/>
+
+            <!-- Central / Middle Winding Sulcus -->
+            <path d="M 459,89 C 480,81 498,94 518,85 C 538,76 558,88 582,100"/>
+            <path d="M 518,85 C 524,96 535,98 546,102"/>
+            <path d="M 554,85 C 562,76 572,74 582,76"/>
+            <path d="M 488,86 C 492,76 502,73 510,71"/>
+
+            <!-- Lateral / Sylvian Fissure & Temporal Folds -->
+            <path d="M 459,112 C 482,105 502,118 524,109 C 545,101 565,113 590,126"/>
+            <path d="M 524,109 C 530,120 542,123 555,127"/>
+            <path d="M 494,112 C 500,121 512,124 522,125"/>
+
+            <!-- Inferior Temporal / Occipital Sulcus -->
+            <path d="M 596,104 C 582,107 572,116 564,125"/>
+            <path d="M 584,144 C 570,137 554,142 540,134"/>
+            <path d="M 460,132 C 474,126 488,132 502,128"/>
+          </g>
           
           <!-- Spatial / Motor Badge -->
-          <rect x="490" y="130" width="85" height="18" rx="5" fill="#881337" stroke="#fca5a5" stroke-width="1"/>
-          <text x="532" y="143" fill="#ffe4e6" font-size="12" font-weight="bold" text-anchor="middle">עיבוד מרחבי 📐</text>
+          <rect x="485" y="131" width="90" height="20" rx="6" fill="#881337" stroke="#fecdd3" stroke-width="1.2" filter="url(#shadow)"/>
+          <text x="530" y="145" fill="#fff1f2" font-size="12" font-weight="bold" text-anchor="middle">עיבוד מרחבי 📐</text>
         </g>
 
-        <!-- UPPER TORSO & BODY (Rounded organic shoulders, deep circular scoop neckline) -->
-    <!-- Neck: Organic skin contour extending smoothly into the scooped collar -->
-    <path d="M 416,320
-             C 416,365 408,410 400,446
-             L 500,446
-             C 492,410 484,365 484,320 Z"
-          fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
+        <!-- UPPER TORSO & BODY (Redesigned natural character body & T-shirt) -->
+        <!-- Neck with subtle chin shadow -->
+        <g id="neck-group">
+          <path d="M 426,332 L 422,386 Q 450,404 478,386 L 474,332 Z" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
+          <path d="M 426,335 Q 450,356 474,335 L 475,352 Q 450,368 425,352 Z" fill="url(#neckShadowGrad)"/>
+        </g>
 
-    <!-- Light Pastel Green Shirt & Torso (Smooth dome shoulders, rounded base & deep scoop) -->
-    <g id="torso">
-      <!-- Main shirt body with rounded shoulders and deep U-scoop neckline -->
-      <path d="M 395,396
-               C 410,446 490,446 505,396
-               C 530,372 568,372 595,395
-               C 615,412 622,435 622,465
-               L 622,575
-               C 622,592 610,600 592,600
-               L 308,600
-               C 290,600 278,592 278,575
-               L 278,465
-               C 278,435 285,412 305,395
-               C 332,372 370,372 395,396 Z"
-            fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2.5" filter="url(#shadow)"/>
+        <!-- ARMS (Positioned naturally behind shoulder seams for clean articulation) -->
+        <!-- Right Arm (Screen Right, rested at side) -->
+        <g id="arm-right">
+          <!-- Forearm & Hand (Skin) -->
+          <path d="M 578,445 
+                   C 596,482 608,518 612,556
+                   L 582,560 
+                   C 576,524 565,488 552,455 Z" 
+                fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
+          <!-- Right Hand with thumb detail -->
+          <g id="hand-right">
+            <ellipse cx="598" cy="568" rx="17" ry="21" transform="rotate(-8 598 568)" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2" filter="url(#shadow)"/>
+            <ellipse cx="583" cy="562" rx="6" ry="11" transform="rotate(18 583 562)" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.8"/>
+          </g>
+          <!-- Short T-Shirt Sleeve -->
+          <path d="M 548,382 
+                   C 574,387 592,406 602,446
+                   L 555,462 
+                   C 548,438 540,415 532,395 Z" 
+                fill="url(#shirtGrad)" stroke="#059669" stroke-width="2.2" filter="url(#shadow)"/>
+          <!-- Sleeve Cuff Trim -->
+          <path d="M 602,446 L 555,462" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+        </g>
 
-      <!-- Inner collar curve following the rounded scoop -->
-      <path d="M 402,400 C 418,444 482,444 498,400"
-            fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
-    </g>
+        <!-- Left Arm (Screen Left) with shoulder pivot for lifting & grasping flower -->
+        <g id="arm-left-group" style="transform-origin: 345px 395px; transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);">
+          <!-- Forearm & Hand (Skin) -->
+          <path d="M 322,445 
+                   C 304,482 292,518 288,556
+                   L 318,560 
+                   C 324,524 335,488 348,455 Z" 
+                fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
+          <!-- Left Hand with thumb detail -->
+          <g id="hand-left">
+            <ellipse cx="302" cy="568" rx="17" ry="21" transform="rotate(8 302 568)" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2" filter="url(#shadow)"/>
+            <ellipse cx="317" cy="562" rx="6" ry="11" transform="rotate(-18 317 562)" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.8"/>
+          </g>
+          <!-- Short T-Shirt Sleeve -->
+          <path d="M 352,382 
+                   C 326,387 308,406 298,446
+                   L 345,462 
+                   C 352,438 360,415 368,395 Z" 
+                fill="url(#shirtGrad)" stroke="#059669" stroke-width="2.2" filter="url(#shadow)"/>
+          <!-- Sleeve Cuff Trim -->
+          <path d="M 298,446 L 345,462" stroke="#10b981" stroke-width="4" stroke-linecap="round"/>
+        </g>
+
+        <!-- TORSO & T-SHIRT BODY -->
+        <g id="torso">
+          <!-- Main T-shirt torso with natural tapered waist and sloped shoulders -->
+          <path d="M 416,374
+                   Q 450,398 484,374
+                   L 548,382
+                   C 562,385 570,398 566,422
+                   L 552,600
+                   L 348,600
+                   L 334,422
+                   C 330,398 338,385 352,382
+                   Z" 
+                fill="url(#shirtGrad)" stroke="#059669" stroke-width="2.4" filter="url(#shadow)"/>
+
+          <!-- Ribbed Crew-Neck Collar -->
+          <path d="M 408,375 Q 450,407 492,375 L 484,374 Q 450,398 416,374 Z" 
+                fill="url(#shirtDarkGrad)" stroke="#059669" stroke-width="1.8" stroke-linejoin="round"/>
+
+          <!-- Subtle Chest & Fabric Folds for natural dimension -->
+          <path d="M 352,430 Q 362,475 356,525" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
+          <path d="M 548,430 Q 538,475 544,525" fill="none" stroke="#10b981" stroke-width="1.8" stroke-linecap="round" opacity="0.45"/>
+          <path d="M 395,435 Q 420,446 435,442" fill="none" stroke="#059669" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+          <path d="M 505,435 Q 480,446 465,442" fill="none" stroke="#059669" stroke-width="1.5" stroke-linecap="round" opacity="0.25"/>
+
+          <!-- Stylish Chest Pocket -->
+          <path d="M 482,452 L 518,452 L 518,484 Q 500,494 482,484 Z" 
+                fill="#a7f3d0" fill-opacity="0.55" stroke="#059669" stroke-width="1.6" stroke-linejoin="round"/>
+          <line x1="482" y1="459" x2="518" y2="459" stroke="#059669" stroke-width="1.4" opacity="0.7"/>
+        </g>
 
         <!-- HEAD & FACE (Clean bald contour, NO hair) -->
         <g id="head-group">
-          <!-- Head Contour (Smooth bald head) -->
-          <ellipse cx="450" cy="270" rx="72" ry="78" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2.5" filter="url(#shadow)"/>
+          <!-- Ears (Tucked naturally behind head contour) -->
+          <ellipse cx="378" cy="275" rx="9" ry="15" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.8"/>
+          <path d="M 377,269 Q 373,275 377,281" fill="none" stroke="#c2410c" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
+          <ellipse cx="522" cy="275" rx="9" ry="15" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.8"/>
+          <path d="M 523,269 Q 527,275 523,281" fill="none" stroke="#c2410c" stroke-width="1.3" stroke-linecap="round" opacity="0.7"/>
 
-          <!-- Ears -->
-          <ellipse cx="376" cy="275" rx="8" ry="14" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
-          <ellipse cx="524" cy="275" rx="8" ry="14" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
+          <!-- Head Contour (Smooth oval head) -->
+          <ellipse cx="450" cy="270" rx="72" ry="78" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2.5" filter="url(#shadow)"/>
 
           <!-- EYES -->
           <!-- Left Eye (Screen Left, red iris - connects to right hemisphere) -->
@@ -423,29 +591,6 @@
           </text>
         </g>
 
-        <!-- ARMS -->
-        <!-- Right Arm (Screen Right, rested at side) -->
-        <g id="arm-right">
-          <path d="M 605,405 
-                   C 630,445 645,495 645,555
-                   L 615,555 
-                   C 615,505 600,460 580,425 Z" 
-                fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2"/>
-          <!-- Right Hand -->
-          <ellipse id="hand-right" cx="630" cy="570" rx="18" ry="22" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
-        </g>
-
-        <!-- Left Arm (Screen Left) with shoulder pivot for lifting & grasping flower -->
-        <g id="arm-left-group" style="transform-origin: 295px 410px; transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);">
-          <path d="M 295,405 
-                   C 270,445 255,495 255,555
-                   L 285,555 
-                   C 285,505 300,460 320,425 Z" 
-                fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2"/>
-          <!-- Left Hand -->
-          <ellipse id="hand-left" cx="270" cy="570" rx="18" ry="22" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
-        </g>
-
         <!-- OBJECTS ON SIDES -->
         <!-- FLOWER (Screen Left) - NO POT, natural stem & leaves, floating aroma petals -->
         <g id="flower-group" style="transform-origin: 140px 480px; transition: transform 0.9s cubic-bezier(0.34, 1.25, 0.64, 1);" class="cursor-pointer">
@@ -487,11 +632,14 @@
         <!-- COFFEE CUP (Screen Right) - Scent/heat steam vapors rising from coffee -->
         <g id="cup-group" style="transform-origin: 765px 480px; transition: transform 0.9s cubic-bezier(0.34, 1.25, 0.64, 1);" class="cursor-pointer">
           
-          <!-- Scent / Heat Aroma Vapors (Representing coffee fragrance) -->
+          <!-- Scent / Heat Aroma Vapors (Curly steam wisps rising directly above the coffee cup) -->
           <g id="cup-aroma" class="aroma-element">
-            <path class="steam-1" d="M 752,425 Q 744,400 754,380" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
-            <path class="steam-2" d="M 765,420 Q 775,395 768,375" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
-            <path class="steam-3" d="M 778,425 Q 788,402 780,382" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+            <!-- Left curly steam wisp -->
+            <path class="steam-1" d="M 751,432 C 743,421 759,410 751,399 C 743,388 759,377 751,366" fill="none" stroke="#d97706" stroke-width="2.4" stroke-linecap="round" opacity="0.75"/>
+            <!-- Center curly steam wisp (taller) -->
+            <path class="steam-2" d="M 765,429 C 774,417 756,405 765,393 C 774,381 756,369 765,357" fill="none" stroke="#f59e0b" stroke-width="2.7" stroke-linecap="round" opacity="0.85"/>
+            <!-- Right curly steam wisp -->
+            <path class="steam-3" d="M 779,432 C 771,421 787,410 779,399 C 771,388 787,377 779,366" fill="none" stroke="#d97706" stroke-width="2.4" stroke-linecap="round" opacity="0.75"/>
           </g>
 
           <!-- Saucer -->
@@ -514,11 +662,11 @@
         <!-- DYNAMIC ARROWS LAYER -->
         <g id="arrows-layer">
           <!-- 1. Coffee to Right Hand (Dashed Blue) -->
-          <path id="arrow-cup-to-rhand" d="M 735,480 Q 690,520 648,555" 
+          <path id="arrow-cup-to-rhand" d="M 735,480 Q 675,525 618,555" 
                 fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-dashed hidden"/>
 
           <!-- 2. Right Hand to Left Hemisphere (Dashed Blue - Contralateral Crossing) -->
-          <path id="arrow-rhand-to-lhem" d="M 625,545 C 570,440 430,300 405,150" 
+          <path id="arrow-rhand-to-lhem" d="M 595,545 C 555,440 430,300 405,150" 
                 fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-dashed hidden"/>
 
           <!-- 3. Flower to Left Nostril (Solid Blue) -->
@@ -560,116 +708,126 @@
       </svg>
     </div>
 
+    <!-- Status / Announcement Panel (Positioned directly between the simulation canvas and action buttons for immediate visibility on desktop, iPad, and mobile) -->
+    <div id="status-panel" role="status" aria-live="polite" class="w-full bg-pink-50/80 border border-pink-200 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm">
+      <div id="status-title" class="text-sm sm:text-lg font-bold text-slate-800 leading-snug">
+        מצב ניטרלי: לפניכם אדם שמוחו חצוי, משמאלו פרח ומימינו ספל קפה
+      </div>
+      <div id="status-subtitle" class="text-xs sm:text-sm text-slate-600 mt-0.5 font-medium leading-snug">
+        בקשו מהאדם לבצע פעולות בעזרת הכפתורים למטה כדי לצפות בתגובתו
+      </div>
+    </div>
+
     <!-- CONTROLS & UTILITIES BAR -->
-    <div class="w-full mt-4 bg-pink-50/60 border border-pink-200/80 rounded-xl p-3 sm:p-4">
+    <div class="w-full mt-2.5 bg-pink-50/60 border border-pink-200/80 rounded-xl p-2.5 sm:p-3.5">
       
       <!-- Utility Buttons: Reset & Aroma Toggle -->
-      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
-        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
+        <h3 class="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-1.5">
           <span>🎮</span>
           <span>בקשות לפעולה (לחצו לבדיקת תגובת הדמות):</span>
         </h3>
-        <div class="flex items-center gap-2">
+        <div class="flex items-center gap-1.5 sm:gap-2">
           <!-- Button to stop/pause aromas for concentration -->
-          <button id="btn-toggle-aroma" class="text-xs px-3 py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1.5 shadow-sm" title="עצור או הפעל את אנימציית הניחוחות">
+          <button id="btn-toggle-aroma" class="text-[11px] sm:text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm" title="עצור או הפעל את אנימציית הניחוחות">
             <span id="aroma-btn-icon">✨</span>
             <span id="aroma-btn-text">עצור ניחוחות</span>
           </button>
           <!-- Reset button -->
-          <button id="btn-reset" class="text-xs px-3 py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm">
+          <button id="btn-reset" class="text-[11px] sm:text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm">
             <span>🔄 איפוס למצב רגיל</span>
           </button>
         </div>
       </div>
 
-      <!-- 6 Interactive Action Buttons -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+      <!-- 6 Interactive Action Buttons (2 cols on mobile & tablet, 3 cols on desktop) -->
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5">
         <!-- Button 1 -->
-        <button id="btn-act-1" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-lg border border-blue-200 shadow-inner">
+        <button id="btn-act-1" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
             ☕
           </span>
-          <div>
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700">
+          <div class="min-w-0">
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700 leading-tight">
               תרים את הספל ביד ימין
             </div>
-            <div class="text-[11px] text-slate-500">
-              הורם את הספל שנמצא בצד ימין שלו עם יד ימין
+            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+              הרמת הספל בצד ימין עם יד ימין
             </div>
           </div>
         </button>
 
         <!-- Button 2 -->
-        <button id="btn-act-2" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-lg border border-blue-200 shadow-inner">
+        <button id="btn-act-2" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
             🌸
           </span>
-          <div>
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700">
+          <div class="min-w-0">
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700 leading-tight">
               תריח בנחיר שמאל
             </div>
-            <div class="text-[11px] text-slate-500">
+            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
               הרחת הפרח בצד שמאל בנחיר שמאל
             </div>
           </div>
         </button>
 
         <!-- Button 3 -->
-        <button id="btn-act-3" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-lg border border-blue-200 shadow-inner">
+        <button id="btn-act-3" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
             👁️
           </span>
-          <div>
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700">
+          <div class="min-w-0">
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700 leading-tight">
               מה אתה רואה בצד ימין?
             </div>
-            <div class="text-[11px] text-slate-500">
-              דיווח מילולי על מה שהוא רואה בצד ימין
+            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+              דיווח מילולי על מה שהוא רואה בימין
             </div>
           </div>
         </button>
 
         <!-- Button 4 -->
-        <button id="btn-act-4" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-lg border border-rose-200 shadow-inner">
+        <button id="btn-act-4" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
             🌸
           </span>
-          <div>
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700">
+          <div class="min-w-0">
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700 leading-tight">
               תרים את הפרח ביד שמאל
             </div>
-            <div class="text-[11px] text-slate-500">
+            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
               הרמת הפרח שנמצא בצד שמאל
             </div>
           </div>
         </button>
 
         <!-- Button 5 -->
-        <button id="btn-act-5" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-lg border border-rose-200 shadow-inner">
+        <button id="btn-act-5" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
             ☕
           </span>
-          <div>
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700">
+          <div class="min-w-0">
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700 leading-tight">
               תריח בנחיר ימין
             </div>
-            <div class="text-[11px] text-slate-500">
+            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
               הרחת הקפה בצד ימין בנחיר ימין
             </div>
           </div>
         </button>
 
         <!-- Button 6 -->
-        <button id="btn-act-6" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-lg border border-rose-200 shadow-inner">
+        <button id="btn-act-6" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
             👁️
           </span>
-          <div>
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700">
+          <div class="min-w-0">
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700 leading-tight">
               מה אתה רואה בצד שמאל?
             </div>
-            <div class="text-[11px] text-slate-500">
-              דיווח מילולי על מה שהוא רואה בצד שמאל
+            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+              דיווח מילולי על מה שהוא רואה בשמאל
             </div>
           </div>
         </button>
@@ -790,11 +948,11 @@
       arrows.forEach(arrow => arrow.classList.add('hidden'));
 
       // Reset status box to default message in pastel theme
-      statusPanel.className = 'w-full bg-pink-50/80 border border-pink-200 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+      statusPanel.className = 'w-full bg-pink-50/80 border border-pink-200 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
       statusTitle.textContent = 'מצב רגיל: בחרו באחת הבקשות למטה כדי לצפות בתגובת הדמות';
-      statusTitle.className = 'text-base sm:text-lg font-bold text-slate-800';
+      statusTitle.className = 'text-sm sm:text-lg font-bold text-slate-800 leading-snug';
       statusSubtitle.textContent = 'האדם נמצא במרכז עם חולצה ירוקה פסטל עדינה, מעליו מוח חצוי, משמאלו פרח ומימינו ספל קפה';
-      statusSubtitle.className = 'text-xs sm:text-sm text-slate-600 mt-1 font-medium';
+      statusSubtitle.className = 'text-xs sm:text-sm text-slate-600 mt-0.5 font-medium leading-snug';
     }
 
     // Execute scenario with mandatory preceding return-to-default-state
@@ -829,11 +987,11 @@
 
       // 1 second later: text below appears
       const t1 = setTimeout(() => {
-        statusPanel.className = 'w-full bg-blue-50/80 border border-blue-200 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusPanel.className = 'w-full bg-blue-50/90 border border-blue-300 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
         statusTitle.textContent = 'האדם אינו מצליח לתפוס את החפץ (ספל קפה) ביד ימין';
-        statusTitle.className = 'text-base sm:text-lg font-bold text-blue-900';
+        statusTitle.className = 'text-sm sm:text-lg font-bold text-blue-900 leading-snug';
         statusSubtitle.textContent = 'היד נשארת לצידי הגוף ללא תנועה מוטורית מוצלחת לעבר החפץ';
-        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-1 font-medium';
+        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-0.5 font-medium leading-snug';
       }, 1000);
 
       activeTimers.push(t1);
@@ -862,11 +1020,11 @@
         speechBubbleRight.style.opacity = '1';
         speechBubbleRight.style.transform = 'translate(0, 0)';
 
-        statusPanel.className = 'w-full bg-blue-50/80 border border-blue-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusPanel.className = 'w-full bg-blue-50/90 border border-blue-300 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
         statusTitle.textContent = 'האדם מזהה ומדווח בדיבור: ״אני מריח פרח״';
-        statusTitle.className = 'text-base sm:text-lg font-bold text-blue-900';
+        statusTitle.className = 'text-sm sm:text-lg font-bold text-blue-900 leading-snug';
         statusSubtitle.textContent = '*ההמיספרה השמאלית מקושרת ליכולת הדיבור';
-        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-1 font-semibold';
+        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-0.5 font-semibold leading-snug';
       }, 1000);
 
       activeTimers.push(t1);
@@ -892,11 +1050,11 @@
         speechBubbleLeft.style.opacity = '1';
         speechBubbleLeft.style.transform = 'translate(0, 0)';
 
-        statusPanel.className = 'w-full bg-blue-50/80 border border-blue-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusPanel.className = 'w-full bg-blue-50/90 border border-blue-300 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
         statusTitle.textContent = 'האדם מזהה ומדווח בדיבור: ״אני רואה ספל קפה״';
-        statusTitle.className = 'text-base sm:text-lg font-bold text-blue-900';
+        statusTitle.className = 'text-sm sm:text-lg font-bold text-blue-900 leading-snug';
         statusSubtitle.textContent = '*ההמיספרה השמאלית מקושרת ליכולת הדיבור';
-        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-1 font-semibold';
+        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-0.5 font-semibold leading-snug';
       }, 1000);
 
       activeTimers.push(t1);
@@ -910,19 +1068,19 @@
       // Solid red arrow from right hemisphere to left hand
       showArrow('arrow-rhem-to-larm');
 
-      // Left hand rises and grabs the flower (tested angle 65deg to touch flower)
-      armLeftGroup.style.transform = 'rotate(65deg)';
+      // Left hand rises and grabs the flower (reaches cleanly to the flower stem)
+      armLeftGroup.style.transform = 'rotate(56deg)';
 
       statusTitle.textContent = 'פקודה מוטורית נשלחת מהמיספרה ימין...';
       statusSubtitle.textContent = 'ההמיספרה הימנית שולטת על תנועת יד שמאל במרחב';
 
       // 1 second later: text below appears
       const t1 = setTimeout(() => {
-        statusPanel.className = 'w-full bg-rose-50/80 border border-rose-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusPanel.className = 'w-full bg-rose-50/90 border border-rose-300 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
         statusTitle.textContent = 'האדם הצליח לתפוס את החפץ (פרח) ביד שמאל';
-        statusTitle.className = 'text-base sm:text-lg font-bold text-rose-900';
+        statusTitle.className = 'text-sm sm:text-lg font-bold text-rose-900 leading-snug';
         statusSubtitle.textContent = '*ההמיספרה הימנית מקושרת להבנה מרחבית וביצוע פעולות';
-        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-1 font-semibold';
+        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-0.5 font-semibold leading-snug';
       }, 1000);
 
       activeTimers.push(t1);
@@ -947,11 +1105,11 @@
 
       // 1 second later: text below appears
       const t1 = setTimeout(() => {
-        statusPanel.className = 'w-full bg-rose-50/80 border border-rose-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusPanel.className = 'w-full bg-rose-50/90 border border-rose-300 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
         statusTitle.textContent = 'האדם לא מצליח להגיד מה הריח (למרות שיש ריח ברור של קפה)';
-        statusTitle.className = 'text-base sm:text-lg font-bold text-rose-900';
+        statusTitle.className = 'text-sm sm:text-lg font-bold text-rose-900 leading-snug';
         statusSubtitle.textContent = '*המידע מגיע להמיספרה שאינה שולטת בדיבור, ולכן אין אפשרות לדווח מילולית';
-        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-1 font-medium';
+        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-0.5 font-medium leading-snug';
       }, 1000);
 
       activeTimers.push(t1);
@@ -973,11 +1131,11 @@
 
       // 1 second later: text below appears
       const t1 = setTimeout(() => {
-        statusPanel.className = 'w-full bg-rose-50/80 border border-rose-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusPanel.className = 'w-full bg-rose-50/90 border border-rose-300 rounded-xl px-3 py-2.5 sm:px-4 sm:py-3 mt-2.5 text-center transition-all min-h-[70px] sm:min-h-[78px] flex flex-col justify-center items-center shadow-sm';
         statusTitle.textContent = 'האדם לא מצליח להגיד מה הוא רואה בצד שמאל (פרח)';
-        statusTitle.className = 'text-base sm:text-lg font-bold text-rose-900';
+        statusTitle.className = 'text-sm sm:text-lg font-bold text-rose-900 leading-snug';
         statusSubtitle.textContent = '*הגירוי נקלט בהמיספרה הימנית, אך בשל הנתק לא מגיע להמיספרה השמאלית השולטת בדיבור';
-        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-1 font-medium';
+        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-0.5 font-medium leading-snug';
       }, 1000);
 
       activeTimers.push(t1);
