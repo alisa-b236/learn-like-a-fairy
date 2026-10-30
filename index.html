@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>הדמיית מוח חצוי (Split-Brain Simulation)</title>
+  <script src="https://cdn.tailwindcss.com/3.4.17"></script>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&family=Rubik:wght@400;500;600;700;800&display=swap');
+    
+    body {
+      font-family: 'Assistant', 'Rubik', sans-serif;
+      background: linear-gradient(135deg, #fff2f5 0%, #fce7f0 50%, #fdf4f8 100%);
+      color: #1e293b;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Pulse Glow Animations for Hemispheres - Pastel style */
+    @keyframes pulse-glow-blue {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(96, 165, 250, 0.6));
+        opacity: 0.92;
+      }
+      50% {
+        filter: drop-shadow(0 0 20px rgba(96, 165, 250, 0.95)) drop-shadow(0 0 32px rgba(59, 130, 246, 0.7));
+        opacity: 1;
+      }
+    }
+
+    @keyframes pulse-glow-red {
+      0%, 100% {
+        filter: drop-shadow(0 0 6px rgba(248, 113, 113, 0.6));
+        opacity: 0.92;
+      }
+      50% {
+        filter: drop-shadow(0 0 20px rgba(248, 113, 113, 0.95)) drop-shadow(0 0 32px rgba(239, 68, 68, 0.7));
+        opacity: 1;
+      }
+    }
+
+    .glow-blue {
+      animation: pulse-glow-blue 1.1s infinite ease-in-out;
+    }
+
+    .glow-red {
+      animation: pulse-glow-red 1.1s infinite ease-in-out;
+    }
+
+    /* Flowing dashed arrow animation */
+    @keyframes dash-flow {
+      to {
+        stroke-dashoffset: -28;
+      }
+    }
+
+    .animated-arrow-dashed {
+      stroke-dasharray: 8, 6;
+      animation: dash-flow 1.2s linear infinite;
+    }
+
+    /* Solid arrow animation */
+    @keyframes draw-arrow {
+      from {
+        stroke-dasharray: 600;
+        stroke-dashoffset: 600;
+      }
+      to {
+        stroke-dashoffset: 0;
+      }
+    }
+
+    .animated-arrow-solid {
+      animation: draw-arrow 0.65s ease-out forwards;
+    }
+
+    /* Steaming effect for coffee cup aroma */
+    @keyframes steam-aroma {
+      0% { opacity: 0; transform: translateY(0) scaleX(1); }
+      50% { opacity: 0.7; transform: translateY(-12px) scaleX(1.3); }
+      100% { opacity: 0; transform: translateY(-26px) scaleX(1.6); }
+    }
+    .steam-1 { animation: steam-aroma 2.4s infinite ease-out; }
+    .steam-2 { animation: steam-aroma 2.4s infinite ease-out 0.8s; }
+    .steam-3 { animation: steam-aroma 2.4s infinite ease-out 1.6s; }
+
+    /* Floating petals for flower aroma */
+    @keyframes petal-float-1 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.55; }
+      50% { transform: translate(-14px, -20px) rotate(18deg); opacity: 0.95; }
+    }
+    @keyframes petal-float-2 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.5; }
+      50% { transform: translate(16px, -24px) rotate(-22deg); opacity: 0.9; }
+    }
+    @keyframes petal-float-3 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.6; }
+      50% { transform: translate(-8px, -30px) rotate(30deg); opacity: 0.4; }
+    }
+    @keyframes petal-float-4 {
+      0%, 100% { transform: translate(0, 0) rotate(0deg); opacity: 0.45; }
+      50% { transform: translate(10px, -16px) rotate(-15deg); opacity: 0.85; }
+    }
+
+    .aroma-petal-1 { animation: petal-float-1 3.2s infinite ease-in-out; }
+    .aroma-petal-2 { animation: petal-float-2 3.8s infinite ease-in-out 0.9s; }
+    .aroma-petal-3 { animation: petal-float-3 4.2s infinite ease-in-out 1.8s; }
+    .aroma-petal-4 { animation: petal-float-4 3.5s infinite ease-in-out 0.4s; }
+
+    /* Hide aroma elements when toggled off */
+    .aromas-paused {
+      display: none !important;
+    }
+  </style>
+</head>
+<body class="min-h-screen flex flex-col items-center justify-start p-3 sm:p-6 text-slate-800">
+
+  <!-- Header -->
+  <header class="w-full max-w-5xl mb-4 text-center">
+    <div class="inline-flex items-center gap-2 px-3 py-1 bg-pink-100/90 border border-pink-300/80 rounded-full text-xs sm:text-sm text-pink-700 font-semibold mb-2 shadow-sm">
+      <span>🧠 הדמיה אינטראקטיבית בפסיכולוגיה פיזיולוגית</span>
+    </div>
+    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight bg-gradient-to-r from-blue-600 via-purple-600 to-rose-500 bg-clip-text text-transparent">
+      הדמיית מוח חצוי (Split-Brain)
+    </h1>
+    <p class="text-xs sm:text-base text-slate-600 mt-1 max-w-2xl mx-auto font-medium">
+      חקרו כיצד פגיעה בקורפוס קולוסום יוצרת פיצול בין תפיסה חושית, דיווח מילולי ופעולה מוטורית
+    </p>
+  </header>
+
+  <!-- Educational Background Card (Collapsible) -->
+  <div class="w-full max-w-5xl mb-4 bg-white/95 border border-pink-200/90 rounded-2xl p-4 sm:p-5 shadow-md shadow-pink-100/50 transition-all">
+    <div class="flex items-center justify-between cursor-pointer select-none" id="theory-toggle">
+      <div class="flex items-center gap-3">
+        <span class="flex h-8 w-8 items-center justify-center rounded-lg bg-pink-100 text-pink-600 font-bold text-lg shadow-inner">📖</span>
+        <h2 class="text-sm sm:text-base font-bold text-pink-950">
+          תופעת המוח החצוי והשלכותיה
+        </h2>
+      </div>
+      <button id="toggle-btn" class="text-xs sm:text-sm text-pink-700 hover:text-pink-900 flex items-center gap-1 font-semibold px-2.5 py-1 bg-pink-50 hover:bg-pink-100 rounded-lg border border-pink-200 transition">
+        <span id="toggle-text">הסתר רקע</span>
+        <span id="toggle-icon">▲</span>
+      </button>
+    </div>
+
+    <div id="theory-content" class="mt-4 pt-3 border-t border-pink-100 text-xs sm:text-sm text-slate-700 space-y-2.5 leading-relaxed">
+      <div class="font-bold text-slate-900 text-sm sm:text-base mb-1">
+        מוח חצוי :
+      </div>
+      <ul class="space-y-2 list-disc list-inside pr-1 text-slate-700">
+        <li>כאשר הקורפוס קולוסום מנותק או נפגע (לדוגמה בעקבות שבץ מוחי), העברת המידע בין ההמיספרות מוגבלת.</li>
+        <li>ההמיספרה השמאלית קשורה לרוב ליכולת הדיבור, ואילו ההמיספרה הימנית תומכת בין היתר בעיבוד מרחבי ובפעולות שאינן מחייבות דיווח מילולי.</li>
+        <li>גירוי המוצג בשדה הראייה השמאלי מעובד בעיקר בהמיספרה הימנית. האדם עשוי להצביע על הגירוי או לבחור חפץ מתאים, אך להתקשות לומר מה ראה.</li>
+        <li>אם המידע מגיע להמיספרה השמאלית, ייתכן שהאדם יוכל לזהות אותו ולדווח עליו במילים.</li>
+        <li>
+          <mark class="bg-pink-200/90 text-pink-950 font-bold px-1.5 py-0.5 rounded shadow-sm">
+            הדוגמאות מדגישות שיכולת לבצע פעולה, מודעות למידע ויכולת לדווח עליו במילים אינן תמיד נשענות על אותה מערכת מוחית.
+          </mark>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Main Stage: SVG Simulation Canvas -->
+  <main class="w-full max-w-5xl bg-white/95 border border-pink-200/90 rounded-2xl shadow-xl shadow-pink-200/40 p-2 sm:p-4 flex flex-col items-center relative overflow-hidden">
+    
+    <!-- Status / Announcement Panel -->
+    <div id="status-panel" class="w-full bg-pink-50/80 border border-pink-200 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm">
+      <div id="status-title" class="text-base sm:text-lg font-bold text-slate-800">
+      מצב ניטרלי: לפניכם אדם שמוחו חצוי, משמאלו פרח ומימינו ספל קפה 
+      </div>
+      <div id="status-subtitle" class="text-xs sm:text-sm text-slate-600 mt-1 font-medium">
+        בקשו מהאדם לבצע פעולות בעזרת
+         הכפתורים למטה כדי לצפות בתגובתו
+      </div>
+    </div>
+
+    <!-- SVG Simulation Area -->
+    <div class="w-full relative flex justify-center items-center overflow-hidden rounded-xl bg-gradient-to-b from-[#fff8fa] to-[#fce7f0]/40 border border-pink-200/80 shadow-inner">
+      <svg id="simulation-svg" viewBox="0 0 900 620" class="w-full h-auto max-h-[590px] select-none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <!-- Gradients in Soft Pastel -->
+          <linearGradient id="blueBrainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#bfdbfe"/>
+            <stop offset="50%" stop-color="#93c5fd"/>
+            <stop offset="100%" stop-color="#60a5fa"/>
+          </linearGradient>
+
+          <linearGradient id="redBrainGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fecdd3"/>
+            <stop offset="50%" stop-color="#fca5a5"/>
+            <stop offset="100%" stop-color="#f87171"/>
+          </linearGradient>
+
+          <!-- Pastel Mint Green Shirt Gradient -->
+          <linearGradient id="shirtGrad" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stop-color="#e2f7ed"/>
+            <stop offset="100%" stop-color="#c1edd7"/>
+          </linearGradient>
+
+          <!-- Warm Tanned Skin Gradient (טיפה יותר שזוף) -->
+          <linearGradient id="skinGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#fed7aa"/>
+            <stop offset="45%" stop-color="#fba876"/>
+            <stop offset="100%" stop-color="#e28751"/>
+          </linearGradient>
+
+          <!-- Arrow Markers -->
+          <marker id="marker-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+          </marker>
+
+          <marker id="marker-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M 0 1 L 9 5 L 0 9 z" fill="#ef4444"/>
+          </marker>
+
+          <!-- Drop Shadows -->
+          <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+            <feDropShadow dx="0" dy="3" stdDeviation="5" flood-opacity="0.18"/>
+          </filter>
+        </defs>
+
+        <!-- Soft Pastel Pink Background Rect -->
+        <rect width="100%" height="100%" fill="#fff5f7" rx="12"/>
+
+        <!-- Center axis & Side Indicators on canvas margins -->
+        <line x1="450" y1="20" x2="450" y2="590" stroke="#f472b6" stroke-dasharray="4 4" stroke-width="1.5" opacity="0.3"/>
+        
+        <!-- Left Side Badge (on outer canvas margin) -->
+        <g id="badge-left-side">
+          <rect x="35" y="260" width="150" height="28" rx="7" fill="#ffffff" stroke="#fca5a5" stroke-width="1.5" filter="url(#shadow)"/>
+          <circle cx="250" cy="550" r="4" fill="#ef4444"/>
+          <text x="110" y="280" fill="#b91c1c" font-size="17" font-weight="bold" text-anchor="middle">צד שמאל של האדם</text>
+        </g>
+
+        <!-- Right Side Badge (on outer canvas margin) -->
+        <g id="badge-right-side">
+          <rect x="715" y="260" width="150" height="28" rx="7" fill="#ffffff" stroke="#93c5fd" stroke-width="1.5" filter="url(#shadow)"/>
+          <circle cx="650" cy="550" r="4" fill="#3b82f6"/>
+          <text x="790" y="280" fill="#1d4ed8" font-size="17" font-weight="bold" text-anchor="middle">צד ימין של האדם</text>
+        </g>
+
+        <!-- LABELS ABOVE BRAIN -->
+        <!-- Left Hemisphere Label in Blue (Above screen-left hemisphere) -->
+        <g id="label-left-hemisphere">
+          <text x="360" y="31" fill="#2563eb" font-size="20" font-weight="bold" text-anchor="middle">המיספרה שמאל</text>
+        </g>
+
+        <!-- Right Hemisphere -->
+        <g id="label-right-hemisphere">
+          <text x="530" y="31" fill="#dc2626" font-size="20" font-weight="bold" text-anchor="middle">המיספרה ימין</text>
+        </g>
+
+        <!-- BRAIN HEMISPHERES (Elevated clearly above the head) -->
+        <!-- LEFT HEMISPHERE (BLUE) -->
+        <g id="hemisphere-left" class="transition-all duration-300 origin-center cursor-pointer">
+          <path d="M 440,50 
+                   C 420,37 380,35 345,53
+                   C 310,70 295,105 300,130
+                   C 305,150 330,160 365,157
+                   C 395,155 425,145 440,135 Z" 
+                fill="url(#blueBrainGrad)" stroke="#3b82f6" stroke-width="2.5" filter="url(#shadow)"/>
+          <!-- Gyri / convolutions in left hemisphere -->
+          <path d="M 330,80 Q 365,70 390,90 Q 415,110 435,100" fill="none" stroke="#dbeafe" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <path d="M 320,110 Q 350,100 375,120 Q 405,135 435,125" fill="none" stroke="#dbeafe" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <path d="M 350,60 Q 385,55 415,65" fill="none" stroke="#dbeafe" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          
+          <!-- Speech Center Badge -->
+          <rect x="325" y="130" width="85" height="18" rx="5" fill="#1e3a8a" stroke="#93c5fd" stroke-width="1"/>
+          <text x="367" y="143" fill="#e0f2fe" font-size="12" font-weight="bold" text-anchor="middle">יכולת הדיבור 🗣️</text>
+        </g>
+
+        <!-- RIGHT HEMISPHERE (RED) -->
+        <g id="hemisphere-right" class="transition-all duration-300 origin-center cursor-pointer">
+          <path d="M 460,50 
+                   C 480,37 520,35 555,53
+                   C 590,70 605,105 600,130
+                   C 595,150 570,160 535,157
+                   C 505,155 475,145 460,135 Z" 
+                fill="url(#redBrainGrad)" stroke="#ef4444" stroke-width="2.5" filter="url(#shadow)"/>
+          <!-- Gyri / convolutions in right hemisphere -->
+          <path d="M 570,80 Q 535,70 510,90 Q 485,110 465,100" fill="none" stroke="#ffe4e6" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <path d="M 580,110 Q 550,100 525,120 Q 495,135 465,125" fill="none" stroke="#ffe4e6" stroke-width="2.5" stroke-linecap="round" opacity="0.9"/>
+          <path d="M 550,60 Q 515,55 485,65" fill="none" stroke="#ffe4e6" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+          
+          <!-- Spatial / Motor Badge -->
+          <rect x="490" y="130" width="85" height="18" rx="5" fill="#881337" stroke="#fca5a5" stroke-width="1"/>
+          <text x="532" y="143" fill="#ffe4e6" font-size="12" font-weight="bold" text-anchor="middle">עיבוד מרחבי 📐</text>
+        </g>
+
+        <!-- UPPER TORSO & BODY (Simple, elegant pastel green shirt) -->
+        <!-- Neck -->
+        <path d="M 425,320 L 425,375 L 475,375 L 475,320 Z" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
+
+        <!-- Light Pastel Green Shirt & Torso (Simple rectangle rounded only at shoulders) -->
+        <g id="torso">
+          <!-- Main shirt body: Clean rectangle rounded only at the shoulders -->
+          <path d="M 320,378 
+                   L 580,378 
+                   C 605,378 620,393 620,418 
+                   L 620,600 
+                   L 280,600 
+                   L 280,418 
+                   C 280,393 295,378 320,378 Z" 
+                fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2.5" filter="url(#shadow)"/>
+          
+          <!-- Simple subtle collar notch -->
+          <path d="M 430,378 Q 450,402 470,378" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
+        </g>
+
+        <!-- HEAD & FACE (Clean bald contour, NO hair) -->
+        <g id="head-group">
+          <!-- Head Contour (Smooth bald head) -->
+          <ellipse cx="450" cy="270" rx="72" ry="78" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2.5" filter="url(#shadow)"/>
+
+          <!-- Ears -->
+          <ellipse cx="376" cy="275" rx="8" ry="14" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
+          <ellipse cx="524" cy="275" rx="8" ry="14" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
+
+          <!-- EYES -->
+          <!-- Left Eye (Screen Left, red iris - connects to right hemisphere) -->
+          <g id="eye-left">
+            <ellipse cx="420" cy="260" rx="14" ry="9" fill="#ffffff" stroke="#64748b" stroke-width="1.8"/>
+            <circle cx="420" cy="260" r="5.5" fill="#f43f5e"/>
+            <circle cx="420" cy="260" r="2.5" fill="#0f172a"/>
+            <circle cx="422" cy="258" r="1.5" fill="#ffffff"/>
+            <!-- Eyebrow -->
+            <path d="M 405,242 Q 420,238 435,240" fill="none" stroke="#c2410c" stroke-width="3" stroke-linecap="round"/>
+          </g>
+
+          <!-- Right Eye (Screen Right, blue iris - connects to left hemisphere) -->
+          <g id="eye-right">
+            <ellipse cx="480" cy="260" rx="14" ry="9" fill="#ffffff" stroke="#64748b" stroke-width="1.8"/>
+            <circle cx="480" cy="260" r="5.5" fill="#3b82f6"/>
+            <circle cx="480" cy="260" r="2.5" fill="#0f172a"/>
+            <circle cx="482" cy="258" r="1.5" fill="#ffffff"/>
+            <!-- Eyebrow -->
+            <path d="M 465,240 Q 480,238 495,242" fill="none" stroke="#c2410c" stroke-width="3" stroke-linecap="round"/>
+          </g>
+
+          <!-- NOSE & NOSTRILS (Clean, no text overlay on face) -->
+          <g id="nose-group">
+            <path d="M 450,255 L 450,295 Q 450,305 440,305" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 440,305 Q 450,310 460,305" fill="none" stroke="#fb923c" stroke-width="2" stroke-linecap="round"/>
+            <!-- Left Nostril (Screen Left, Blue - connected to Left Hemisphere) -->
+            <circle id="nostril-left" cx="442" cy="305" r="3" fill="#3b82f6" stroke="#1d4ed8" stroke-width="1"/>
+            <!-- Right Nostril (Screen Right, Red - connected to Right Hemisphere) -->
+            <circle id="nostril-right" cx="458" cy="305" r="3" fill="#ef4444" stroke="#b91c1c" stroke-width="1"/>
+          </g>
+
+          <!-- MOUTH -->
+          <g id="mouth">
+            <path d="M 435,325 Q 450,330 465,325" fill="none" stroke="#f43f5e" stroke-width="3.5" stroke-linecap="round"/>
+          </g>
+        </g>
+
+        <!-- SEVERED CORPUS CALLOSUM: Represented by a DARK PURPLE DASHED LINE (קו מקווקו סגול כהה) -->
+        <g id="severed-callosum" class="select-none">
+          <!-- vertical purple dashed line -->
+          <line x1="450" y1="46" x2="450" y2="148" stroke="#581c87" stroke-width="3.5" stroke-dasharray="6,4" stroke-linecap="round"/>
+          
+          <!-- Compact pill badge with 'קורפוס קולוסום מנותק' -->
+          <text x="450" y="40" fill="#581c87" font-size="15" font-weight="800" text-anchor="middle">
+          ׳✂️׳
+           </text>
+          <text x="450" y="173" fill="#581c87" font-size="15" font-weight="800" text-anchor="middle">
+             קורפוס קולוסום מנותק
+          </text>
+        </g>
+
+        <!-- SPEECH BUBBLES -->
+        <g id="speech-bubble">
+          <text id="speech-text" class="hidden"></text>
+        </g>
+        <!-- Right Side Speech Bubble (beside person on the right) -->
+        <g id="speech-bubble-right" opacity="0" class="transition-all duration-300 pointer-events-none" transform="translate(0, 8)">
+          <!-- Speech Balloon pointing left towards character's mouth -->
+          <path d="M 555,242 
+                   L 705,242 
+                   A 12,12 0 0 1 717,254 
+                   L 717,284 
+                   A 12,12 0 0 1 705,296 
+                   L 555,296 
+                   A 12,12 0 0 1 543,284 
+                   L 543,278 
+                   L 518,290 
+                   L 543,264 
+                   L 543,254 
+                   A 12,12 0 0 1 555,242 Z" 
+                fill="#ffffff" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+          <text id="speech-text-right" x="630" y="274" fill="#1e3a8a" font-size="15" font-weight="bold" text-anchor="middle">
+            אני מריח פרח
+          </text>
+        </g>
+
+        <!-- Left Side Speech Bubble (beside person on the left) -->
+        <g id="speech-bubble-left" opacity="0" class="transition-all duration-300 pointer-events-none" transform="translate(0, 8)">
+          <!-- Speech Balloon pointing right towards character's mouth -->
+          <path d="M 195,242 
+                   L 345,242 
+                   A 12,12 0 0 1 357,254 
+                   L 357,264 
+                   L 382,290 
+                   L 357,278 
+                   L 357,284 
+                   A 12,12 0 0 1 345,296 
+                   L 195,296 
+                   A 12,12 0 0 1 183,284 
+                   L 183,254 
+                   A 12,12 0 0 1 195,242 Z" 
+                fill="#ffffff" stroke="#3b82f6" stroke-width="2" filter="url(#shadow)"/>
+          <text id="speech-text-left" x="270" y="274" fill="#1e3a8a" font-size="15" font-weight="bold" text-anchor="middle">
+            אני רואה ספל קפה
+          </text>
+        </g>
+
+        <!-- ARMS -->
+        <!-- Right Arm (Screen Right, rested at side) -->
+        <g id="arm-right">
+          <path d="M 605,405 
+                   C 630,445 645,495 645,555
+                   L 615,555 
+                   C 615,505 600,460 580,425 Z" 
+                fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2"/>
+          <!-- Right Hand -->
+          <ellipse id="hand-right" cx="630" cy="570" rx="18" ry="22" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
+        </g>
+
+        <!-- Left Arm (Screen Left) with shoulder pivot for lifting & grasping flower -->
+        <g id="arm-left-group" style="transform-origin: 295px 410px; transition: transform 0.85s cubic-bezier(0.34, 1.35, 0.64, 1);">
+          <path d="M 295,405 
+                   C 270,445 255,495 255,555
+                   L 285,555 
+                   C 285,505 300,460 320,425 Z" 
+                fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2"/>
+          <!-- Left Hand -->
+          <ellipse id="hand-left" cx="270" cy="570" rx="18" ry="22" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="2"/>
+        </g>
+
+        <!-- OBJECTS ON SIDES -->
+        <!-- FLOWER (Screen Left) - NO POT, natural stem & leaves, floating aroma petals -->
+        <g id="flower-group" style="transform-origin: 140px 480px; transition: transform 0.9s cubic-bezier(0.34, 1.25, 0.64, 1);" class="cursor-pointer">
+          
+          <!-- Floating Aroma Petals (Delicate fragrance rising from the flower) -->
+          <g id="flower-aroma" class="aroma-element">
+            <!-- Floating Petal 1 -->
+            <path class="aroma-petal-1" d="M 115,415 Q 110,405 118,402 Q 124,410 115,415 Z" fill="#f472b6" opacity="0.75"/>
+            <!-- Floating Petal 2 -->
+            <path class="aroma-petal-2" d="M 165,410 Q 172,400 178,408 Q 170,418 165,410 Z" fill="#fb7185" opacity="0.7"/>
+            <!-- Floating Petal 3 -->
+            <path class="aroma-petal-3" d="M 135,395 Q 138,382 146,388 Q 142,398 135,395 Z" fill="#f472b6" opacity="0.65"/>
+            <!-- Floating Petal 4 -->
+            <path class="aroma-petal-4" d="M 155,430 Q 166,425 168,435 Q 158,440 155,430 Z" fill="#fda4af" opacity="0.8"/>
+          </g>
+
+          <!-- Flower Stem (Natural, no pot container) -->
+          <path d="M 140,545 Q 135,495 140,455" fill="none" stroke="#22c55e" stroke-width="5" stroke-linecap="round"/>
+          <!-- Delicate Green Leaves -->
+          <path d="M 138,505 Q 112,492 105,512 Q 122,525 138,510" fill="#86efac" stroke="#22c55e" stroke-width="1.5"/>
+          <path d="M 140,480 Q 165,470 170,490 Q 155,502 140,485" fill="#86efac" stroke="#22c55e" stroke-width="1.5"/>
+          
+          <!-- Petals עלי כותרת -->
+          <circle cx="140" cy="435" r="14" fill="#FFB2d1"/>
+          <circle cx="123" cy="445" r="14" fill="#FF9FBE"/>
+          <circle cx="157" cy="445" r="14" fill="#FD84b2"/>
+          <circle cx="128" cy="465" r="14" fill="#FE95B3"/>
+          <circle cx="152" cy="465" r="14" fill="#FFB2C9"/>
+          <!-- Flower Center -->
+          <circle cx="140" cy="452" r="12" fill="#fde047" stroke="#facc15" stroke-width="2"/>
+
+          <!-- Flower Label - Positioned UNDER the flower element -->
+          <g id="flower-label">
+            <rect x="105" y="555" width="70" height="24" rx="6" fill="#ffffff" stroke="#f472b6" stroke-width="1.5" filter="url(#shadow)"/>
+            <text x="140" y="571" fill="#db2777" font-size="13" font-weight="bold" text-anchor="middle">🌸 פרח</text>
+          </g>
+        </g>
+
+        <!-- COFFEE CUP (Screen Right) - Scent/heat steam vapors rising from coffee -->
+        <g id="cup-group" style="transform-origin: 765px 480px; transition: transform 0.9s cubic-bezier(0.34, 1.25, 0.64, 1);" class="cursor-pointer">
+          
+          <!-- Scent / Heat Aroma Vapors (Representing coffee fragrance) -->
+          <g id="cup-aroma" class="aroma-element">
+            <path class="steam-1" d="M 752,425 Q 744,400 754,380" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+            <path class="steam-2" d="M 765,420 Q 775,395 768,375" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" opacity="0.8"/>
+            <path class="steam-3" d="M 778,425 Q 788,402 780,382" fill="none" stroke="#d97706" stroke-width="2.2" stroke-linecap="round" opacity="0.75"/>
+          </g>
+
+          <!-- Saucer -->
+          <ellipse cx="765" cy="515" rx="42" ry="10" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2"/>
+          <!-- Cup Body -->
+          <path d="M 735,445 L 740,505 Q 765,515 790,505 L 795,445 Z" fill="#ffffff" stroke="#cbd5e1" stroke-width="2" filter="url(#shadow)"/>
+          <!-- Coffee surface -->
+          <ellipse cx="765" cy="445" rx="30" ry="8" fill="#78350f" stroke="#451a03" stroke-width="2"/>
+          <!-- Cup Handle -->
+          <path d="M 795,455 C 818,455 818,490 792,495" fill="none" stroke="#ffffff" stroke-width="6" stroke-linecap="round"/>
+          <path d="M 795,455 C 818,455 818,490 792,495" fill="none" stroke="#cbd5e1" stroke-width="2" stroke-linecap="round"/>
+
+          <!-- Coffee Cup Label - Positioned UNDER the coffee cup element -->
+          <g id="cup-label">
+            <rect x="720" y="535" width="90" height="24" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)"/>
+            <text x="765" y="551" fill="#d97706" font-size="13" font-weight="bold" text-anchor="middle">☕ ספל קפה</text>
+          </g>
+        </g>
+
+        <!-- DYNAMIC ARROWS LAYER -->
+        <g id="arrows-layer">
+          <!-- 1. Coffee to Right Hand (Dashed Blue) -->
+          <path id="arrow-cup-to-rhand" d="M 735,480 Q 690,520 648,555" 
+                fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-dashed hidden"/>
+
+          <!-- 2. Right Hand to Left Hemisphere (Dashed Blue - Contralateral Crossing) -->
+          <path id="arrow-rhand-to-lhem" d="M 625,545 C 570,440 430,300 405,150" 
+                fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-dashed hidden"/>
+
+          <!-- 3. Flower to Left Nostril (Solid Blue) -->
+          <path id="arrow-flower-to-lnostril" d="M 180,445 Q 320,380 430,308" 
+                fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-solid hidden"/>
+
+          <!-- 4. Left Nostril to Left Hemisphere (Solid Blue - Ipsilateral) -->
+          <path id="arrow-lnostril-to-lhem" d="M 438,295 Q 430,210 405,145" 
+                fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-solid hidden"/>
+
+          <!-- 5. Coffee to Right Eye (Solid Blue) -->
+          <path id="arrow-cup-to-reye" d="M 735,450 Q 620,330 495,270" 
+                fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-solid hidden"/>
+
+          <!-- 6. Right Eye to Left Hemisphere (Solid Blue - Contralateral Crossing) -->
+          <path id="arrow-reye-to-lhem" d="M 475,255 Q 445,200 415,145" 
+                fill="none" stroke="#3b82f6" stroke-width="3.5" marker-end="url(#marker-blue)" class="animated-arrow-solid hidden"/>
+
+          <!-- 7. Right Hemisphere to Left Hand (Solid Red - Motor Output Crossing) -->
+          <path id="arrow-rhem-to-larm" d="M 525,145 C 500,280 340,380 160,450" 
+                fill="none" stroke="#ef4444" stroke-width="3.5" marker-end="url(#marker-red)" class="animated-arrow-solid hidden"/>
+
+          <!-- 8. Coffee to Right Nostril (Solid Red) -->
+          <path id="arrow-cup-to-rnostril" d="M 735,450 Q 600,380 470,308" 
+                fill="none" stroke="#ef4444" stroke-width="3.5" marker-end="url(#marker-red)" class="animated-arrow-solid hidden"/>
+
+          <!-- 9. Right Nostril to Right Hemisphere (Dashed Red - Ipsilateral) -->
+          <path id="arrow-rnostril-to-rhem" d="M 462,295 Q 470,210 495,145" 
+                fill="none" stroke="#ef4444" stroke-width="3.5" marker-end="url(#marker-red)" class="animated-arrow-dashed hidden"/>
+
+          <!-- 10. Flower to Left Eye (Dashed Red) -->
+          <path id="arrow-flower-to-leye" d="M 180,445 Q 300,330 405,270" 
+                fill="none" stroke="#ef4444" stroke-width="3.5" marker-end="url(#marker-red)" class="animated-arrow-dashed hidden"/>
+
+          <!-- 11. Left Eye to Right Hemisphere (Dashed Red - Contralateral Crossing) -->
+          <path id="arrow-leye-to-rhem" d="M 425,255 Q 455,200 485,145" 
+                fill="none" stroke="#ef4444" stroke-width="3.5" marker-end="url(#marker-red)" class="animated-arrow-dashed hidden"/>
+        </g>
+      </svg>
+    </div>
+
+    <!-- CONTROLS & UTILITIES BAR -->
+    <div class="w-full mt-4 bg-pink-50/60 border border-pink-200/80 rounded-xl p-3 sm:p-4">
+      
+      <!-- Utility Buttons: Reset & Aroma Toggle -->
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-2">
+          <span>🎮</span>
+          <span>בקשות לפעולה (לחצו לבדיקת תגובת הדמות):</span>
+        </h3>
+        <div class="flex items-center gap-2">
+          <!-- Button to stop/pause aromas for concentration -->
+          <button id="btn-toggle-aroma" class="text-xs px-3 py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1.5 shadow-sm" title="עצור או הפעל את אנימציית הניחוחות">
+            <span id="aroma-btn-icon">✨</span>
+            <span id="aroma-btn-text">עצור ניחוחות</span>
+          </button>
+          <!-- Reset button -->
+          <button id="btn-reset" class="text-xs px-3 py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm">
+            <span>🔄 איפוס למצב רגיל</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 6 Interactive Action Buttons -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2.5">
+        <!-- Button 1 -->
+        <button id="btn-act-1" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-lg border border-blue-200 shadow-inner">
+            ☕
+          </span>
+          <div>
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700">
+              תרים את הספל ביד ימין
+            </div>
+            <div class="text-[11px] text-slate-500">
+              הורם את הספל שנמצא בצד ימין שלו עם יד ימין
+            </div>
+          </div>
+        </button>
+
+        <!-- Button 2 -->
+        <button id="btn-act-2" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-lg border border-blue-200 shadow-inner">
+            🌸
+          </span>
+          <div>
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700">
+              תריח בנחיר שמאל
+            </div>
+            <div class="text-[11px] text-slate-500">
+              הרחת הפרח בצד שמאל בנחיר שמאל
+            </div>
+          </div>
+        </button>
+
+        <!-- Button 3 -->
+        <button id="btn-act-3" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-lg border border-blue-200 shadow-inner">
+            👁️
+          </span>
+          <div>
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700">
+              מה אתה רואה בצד ימין?
+            </div>
+            <div class="text-[11px] text-slate-500">
+              דיווח מילולי על מה שהוא רואה בצד ימין
+            </div>
+          </div>
+        </button>
+
+        <!-- Button 4 -->
+        <button id="btn-act-4" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-lg border border-rose-200 shadow-inner">
+            🌸
+          </span>
+          <div>
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700">
+              תרים את הפרח ביד שמאל
+            </div>
+            <div class="text-[11px] text-slate-500">
+              הרמת הפרח שנמצא בצד שמאל
+            </div>
+          </div>
+        </button>
+
+        <!-- Button 5 -->
+        <button id="btn-act-5" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-lg border border-rose-200 shadow-inner">
+            ☕
+          </span>
+          <div>
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700">
+              תריח בנחיר ימין
+            </div>
+            <div class="text-[11px] text-slate-500">
+              הרחת הקפה בצד ימין בנחיר ימין
+            </div>
+          </div>
+        </button>
+
+        <!-- Button 6 -->
+        <button id="btn-act-6" class="btn-action flex items-center gap-3 p-3 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-10 w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-lg border border-rose-200 shadow-inner">
+            👁️
+          </span>
+          <div>
+            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700">
+              מה אתה רואה בצד שמאל?
+            </div>
+            <div class="text-[11px] text-slate-500">
+              דיווח מילולי על מה שהוא רואה בצד שמאל
+            </div>
+          </div>
+        </button>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer with user signature -->
+  <footer class="mt-4 mb-2 text-center flex flex-col items-center justify-center gap-2">
+    <!-- User Signature Image (Subtle, elegant, scaled down) -->
+    <div class="flex items-center justify-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
+      <img src="data:image/png;base64,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" alt="Alisa" class="h-8 sm:h-9 w-auto select-none pointer-events-none" />
+    </div>
+    <div class="text-xs text-slate-500 font-medium">
+      הדמיה לימודית אינטראקטיבית בקודפן | קורס פסיכולוגיה פיזיולוגית — מוח חצוי (Split-Brain)
+    </div>
+  </footer>
+
+  <!-- Simulation Logic Script -->
+  <script>
+    // State management & active timers
+    let activeTimers = [];
+    let aromaActive = true;
+
+    // Cached DOM Elements
+    const hemisphereLeft = document.getElementById('hemisphere-left');
+    const hemisphereRight = document.getElementById('hemisphere-right');
+    const speechBubbleRight = document.getElementById('speech-bubble-right');
+    const speechTextRight = document.getElementById('speech-text-right');
+    const speechBubbleLeft = document.getElementById('speech-bubble-left');
+    const speechTextLeft = document.getElementById('speech-text-left');
+    const statusTitle = document.getElementById('status-title');
+    const statusSubtitle = document.getElementById('status-subtitle');
+    const statusPanel = document.getElementById('status-panel');
+    const armLeftGroup = document.getElementById('arm-left-group');
+    const flowerGroup = document.getElementById('flower-group');
+    const cupGroup = document.getElementById('cup-group');
+    const arrowsLayer = document.getElementById('arrows-layer');
+    const theoryToggle = document.getElementById('theory-toggle');
+    const theoryContent = document.getElementById('theory-content');
+    const toggleText = document.getElementById('toggle-text');
+    const toggleIcon = document.getElementById('toggle-icon');
+    const btnToggleAroma = document.getElementById('btn-toggle-aroma');
+    const aromaBtnText = document.getElementById('aroma-btn-text');
+    const aromaBtnIcon = document.getElementById('aroma-btn-icon');
+    const flowerAroma = document.getElementById('flower-aroma');
+    const cupAroma = document.getElementById('cup-aroma');
+
+    // Aroma toggle functionality (for concentration)
+    btnToggleAroma.addEventListener('click', () => {
+      aromaActive = !aromaActive;
+      if (aromaActive) {
+        flowerAroma.classList.remove('aromas-paused');
+        cupAroma.classList.remove('aromas-paused');
+        aromaBtnText.textContent = 'עצור ניחוחות';
+        aromaBtnIcon.textContent = '✨';
+        btnToggleAroma.classList.remove('bg-pink-100', 'text-pink-900');
+      } else {
+        flowerAroma.classList.add('aromas-paused');
+        cupAroma.classList.add('aromas-paused');
+        aromaBtnText.textContent = 'הפעל ניחוחות';
+        aromaBtnIcon.textContent = '🌸';
+        btnToggleAroma.classList.add('bg-pink-100', 'text-pink-900');
+      }
+    });
+
+    // Theory accordion toggle listener
+    theoryToggle.addEventListener('click', () => {
+      const isHidden = theoryContent.classList.contains('hidden');
+      if (isHidden) {
+        theoryContent.classList.remove('hidden');
+        toggleText.textContent = 'הסתר רקע';
+        toggleIcon.textContent = '▲';
+      } else {
+        theoryContent.classList.add('hidden');
+        toggleText.textContent = 'הצג רקע';
+        toggleIcon.textContent = '▼';
+      }
+    });
+
+    // Helper: Clear all running timers
+    function clearAllTimers() {
+      activeTimers.forEach(t => clearTimeout(t));
+      activeTimers = [];
+    }
+
+    // Helper: Show specific SVG arrow by ID
+    function showArrow(id) {
+      const el = document.getElementById(id);
+      if (el) {
+        el.classList.remove('hidden');
+      }
+    }
+
+    // Reset simulation to default neutral state
+    function resetToDefaultState() {
+      clearAllTimers();
+
+      // Reset hemispheres glowing
+      hemisphereLeft.classList.remove('glow-blue');
+      hemisphereRight.classList.remove('glow-red');
+
+      // Reset Speech bubbles beside person
+      speechBubbleRight.style.opacity = '0';
+      speechBubbleRight.style.transform = 'translate(0, 8px)';
+      speechBubbleLeft.style.opacity = '0';
+      speechBubbleLeft.style.transform = 'translate(0, 8px)';
+
+      // Reset Arm position to rested state
+      armLeftGroup.style.transform = 'rotate(0deg)';
+
+      // Reset Flower & Cup positions
+      flowerGroup.style.transform = 'translate(0px, 0px) scale(1)';
+      cupGroup.style.transform = 'translate(0px, 0px) scale(1)';
+
+      // Hide all arrows
+      const arrows = arrowsLayer.querySelectorAll('path');
+      arrows.forEach(arrow => arrow.classList.add('hidden'));
+
+      // Reset status box to default message in pastel theme
+      statusPanel.className = 'w-full bg-pink-50/80 border border-pink-200 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+      statusTitle.textContent = 'מצב רגיל: בחרו באחת הבקשות למטה כדי לצפות בתגובת הדמות';
+      statusTitle.className = 'text-base sm:text-lg font-bold text-slate-800';
+      statusSubtitle.textContent = 'האדם נמצא במרכז עם חולצה ירוקה פסטל עדינה, מעליו מוח חצוי, משמאלו פרח ומימינו ספל קפה';
+      statusSubtitle.className = 'text-xs sm:text-sm text-slate-600 mt-1 font-medium';
+    }
+
+    // Execute scenario with mandatory preceding return-to-default-state
+    function triggerScenario(scenarioAction) {
+      // Step 1: Immediately revert previous changes and return to normal state
+      resetToDefaultState();
+
+      // Step 2: Brief pause (180ms) so the return to normal state is clearly established before changes appear
+      const t = setTimeout(() => {
+        scenarioAction();
+      }, 180);
+      activeTimers.push(t);
+    }
+
+    // Reset button listener
+    document.getElementById('btn-reset').addEventListener('click', resetToDefaultState);
+
+    // Scenario 1: להרים את הספל שנמצא בצד ימין שלו עם יד ימין
+    function runScenario1() {
+      // Animation of left hemisphere (blue) glows or flashes
+      hemisphereLeft.classList.add('glow-blue');
+
+      // Dashed blue arrow from cup to right hand
+      showArrow('arrow-cup-to-rhand');
+
+      // Dashed blue arrow from right hand to left hemisphere
+      showArrow('arrow-rhand-to-lhem');
+
+      // Hand does not move
+      statusTitle.textContent = 'הדמות מנסה לתאם פעולה...';
+      statusSubtitle.textContent = 'אות מקווקו משודר בין היד להמיספרה השמאלית';
+
+      // 1 second later: text below appears
+      const t1 = setTimeout(() => {
+        statusPanel.className = 'w-full bg-blue-50/80 border border-blue-200 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusTitle.textContent = 'האדם אינו מצליח לתפוס את החפץ (ספל קפה) ביד ימין';
+        statusTitle.className = 'text-base sm:text-lg font-bold text-blue-900';
+        statusSubtitle.textContent = 'היד נשארת לצידי הגוף ללא תנועה מוטורית מוצלחת לעבר החפץ';
+        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-1 font-medium';
+      }, 1000);
+
+      activeTimers.push(t1);
+    }
+
+    // Scenario 2: להריח בנחיר שמאל
+    function runScenario2() {
+      // Flower in animation moves towards character's left nostril
+      flowerGroup.style.transform = 'translate(285px, -140px) scale(0.85)';
+
+      // Solid blue arrow from flower to left nostril
+      showArrow('arrow-flower-to-lnostril');
+
+      // Solid blue arrow from left nostril to left hemisphere
+      showArrow('arrow-lnostril-to-lhem');
+
+      // Animation of left hemisphere (blue) glows or flashes
+      hemisphereLeft.classList.add('glow-blue');
+
+      statusTitle.textContent = 'הפרח מוגש אל עבר נחיר שמאל...';
+      statusSubtitle.textContent = 'גירוי הריח עולה ישירות מנחיר שמאל אל המיספרה שמאל (עיבוד איפסילטרלי)';
+
+      // 1 second later: speech bubble beside person (right side) and text below appear
+      const t1 = setTimeout(() => {
+        speechTextRight.textContent = 'אני מריח פרח';
+        speechBubbleRight.style.opacity = '1';
+        speechBubbleRight.style.transform = 'translate(0, 0)';
+
+        statusPanel.className = 'w-full bg-blue-50/80 border border-blue-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusTitle.textContent = 'האדם מזהה ומדווח בדיבור: ״אני מריח פרח״';
+        statusTitle.className = 'text-base sm:text-lg font-bold text-blue-900';
+        statusSubtitle.textContent = '*ההמיספרה השמאלית מקושרת ליכולת הדיבור';
+        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-1 font-semibold';
+      }, 1000);
+
+      activeTimers.push(t1);
+    }
+
+    // Scenario 3: להגיד מה הוא רואה בצד ימין
+    function runScenario3() {
+      // Solid blue arrow from coffee cup at right of screen to right eye
+      showArrow('arrow-cup-to-reye');
+
+      // Solid blue arrow from right eye to left hemisphere
+      showArrow('arrow-reye-to-lhem');
+
+      // Left hemisphere (blue) glows or flashes
+      hemisphereLeft.classList.add('glow-blue');
+
+      statusTitle.textContent = 'הגירוי מוצג בשדה הראייה הימני...';
+      statusSubtitle.textContent = 'מידע משדה ראייה ימני מוצלב ומעובד בהמיספרה שמאל';
+
+      // 1 second later: speech bubble beside person (left side) and text below appear
+      const t1 = setTimeout(() => {
+        speechTextLeft.textContent = 'אני רואה ספל קפה';
+        speechBubbleLeft.style.opacity = '1';
+        speechBubbleLeft.style.transform = 'translate(0, 0)';
+
+        statusPanel.className = 'w-full bg-blue-50/80 border border-blue-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusTitle.textContent = 'האדם מזהה ומדווח בדיבור: ״אני רואה ספל קפה״';
+        statusTitle.className = 'text-base sm:text-lg font-bold text-blue-900';
+        statusSubtitle.textContent = '*ההמיספרה השמאלית מקושרת ליכולת הדיבור';
+        statusSubtitle.className = 'text-xs sm:text-sm text-blue-700 mt-1 font-semibold';
+      }, 1000);
+
+      activeTimers.push(t1);
+    }
+
+    // Scenario 4: להרים את הפרח שנמצא בצד שמאל
+    function runScenario4() {
+      // Animation of right hemisphere (red) glows or flashes
+      hemisphereRight.classList.add('glow-red');
+
+      // Solid red arrow from right hemisphere to left hand
+      showArrow('arrow-rhem-to-larm');
+
+      // Left hand rises and grabs the flower (tested angle 65deg to touch flower)
+      armLeftGroup.style.transform = 'rotate(65deg)';
+
+      statusTitle.textContent = 'פקודה מוטורית נשלחת מהמיספרה ימין...';
+      statusSubtitle.textContent = 'ההמיספרה הימנית שולטת על תנועת יד שמאל במרחב';
+
+      // 1 second later: text below appears
+      const t1 = setTimeout(() => {
+        statusPanel.className = 'w-full bg-rose-50/80 border border-rose-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusTitle.textContent = 'האדם הצליח לתפוס את החפץ (פרח) ביד שמאל';
+        statusTitle.className = 'text-base sm:text-lg font-bold text-rose-900';
+        statusSubtitle.textContent = '*ההמיספרה הימנית מקושרת להבנה מרחבית וביצוע פעולות';
+        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-1 font-semibold';
+      }, 1000);
+
+      activeTimers.push(t1);
+    }
+
+    // Scenario 5: להריח בנחיר ימין את הקפה שנמצא בצד ימין של המסך
+    function runScenario5() {
+      // Cup in animation moves towards character's right nostril
+      cupGroup.style.transform = 'translate(-285px, -145px) scale(0.85)';
+
+      // Solid red arrow from coffee cup to right nostril
+      showArrow('arrow-cup-to-rnostril');
+
+      // Dashed red arrow from right nostril to right hemisphere
+      showArrow('arrow-rnostril-to-rhem');
+
+      // Animation of right hemisphere (red) glows or flashes
+      hemisphereRight.classList.add('glow-red');
+
+      statusTitle.textContent = 'ספל הקפה מוגש אל עבר נחיר ימין...';
+      statusSubtitle.textContent = 'המידע מגיע ישירות להמיספרה ימין (עיבוד איפסילטרלי)';
+
+      // 1 second later: text below appears
+      const t1 = setTimeout(() => {
+        statusPanel.className = 'w-full bg-rose-50/80 border border-rose-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusTitle.textContent = 'האדם לא מצליח להגיד מה הריח (למרות שיש ריח ברור של קפה)';
+        statusTitle.className = 'text-base sm:text-lg font-bold text-rose-900';
+        statusSubtitle.textContent = '*המידע מגיע להמיספרה שאינה שולטת בדיבור, ולכן אין אפשרות לדווח מילולית';
+        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-1 font-medium';
+      }, 1000);
+
+      activeTimers.push(t1);
+    }
+
+    // Scenario 6: להגיד מה הוא רואה בצד שמאל
+    function runScenario6() {
+      // Dashed red arrow from flower to left eye
+      showArrow('arrow-flower-to-leye');
+
+      // Dashed red arrow from left eye to right hemisphere
+      showArrow('arrow-leye-to-rhem');
+
+      // Animation of right hemisphere (red) glows or flashes
+      hemisphereRight.classList.add('glow-red');
+
+      statusTitle.textContent = 'הגירוי מוצג בשדה הראייה השמאלי...';
+      statusSubtitle.textContent = 'המידע מגיע להמיספרה ימין, אך הקורפוס קולוסום מנותק';
+
+      // 1 second later: text below appears
+      const t1 = setTimeout(() => {
+        statusPanel.className = 'w-full bg-rose-50/80 border border-rose-300 rounded-xl p-3 sm:p-4 mb-3 text-center transition-all min-h-[90px] flex flex-col justify-center items-center shadow-sm';
+        statusTitle.textContent = 'האדם לא מצליח להגיד מה הוא רואה בצד שמאל (פרח)';
+        statusTitle.className = 'text-base sm:text-lg font-bold text-rose-900';
+        statusSubtitle.textContent = '*הגירוי נקלט בהמיספרה הימנית, אך בשל הנתק לא מגיע להמיספרה השמאלית השולטת בדיבור';
+        statusSubtitle.className = 'text-xs sm:text-sm text-rose-700 mt-1 font-medium';
+      }, 1000);
+
+      activeTimers.push(t1);
+    }
+
+    // Button Click Listeners with guaranteed initial reset
+    document.getElementById('btn-act-1').addEventListener('click', () => triggerScenario(runScenario1));
+    document.getElementById('btn-act-2').addEventListener('click', () => triggerScenario(runScenario2));
+    document.getElementById('btn-act-3').addEventListener('click', () => triggerScenario(runScenario3));
+    document.getElementById('btn-act-4').addEventListener('click', () => triggerScenario(runScenario4));
+    document.getElementById('btn-act-5').addEventListener('click', () => triggerScenario(runScenario5));
+    document.getElementById('btn-act-6').addEventListener('click', () => triggerScenario(runScenario6));
+  </script>
+</body>
+</html>
