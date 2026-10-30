@@ -288,25 +288,34 @@
           <text x="532" y="143" fill="#ffe4e6" font-size="12" font-weight="bold" text-anchor="middle">עיבוד מרחבי 📐</text>
         </g>
 
-        <!-- UPPER TORSO & BODY (Simple, elegant pastel green shirt) -->
-        <!-- Neck -->
-        <path d="M 425,320 L 425,375 L 475,375 L 475,320 Z" fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
+        <!-- UPPER TORSO & BODY (Rounded organic shoulders, deep circular scoop neckline) -->
+    <!-- Neck: Organic skin contour extending smoothly into the scooped collar -->
+    <path d="M 416,320
+             C 416,365 408,410 400,446
+             L 500,446
+             C 492,410 484,365 484,320 Z"
+          fill="url(#skinGrad)" stroke="#c2410c" stroke-width="1.5"/>
 
-        <!-- Light Pastel Green Shirt & Torso (Simple rectangle rounded only at shoulders) -->
-        <g id="torso">
-          <!-- Main shirt body: Clean rectangle rounded only at the shoulders -->
-          <path d="M 320,378 
-                   L 580,378 
-                   C 605,378 620,393 620,418 
-                   L 620,600 
-                   L 280,600 
-                   L 280,418 
-                   C 280,393 295,378 320,378 Z" 
-                fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2.5" filter="url(#shadow)"/>
-          
-          <!-- Simple subtle collar notch -->
-          <path d="M 430,378 Q 450,402 470,378" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
-        </g>
+    <!-- Light Pastel Green Shirt & Torso (Smooth dome shoulders, rounded base & deep scoop) -->
+    <g id="torso">
+      <!-- Main shirt body with rounded shoulders and deep U-scoop neckline -->
+      <path d="M 395,396
+               C 410,446 490,446 505,396
+               C 530,372 568,372 595,395
+               C 615,412 622,435 622,465
+               L 622,575
+               C 622,592 610,600 592,600
+               L 308,600
+               C 290,600 278,592 278,575
+               L 278,465
+               C 278,435 285,412 305,395
+               C 332,372 370,372 395,396 Z"
+            fill="url(#shirtGrad)" stroke="#86efac" stroke-width="2.5" filter="url(#shadow)"/>
+
+      <!-- Inner collar curve following the rounded scoop -->
+      <path d="M 402,400 C 418,444 482,444 498,400"
+            fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round" opacity="0.65"/>
+    </g>
 
         <!-- HEAD & FACE (Clean bald contour, NO hair) -->
         <g id="head-group">
