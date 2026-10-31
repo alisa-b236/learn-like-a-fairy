@@ -136,9 +136,1282 @@
     .aromas-paused {
       display: none !important;
     }
+
+    /* Background Floating Sparkles (behind all content, toggled via footer signature) */
+    #sparkles-layer {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      overflow: hidden;
+      transition: opacity 0.4s ease;
+    }
+    #sparkles-layer.sparkles-paused {
+      opacity: 0 !important;
+      visibility: hidden !important;
+    }
+    #sparkles-layer.sparkles-paused .fairy-sparkle {
+      animation-play-state: paused !important;
+    }
+    @keyframes sparkle-float-up {
+      0% {
+        transform: translateY(15px) translateX(0px) rotate(0deg) scale(0.75);
+        opacity: 0;
+      }
+      20% {
+        opacity: 0.72;
+      }
+      50% {
+        transform: translateY(-45px) translateX(12px) rotate(90deg) scale(1.08);
+        opacity: 0.9;
+      }
+      80% {
+        opacity: 0.65;
+      }
+      100% {
+        transform: translateY(-105px) translateX(-10px) rotate(180deg) scale(0.7);
+        opacity: 0;
+      }
+    }
+    @keyframes sparkle-twinkle {
+      0%, 100% { opacity: 0.25; transform: scale(0.8) rotate(0deg); }
+      50% { opacity: 0.85; transform: scale(1.18) rotate(25deg); }
+    }
+    .fairy-sparkle {
+      position: absolute;
+      pointer-events: none;
+      user-select: none;
+      will-change: transform, opacity;
+    }
+
+    /* Interactive 4-Lobe Brain Styles */
+    .lobe-group {
+      cursor: pointer;
+      transition: filter 0.3s ease, transform 0.3s ease, opacity 0.3s ease;
+      transform-box: fill-box;
+      transform-origin: center;
+    }
+    .lobe-group:hover {
+      filter: drop-shadow(0 0 10px rgba(244, 114, 182, 0.55));
+      transform: scale(1.018);
+    }
+    .lobe-active-occipital {
+      filter: drop-shadow(0 0 16px rgba(244, 114, 182, 0.95)) drop-shadow(0 0 26px rgba(236, 72, 153, 0.65)) !important;
+      transform: scale(1.028);
+    }
+    .lobe-active-temporal {
+      filter: drop-shadow(0 0 16px rgba(74, 222, 128, 0.95)) drop-shadow(0 0 26px rgba(34, 197, 94, 0.65)) !important;
+      transform: scale(1.028);
+    }
+    .lobe-active-frontal {
+      filter: drop-shadow(0 0 16px rgba(96, 165, 250, 0.95)) drop-shadow(0 0 26px rgba(59, 130, 246, 0.65)) !important;
+      transform: scale(1.028);
+    }
+    .lobe-active-parietal {
+      filter: drop-shadow(0 0 16px rgba(250, 204, 21, 0.95)) drop-shadow(0 0 26px rgba(234, 179, 8, 0.65)) !important;
+      transform: scale(1.028);
+    }
+    .lobe-dimmed {
+      opacity: 0.58;
+    }
+
+    /* Icon Animations for the 4 Lobes */
+    @keyframes spin-slow {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
+    .spin-gear {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: spin-slow 5s linear infinite;
+    }
+    @keyframes pulse-wave {
+      0%, 100% { opacity: 0.35; transform: scale(0.92); }
+      50% { opacity: 1; transform: scale(1.08); }
+    }
+    .sound-wave-anim {
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pulse-wave 1.5s ease-in-out infinite;
+    }
+    @keyframes float-badge {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-4px); }
+    }
+    .floating-icon-badge {
+      animation: float-badge 2.6s ease-in-out infinite;
+    }
+
+    /* Visual Pathways Diagram 3: Uniform Warm Pink-Brown State & Flowing Glow */
+    #visual-pathways-svg .vp-part {
+      transition: fill 0.32s ease, stroke 0.32s ease, opacity 0.32s ease, filter 0.32s ease;
+    }
+    /* Step 1: Uniform warm rose-brown / strong pastel pink (NO black) */
+    #visual-pathways-svg.vp-uniform .vp-fill-blue,
+    #visual-pathways-svg.vp-uniform .vp-fill-red {
+      fill: #d88ca6 !important;
+      opacity: 0.78 !important;
+      filter: none !important;
+    }
+    #visual-pathways-svg.vp-uniform .vp-stroke-blue,
+    #visual-pathways-svg.vp-uniform .vp-stroke-red {
+      stroke: #b56581 !important;
+      opacity: 0.78 !important;
+      filter: none !important;
+    }
+    #visual-pathways-svg.vp-uniform .vp-hem-left,
+    #visual-pathways-svg.vp-uniform .vp-hem-right {
+      fill: #e8b4c6 !important;
+      stroke: #9e4b69 !important;
+      filter: none !important;
+    }
+
+    /* Step 2A: Right Visual Field -> Left Hemisphere (Blue Glow & Flow) */
+    #visual-pathways-svg.vp-focus-blue .vp-fill-red {
+      fill: #e5b3c4 !important;
+      opacity: 0.42 !important;
+    }
+    #visual-pathways-svg.vp-focus-blue .vp-stroke-red {
+      stroke: #c48399 !important;
+      opacity: 0.42 !important;
+    }
+    #visual-pathways-svg.vp-focus-blue .vp-hem-right {
+      fill: #edd0da !important;
+      stroke: #b06d84 !important;
+    }
+    #visual-pathways-svg.vp-focus-blue .vp-fill-blue {
+      fill: #3b82f6 !important;
+      opacity: 0.92 !important;
+      filter: drop-shadow(0 0 10px rgba(59, 130, 246, 0.85));
+    }
+    #visual-pathways-svg.vp-focus-blue .vp-stroke-blue {
+      stroke: #2563eb !important;
+      opacity: 1 !important;
+      filter: drop-shadow(0 0 8px rgba(59, 130, 246, 0.9));
+    }
+    #visual-pathways-svg.vp-focus-blue .vp-hem-left {
+      fill: #bfdbfe !important;
+      stroke: #2563eb !important;
+      filter: drop-shadow(0 0 16px rgba(59, 130, 246, 0.85));
+    }
+
+    /* Step 2B: Left Visual Field -> Right Hemisphere (Red Glow & Flow) */
+    #visual-pathways-svg.vp-focus-red .vp-fill-blue {
+      fill: #e5b3c4 !important;
+      opacity: 0.42 !important;
+    }
+    #visual-pathways-svg.vp-focus-red .vp-stroke-blue {
+      stroke: #c48399 !important;
+      opacity: 0.42 !important;
+    }
+    #visual-pathways-svg.vp-focus-red .vp-hem-left {
+      fill: #edd0da !important;
+      stroke: #b06d84 !important;
+    }
+    #visual-pathways-svg.vp-focus-red .vp-fill-red {
+      fill: #f43f5e !important;
+      opacity: 0.92 !important;
+      filter: drop-shadow(0 0 10px rgba(244, 63, 94, 0.85));
+    }
+    #visual-pathways-svg.vp-focus-red .vp-stroke-red {
+      stroke: #e11d48 !important;
+      opacity: 1 !important;
+      filter: drop-shadow(0 0 8px rgba(244, 63, 94, 0.9));
+    }
+    #visual-pathways-svg.vp-focus-red .vp-hem-right {
+      fill: #fecdd3 !important;
+      stroke: #e11d48 !important;
+      filter: drop-shadow(0 0 16px rgba(244, 63, 94, 0.85));
+    }
+
+    @keyframes vp-flow-stream {
+      from { stroke-dashoffset: 36; }
+      to { stroke-dashoffset: 0; }
+    }
+    .vp-flow-line {
+      stroke-dasharray: 10, 8;
+      animation: vp-flow-stream 0.75s linear infinite;
+    }
   </style>
 </head>
-<body class="min-h-screen flex flex-col items-center justify-start p-2 sm:p-4 text-slate-800">
+<body class="min-h-screen flex flex-col items-center justify-start p-2 sm:p-4 text-slate-800 relative">
+
+  <!-- Background Floating Sparkles Layer (Behind all content; click signature at bottom to stop/start) -->
+  <div id="sparkles-layer" aria-hidden="true"></div>
+
+  <!-- Top Navigation Tabs (Only Titles, No "Tab 1 / Tab 2" prefix) -->
+  <nav class="w-full max-w-5xl mb-3 bg-white/95 border border-pink-200/90 rounded-2xl p-1.5 sm:p-2 shadow-md shadow-pink-100/50 flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 relative z-10">
+    <button id="tab-btn-lobes" type="button" class="flex-1 py-2 px-3 sm:py-2.5 sm:px-5 rounded-xl font-extrabold text-xs sm:text-base transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-pink-100 via-rose-100 to-pink-50 text-pink-950 border border-pink-300 shadow-sm">
+      <span>🧬</span>
+      <span>המיספרות ואונות המוח — מבנה ותפקוד</span>
+    </button>
+    <button id="tab-btn-split" type="button" class="flex-1 py-2 px-3 sm:py-2.5 sm:px-5 rounded-xl font-extrabold text-xs sm:text-base transition-all flex items-center justify-center gap-2 bg-white hover:bg-pink-50/70 text-slate-600 hover:text-pink-900 border border-transparent hover:border-pink-200">
+      <span>🧠</span>
+      <span>הדמיית מוח חצוי (Split-Brain)</span>
+    </button>
+  </nav>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 1: HEMISPHERES & LOBES OF THE BRAIN (המיספרות ואונות המוח - מבנה ותפקוד) -->
+  <!-- ========================================================================= -->
+  <div id="view-lobes" class="w-full max-w-5xl flex flex-col items-center relative z-10">
+
+    <!-- Header -->
+    <header class="w-full mb-3 text-center">
+      <div class="inline-flex items-center gap-2 px-3 py-0.5 bg-pink-100/90 border border-pink-300/80 rounded-full text-xs text-pink-700 font-semibold mb-1 shadow-sm">
+        <span>🧠 הדמיה אינטראקטיבית בפסיכולוגיה פיזיולוגית</span>
+      </div>
+      <h1 class="text-xl sm:text-3xl font-extrabold tracking-tight bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">
+        המיספרות ואונות המוח — מבנה ותפקוד
+      </h1>
+      <p class="text-xs sm:text-sm text-slate-600 mt-0.5 max-w-2xl mx-auto font-medium">
+        הכירו את שתי ההמיספרות וארבע האונות העיקריות, מסלולי ההצלבה בגוף, בחוש הריח ובשדות הראייה, ומנגנון הגיבוי המרחבי
+      </p>
+    </header>
+
+    <!-- SECTION 1: THE 4 LOBES OF THE BRAIN -->
+    <section class="w-full bg-white/95 border border-pink-200/90 rounded-2xl shadow-lg shadow-pink-100/50 p-3 sm:p-5 mb-4">
+      <div class="mb-3">
+        <span class="inline-block bg-pink-100 text-pink-900 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-pink-200 mb-1.5">
+          מבנה המוח וארבע האונות
+        </span>
+        <h2 class="text-base sm:text-xl font-extrabold text-slate-800">
+          המוח מורכב משתי המיספרות, ולכל אחת מהמיספרות המוח יש ארבע אונות עיקריות:
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-500 font-medium mt-0.5">
+          לחצו על כל אונה בסרטוט המוח או ברשימה הממורקרת כדי להציג את האייקונים המייצגים את תפקידיה
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 items-center">
+        <!-- Right Column (in RTL): Highlighted Explanations for Each Lobe -->
+        <div class="lg:col-span-6 space-y-2.5 sm:space-y-3">
+          <!-- Occipital Lobe (Baby Pink) -->
+          <div id="card-lobe-occipital" data-lobe="occipital" class="lobe-card cursor-pointer rounded-xl p-2.5 sm:p-3 border-2 border-pink-300/80 bg-[#fff5f9] hover:shadow-md transition-all">
+            <div class="text-xs sm:text-base leading-relaxed text-slate-800">
+              <mark class="bg-[#fbcfe8] text-pink-950 font-bold px-2 py-0.5 rounded-md shadow-sm box-decoration-clone">
+                • האונה האוקסיפיטלית (ורוד בייבי) — קשורה בעיקר לעיבוד ראייה.
+              </mark>
+            </div>
+            <div class="lobe-card-icons hidden mt-2 pt-2 border-t border-pink-200/80 flex items-center gap-3 text-xs sm:text-sm text-pink-900 font-semibold">
+              <span class="inline-flex items-center gap-1 bg-pink-100 px-2.5 py-1 rounded-lg border border-pink-300">👁️ קליטה ראייתית (עין)</span>
+              <span class="inline-flex items-center gap-1 bg-pink-100 px-2.5 py-1 rounded-lg border border-pink-300">⚙️ עיבוד המידע הראייתי (גלגל שיניים)</span>
+            </div>
+          </div>
+
+          <!-- Temporal Lobe (Pastel Green) -->
+          <div id="card-lobe-temporal" data-lobe="temporal" class="lobe-card cursor-pointer rounded-xl p-2.5 sm:p-3 border-2 border-emerald-200/90 bg-[#f4fdf7] hover:shadow-md transition-all">
+            <div class="text-xs sm:text-base leading-relaxed text-slate-800">
+              <mark class="bg-[#bbf7d0] text-emerald-950 font-bold px-2 py-0.5 rounded-md shadow-sm box-decoration-clone">
+                • האונה הטמפורלית (ירוק פסטל) — קשורה, בין היתר, לשמיעה ולעיבוד שפתי.
+              </mark>
+            </div>
+            <div class="lobe-card-icons hidden mt-2 pt-2 border-t border-emerald-200/80 flex items-center gap-3 text-xs sm:text-sm text-emerald-900 font-semibold">
+              <span class="inline-flex items-center gap-1 bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-300">👂 שמיעה (אוזן וגלי קול)</span>
+              <span class="inline-flex items-center gap-1 bg-emerald-100 px-2.5 py-1 rounded-lg border border-emerald-300">🗣️ עיבוד שפתי ודיבור (איש מדבר)</span>
+            </div>
+          </div>
+
+          <!-- Frontal Lobe (Light Pastel Baby Blue) -->
+          <div id="card-lobe-frontal" data-lobe="frontal" class="lobe-card cursor-pointer rounded-xl p-2.5 sm:p-3 border-2 border-sky-200/90 bg-[#f2f9ff] hover:shadow-md transition-all">
+            <div class="text-xs sm:text-base leading-relaxed text-slate-800">
+              <mark class="bg-[#cfe2f8] text-sky-950 font-bold px-2 py-0.5 rounded-md shadow-sm box-decoration-clone">
+                • האונה הפרונטלית (תכלת בהיר פסטלי) — קשורה לתפקודים ניהוליים; תכנון, ריכוז, בקרה, שיפוט וחשיבה.
+              </mark>
+            </div>
+            <div class="lobe-card-icons hidden mt-2 pt-2 border-t border-sky-200/80 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-sky-900 font-semibold">
+              <span class="inline-flex items-center gap-1 bg-sky-100 px-2 py-1 rounded-lg border border-sky-300">👩‍💼 מנהלת העל</span>
+              <span class="inline-flex items-center gap-1 bg-sky-100 px-2 py-1 rounded-lg border border-sky-300">📋 תכנון ובקרה</span>
+              <span class="inline-flex items-center gap-1 bg-sky-100 px-2 py-1 rounded-lg border border-sky-300">🎯 ריכוז</span>
+              <span class="inline-flex items-center gap-1 bg-sky-100 px-2 py-1 rounded-lg border border-sky-300">⚖️ שיפוט</span>
+              <span class="inline-flex items-center gap-1 bg-sky-100 px-2 py-1 rounded-lg border border-sky-300">💡 חשיבה</span>
+            </div>
+          </div>
+
+          <!-- Parietal Lobe (Banana Yellow) -->
+          <div id="card-lobe-parietal" data-lobe="parietal" class="lobe-card cursor-pointer rounded-xl p-2.5 sm:p-3 border-2 border-yellow-300/90 bg-[#fffef2] hover:shadow-md transition-all">
+            <div class="text-xs sm:text-base leading-relaxed text-slate-800">
+              <mark class="bg-[#fef08a] text-amber-950 font-bold px-2 py-0.5 rounded-md shadow-sm box-decoration-clone">
+                • האונה הפריאטלית (צהוב בננה) — קשורה לעיבוד מרחבי ולקשב במרחב.
+              </mark>
+            </div>
+            <div class="lobe-card-icons hidden mt-2 pt-2 border-t border-yellow-300/80 flex flex-wrap items-center gap-2 text-xs sm:text-sm text-amber-900 font-semibold">
+              <span class="inline-flex items-center gap-1 bg-yellow-100 px-2.5 py-1 rounded-lg border border-yellow-400">🗺️📍 מפה והתמצאות במרחב</span>
+              <span class="inline-flex items-center gap-1 bg-yellow-100 px-2.5 py-1 rounded-lg border border-yellow-400">🧭 מצפן מרחבי</span>
+              <span class="inline-flex items-center gap-1 bg-yellow-100 px-2.5 py-1 rounded-lg border border-yellow-400">🔦 זרקור קשב במרחב</span>
+            </div>
+          </div>
+
+          <div class="pt-1 flex items-center justify-between text-xs text-slate-500">
+            <span id="lobe-status-hint">💡 לחצו על אחת האונות כדי להציג אייקונים והסבר חי על המוח</span>
+            <button id="btn-reset-lobes" type="button" class="px-2.5 py-1 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 font-semibold transition">
+              הצג את כל האונות יחד
+            </button>
+          </div>
+        </div>
+
+        <!-- Left Column (in RTL): High-Detail Side-View Brain SVG (Traced from uploaded reference image) -->
+        <div class="lg:col-span-6 flex flex-col items-center justify-center bg-gradient-to-b from-[#fff7fa] to-[#fdebf3]/50 border border-pink-200/80 rounded-2xl p-2 sm:p-4 relative">
+          <div class="w-full flex justify-between items-center px-2 mb-1 text-[11px] sm:text-xs font-bold text-pink-800/80">
+            <span>אחורי המוח (עורף) ➡️</span>
+            <span>⬅️ קדמת המוח (מצח)</span>
+          </div>
+
+          <!-- Side-View Brain SVG matching 564x557 reference proportions & sulci -->
+          <svg id="lobes-brain-svg" viewBox="0 0 564 545" class="w-full max-w-[420px] h-auto select-none overflow-visible" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="lobeSoftShadow" x="-10%" y="-10%" width="120%" height="120%">
+                <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#ec6ead" flood-opacity="0.18"/>
+              </filter>
+            </defs>
+
+            <!-- BRAINSTEM / PONS / MEDULLA (Bottom white structure with pink outline & lines, exact match to image) -->
+            <g id="brainstem-group" filter="url(#lobeSoftShadow)">
+              <path d="M 232,336
+                       C 238,358 248,378 254,398
+                       C 258,415 264,430 278,448
+                       C 286,462 292,488 300,522
+                       L 346,525
+                       C 340,495 335,470 336,456
+                       C 386,456 432,424 436,368
+                       C 438,356 436,348 432,342
+                       Z"
+                    fill="#ffffff" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Internal pink strokes on brainstem matching reference image -->
+              <path d="M 262,366 C 266,382 264,398 272,414" fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round"/>
+              <path d="M 278,386 C 282,400 280,415 292,425" fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round"/>
+              <path d="M 299,379 C 314,392 350,402 356,403" fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round"/>
+              <path d="M 312,390 C 310,418 308,442 336,456" fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round"/>
+              <path d="M 332,370 C 346,378 362,380 376,379" fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round"/>
+            </g>
+
+            <!-- 1. FRONTAL LOBE (Light Pastel Blue #cfe2f8, Front/Left) -->
+            <g id="svg-lobe-frontal" data-lobe="frontal" class="lobe-group" filter="url(#lobeSoftShadow)">
+              <path d="M 265,52
+                       C 250,44 224,43 206,52
+                       C 188,45 162,48 148,59
+                       C 128,55 104,64 94,81
+                       C 74,84 56,102 53,124
+                       C 40,138 36,166 46,186
+                       C 42,204 54,225 74,232
+                       C 78,248 96,260 116,258
+                       C 126,272 150,278 166,270
+                       C 166,252 178,232 202,224
+                       C 202,202 206,184 222,172
+                       C 238,158 242,140 232,120
+                       C 230,104 244,88 256,74
+                       C 266,64 268,56 265,52 Z"
+                    fill="#cfe2f8" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Authentic internal sulci curves of Frontal Lobe from image -->
+              <g fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 148,59 C 148,74 146,88 134,98"/>
+                <path d="M 172,72 C 184,70 198,70 208,74"/>
+                <path d="M 190,62 C 190,74 190,82 190,88"/>
+                <path d="M 170,88 C 184,84 200,86 210,94"/>
+                <path d="M 105,112 C 118,118 126,116 136,136 C 144,150 158,150 168,148"/>
+                <path d="M 155,108 C 174,104 188,116 206,124 C 218,128 225,124 232,120"/>
+                <path d="M 66,142 C 88,144 96,162 96,182 C 96,196 86,204 72,200"/>
+                <path d="M 122,174 C 122,188 130,196 140,192"/>
+                <path d="M 178,166 C 158,172 138,170 138,192 C 138,208 156,214 174,210 C 188,206 196,198 204,198"/>
+                <path d="M 125,222 C 134,234 142,244 166,248"/>
+              </g>
+              <text x="142" y="142" fill="#0c4a6e" font-size="18" font-weight="800" text-anchor="middle" pointer-events="none" opacity="0.88">פרונטלית</text>
+            </g>
+
+            <!-- 2. PARIETAL LOBE (Banana Yellow #fef08a, Top/Middle-Back) -->
+            <g id="svg-lobe-parietal" data-lobe="parietal" class="lobe-group" filter="url(#lobeSoftShadow)">
+              <path d="M 265,52
+                       C 276,42 296,42 308,52
+                       C 328,48 354,54 366,68
+                       C 388,68 412,80 420,98
+                       C 442,102 458,118 462,136
+                       C 482,142 496,158 494,176
+                       C 474,182 458,196 452,216
+                       C 434,228 410,232 394,214
+                       C 372,208 350,218 326,222
+                       C 302,226 286,212 266,218
+                       C 242,224 220,216 202,224
+                       C 202,202 206,184 222,172
+                       C 238,158 242,140 232,120
+                       C 230,104 244,88 256,74
+                       C 266,64 268,56 265,52 Z"
+                    fill="#fef08a" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Authentic internal sulci curves of Parietal Lobe from image -->
+              <g fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 252,78 C 254,88 260,96 270,98"/>
+                <path d="M 302,52 C 296,74 294,96 312,104 C 330,112 332,134 322,148"/>
+                <path d="M 272,136 C 284,124 300,116 314,116"/>
+                <path d="M 326,126 C 344,132 352,148 376,150"/>
+                <path d="M 388,82 C 378,104 384,132 408,144 C 418,150 426,150 436,144"/>
+                <path d="M 412,132 C 406,144 410,160 428,162"/>
+                <path d="M 250,164 C 258,176 268,180 278,174"/>
+                <path d="M 248,184 C 258,180 268,184 276,192"/>
+                <path d="M 294,178 C 310,174 322,178 336,184"/>
+                <path d="M 348,188 C 362,174 374,176 388,180"/>
+              </g>
+              <text x="348" y="135" fill="#713f12" font-size="18" font-weight="800" text-anchor="middle" pointer-events="none" opacity="0.88">פריאטלית</text>
+            </g>
+
+            <!-- 3. TEMPORAL LOBE (Pastel Mint Green #bbf7d0, Middle/Lower) -->
+            <g id="svg-lobe-temporal" data-lobe="temporal" class="lobe-group" filter="url(#lobeSoftShadow)">
+              <path d="M 202,224
+                       C 220,216 242,224 266,218
+                       C 286,212 302,226 326,222
+                       C 350,218 372,208 394,214
+                       C 410,232 434,228 452,216
+                       C 456,238 450,264 436,282
+                       C 412,298 386,316 356,338
+                       C 340,354 316,354 298,342
+                       C 280,352 254,350 238,336
+                       C 216,340 194,330 188,314
+                       C 168,310 158,288 166,270
+                       C 166,252 178,232 202,224 Z"
+                    fill="#bbf7d0" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Authentic internal sulci curves of Temporal Lobe from image -->
+              <g fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 268,220 C 260,242 246,262 230,270 C 222,274 216,280 214,288"/>
+                <path d="M 294,222 C 296,240 310,248 312,262"/>
+                <path d="M 244,268 C 258,278 274,282 286,294 C 298,304 312,302 322,294"/>
+                <path d="M 350,252 C 346,264 342,272 336,276"/>
+                <path d="M 336,268 C 354,272 374,280 398,272 C 414,266 432,254 448,266"/>
+                <path d="M 368,278 C 376,292 390,300 408,298"/>
+                <path d="M 180,280 C 184,292 182,304 176,310"/>
+                <path d="M 196,314 C 210,314 218,324 238,320"/>
+                <path d="M 314,318 C 306,326 300,336 298,342"/>
+                <path d="M 336,312 C 344,320 350,328 356,338"/>
+              </g>
+              <text x="302" y="286" fill="#14532d" font-size="18" font-weight="800" text-anchor="middle" pointer-events="none" opacity="0.88">טמפורלית</text>
+            </g>
+
+            <!-- 4. OCCIPITAL LOBE (Baby Pink #fbcfe8, Back/Right) -->
+            <g id="svg-lobe-occipital" data-lobe="occipital" class="lobe-group" filter="url(#lobeSoftShadow)">
+              <path d="M 494,176
+                       C 508,186 508,210 498,224
+                       C 516,236 518,262 506,278
+                       C 514,294 506,316 490,324
+                       C 488,344 470,360 450,352
+                       C 434,358 414,352 404,344
+                       C 386,352 366,348 356,338
+                       C 386,316 412,298 436,282
+                       C 450,264 456,238 452,216
+                       C 458,196 474,182 494,176 Z"
+                    fill="#fbcfe8" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round" stroke-linecap="round"/>
+              <!-- Authentic internal sulci curves of Occipital Lobe from image -->
+              <g fill="none" stroke="#ec6ead" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M 498,224 C 486,226 476,224 468,218"/>
+                <path d="M 454,244 C 464,256 478,262 490,256"/>
+                <path d="M 464,290 C 468,304 478,316 488,324"/>
+                <path d="M 426,318 C 432,330 440,342 450,352"/>
+              </g>
+              <text x="466" y="285" fill="#831843" font-size="14.5" font-weight="800" text-anchor="middle" pointer-events="none" opacity="0.92">אוקסיפיטלית</text>
+            </g>
+
+            <!-- DYNAMIC POPUP CALLOUT OVERLAY FOR EACH LOBE (Appears when a lobe is clicked) -->
+            <!-- Occipital Icons Callout: Eye + Spinning Cogwheel -->
+            <g id="popup-occipital" class="hidden floating-icon-badge" transform="translate(365, 365)">
+              <rect x="0" y="0" width="190" height="84" rx="16" fill="#ffffff" stroke="#f472b6" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
+              <!-- Spinning Gear SVG + Eye SVG -->
+              <g transform="translate(46, 38)">
+                <g class="spin-gear">
+                  <circle cx="0" cy="0" r="14" fill="#fce7f3" stroke="#db2777" stroke-width="2.5"/>
+                  <circle cx="0" cy="0" r="5" fill="#db2777"/>
+                  <line x1="0" y1="-19" x2="0" y2="-13" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="0" y1="13" x2="0" y2="19" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="-19" y1="0" x2="-13" y2="0" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="13" y1="0" x2="19" y2="0" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="-13" y1="-13" x2="-9" y2="-9" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="9" y1="9" x2="13" y2="13" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="13" y1="-13" x2="9" y2="-9" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                  <line x1="-9" y1="9" x2="-13" y2="13" stroke="#db2777" stroke-width="3.5" stroke-linecap="round"/>
+                </g>
+              </g>
+              <g transform="translate(132, 38)">
+                <path d="M -24,0 Q 0,-18 24,0 Q 0,18 -24,0 Z" fill="#fdf2f8" stroke="#db2777" stroke-width="2.5"/>
+                <circle cx="0" cy="0" r="8" fill="#ec4899"/>
+                <circle cx="0" cy="0" r="3.5" fill="#1e293b"/>
+                <circle cx="2.5" cy="-2.5" r="1.8" fill="#ffffff"/>
+              </g>
+              <text x="95" y="72" fill="#9d174d" font-size="13" font-weight="800" text-anchor="middle">עיבוד ראייה (עין + גלגל שיניים)</text>
+            </g>
+
+            <!-- Temporal Icons Callout: Ear + Speaking Person -->
+            <g id="popup-temporal" class="hidden floating-icon-badge" transform="translate(155, 365)">
+              <rect x="0" y="0" width="215" height="84" rx="16" fill="#ffffff" stroke="#4ade80" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
+              <!-- Ear + Sound waves -->
+              <g transform="translate(55, 36)">
+                <path d="M -6,-14 C 8,-18 16,-6 10,6 C 6,14 2,18 -4,16 C -8,14 -6,8 -2,6 C 2,4 4,-4 -2,-6" fill="#dcfce7" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round"/>
+                <path class="sound-wave-anim" d="M 16,-10 Q 23,0 16,10" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round"/>
+                <path class="sound-wave-anim" d="M 22,-15 Q 32,0 22,15" fill="none" stroke="#22c55e" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+              <!-- Speaking person + speech waves -->
+              <g transform="translate(148, 36)">
+                <circle cx="-6" cy="-6" r="9" fill="#dcfce7" stroke="#16a34a" stroke-width="2.2"/>
+                <path d="M -18,14 C -18,4 6,4 6,14" fill="#dcfce7" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round"/>
+                <path class="sound-wave-anim" d="M 8,-8 L 18,-13 M 9,-2 L 20,-2 M 8,4 L 18,9" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round"/>
+              </g>
+              <text x="107" y="72" fill="#14532d" font-size="13" font-weight="800" text-anchor="middle">שמיעה ועיבוד שפתי (אוזן + דיבור)</text>
+            </g>
+
+            <!-- Frontal Icons Callout: Executive Manager + Checklist/Target/Lightbulb -->
+            <g id="popup-frontal" class="hidden floating-icon-badge" transform="translate(10, 265)">
+              <rect x="0" y="0" width="225" height="92" rx="16" fill="#ffffff" stroke="#60a5fa" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
+              <text x="112" y="38" font-size="26" text-anchor="middle">👩‍💼 📋 🎯 ⚖️ 💡</text>
+              <text x="112" y="61" fill="#0c4a6e" font-size="13" font-weight="800" text-anchor="middle">מנהלת העל: תפקודים ניהוליים</text>
+              <text x="112" y="79" fill="#0369a1" font-size="11.5" font-weight="bold" text-anchor="middle">תכנון • ריכוז • בקרה • שיפוט • חשיבה</text>
+            </g>
+
+            <!-- Parietal Icons Callout: Spatial Map + Compass + Attentional Spotlight -->
+            <g id="popup-parietal" class="hidden floating-icon-badge" transform="translate(275, 4)">
+              <rect x="0" y="0" width="235" height="86" rx="16" fill="#ffffff" stroke="#facc15" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
+              <text x="117" y="37" font-size="25" text-anchor="middle">🗺️ 📍 🧭 🔦</text>
+              <text x="117" y="60" fill="#713f12" font-size="13" font-weight="800" text-anchor="middle">עיבוד מרחבי וקשב במרחב</text>
+              <text x="117" y="77" fill="#854d0e" font-size="11.5" font-weight="bold" text-anchor="middle">מפת המרחב • התמצאות • זרקור קשב</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 2: THE 3 HEMISPHERE DIAGRAMS (BODY CONTRALATERAL, NOSE IPSILATERAL, VISUAL PATHWAYS) -->
+    <!-- ========================================================================= -->
+    <section class="w-full bg-white/95 border border-pink-200/90 rounded-2xl shadow-lg shadow-pink-100/50 p-3 sm:p-5 mb-4">
+      <div class="mb-4 text-center sm:text-right">
+        <span class="inline-block bg-pink-100 text-pink-900 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-pink-200 mb-1.5">
+          המיספרה שמאל מול המיספרה ימין — הצלבה מול חוסר הצלבה
+        </span>
+        <h2 class="text-base sm:text-xl font-extrabold text-slate-800">
+          כיצד מחוברות שתי ההמיספרות אל הגוף, אל חוש הריח ואל שדות הראייה?
+        </h2>
+        <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+          בכל הסרטוטים: <span class="inline-block px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">המיספרה שמאל בצבע כחול</span> (כהה יותר מהתכלת של האונה הפרונטלית) ו-<span class="inline-block px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">המיספרה ימין בגוון אדום פסטלי עדין</span>.
+        </p>
+      </div>
+
+      <!-- 3 Identical Side-View Brains Strip Showing the 3 Principles Side-by-Side -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4 bg-pink-50/60 border border-pink-200/80 rounded-xl p-3" dir="ltr">
+        <!-- Left of screen: Brain 1 (Body - Contralateral) -->
+        <div class="bg-white rounded-xl p-2.5 border border-pink-200 shadow-sm flex flex-col items-center text-center" dir="rtl">
+          <div class="text-xs font-extrabold text-pink-900 mb-1">סרטוט מוח 1: שליטה על הגוף (בהצלבה)</div>
+          <svg viewBox="0 0 220 95" class="w-40 h-auto">
+            <!-- Left Hemisphere (Pastel Blue #60a5fa, darker than frontal #cfe2f8) -->
+            <g transform="translate(8, 5)">
+              <path d="M 45,12 C 30,8 14,16 10,32 C 6,46 18,58 34,58 C 46,64 68,62 78,52 C 88,42 86,22 72,15 C 62,10 52,10 45,12 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+              <path d="M 24,26 Q 42,20 58,28 M 20,40 Q 44,34 66,42" fill="none" stroke="#eff6ff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 42,58 L 46,76 L 54,76 L 54,58 Z" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+              <text x="46" y="38" fill="#ffffff" font-size="10.5" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+            </g>
+            <!-- Right Hemisphere (Soft Pastel Red #fda4af) -->
+            <g transform="translate(114, 5)">
+              <path d="M 45,12 C 30,8 14,16 10,32 C 6,46 18,58 34,58 C 46,64 68,62 78,52 C 88,42 86,22 72,15 C 62,10 52,10 45,12 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2"/>
+              <path d="M 24,26 Q 42,20 58,28 M 20,40 Q 44,34 66,42" fill="none" stroke="#fff1f2" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 42,58 L 46,76 L 54,76 L 54,58 Z" fill="#ffffff" stroke="#e11d48" stroke-width="1.5"/>
+              <text x="46" y="38" fill="#881337" font-size="10.5" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Middle of screen: Brain 2 (Olfaction - Ipsilateral) -->
+        <div class="bg-white rounded-xl p-2.5 border border-pink-200 shadow-sm flex flex-col items-center text-center" dir="rtl">
+          <div class="text-xs font-extrabold text-pink-900 mb-1">סרטוט מוח 2: חוש הריח (לא בהצלבה)</div>
+          <svg viewBox="0 0 220 95" class="w-40 h-auto">
+            <g transform="translate(8, 5)">
+              <path d="M 45,12 C 30,8 14,16 10,32 C 6,46 18,58 34,58 C 46,64 68,62 78,52 C 88,42 86,22 72,15 C 62,10 52,10 45,12 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+              <path d="M 24,26 Q 42,20 58,28 M 20,40 Q 44,34 66,42" fill="none" stroke="#eff6ff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 42,58 L 46,76 L 54,76 L 54,58 Z" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+              <text x="46" y="38" fill="#ffffff" font-size="10.5" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+            </g>
+            <g transform="translate(114, 5)">
+              <path d="M 45,12 C 30,8 14,16 10,32 C 6,46 18,58 34,58 C 46,64 68,62 78,52 C 88,42 86,22 72,15 C 62,10 52,10 45,12 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2"/>
+              <path d="M 24,26 Q 42,20 58,28 M 20,40 Q 44,34 66,42" fill="none" stroke="#fff1f2" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 42,58 L 46,76 L 54,76 L 54,58 Z" fill="#ffffff" stroke="#e11d48" stroke-width="1.5"/>
+              <text x="46" y="38" fill="#881337" font-size="10.5" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Right of screen: Brain 3 (Visual Fields - Contralateral at Optic Chiasm) -->
+        <div class="bg-white rounded-xl p-2.5 border border-pink-200 shadow-sm flex flex-col items-center text-center" dir="rtl">
+          <div class="text-xs font-extrabold text-pink-900 mb-1">סרטוט מוח 3: שדות ראייה (בהצלבה בתצלובת)</div>
+          <svg viewBox="0 0 220 95" class="w-40 h-auto">
+            <g transform="translate(8, 5)">
+              <path d="M 45,12 C 30,8 14,16 10,32 C 6,46 18,58 34,58 C 46,64 68,62 78,52 C 88,42 86,22 72,15 C 62,10 52,10 45,12 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+              <path d="M 24,26 Q 42,20 58,28 M 20,40 Q 44,34 66,42" fill="none" stroke="#eff6ff" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 42,58 L 46,76 L 54,76 L 54,58 Z" fill="#ffffff" stroke="#2563eb" stroke-width="1.5"/>
+              <text x="46" y="38" fill="#ffffff" font-size="10.5" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+            </g>
+            <g transform="translate(114, 5)">
+              <path d="M 45,12 C 30,8 14,16 10,32 C 6,46 18,58 34,58 C 46,64 68,62 78,52 C 88,42 86,22 72,15 C 62,10 52,10 45,12 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2"/>
+              <path d="M 24,26 Q 42,20 58,28 M 20,40 Q 44,34 66,42" fill="none" stroke="#fff1f2" stroke-width="2" stroke-linecap="round"/>
+              <path d="M 42,58 L 46,76 L 54,76 L 54,58 Z" fill="#ffffff" stroke="#e11d48" stroke-width="1.5"/>
+              <text x="46" y="38" fill="#881337" font-size="10.5" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Row of Diagram 1 (Positioned on the LEFT of the screen as requested) & Diagram 2 (Right) -->
+      <!-- Using dir="ltr" on the grid so col 1 is physically on the LEFT side of the screen -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-5" dir="ltr">
+        
+        <!-- DIAGRAM 1 (PHYSICAL LEFT OF SCREEN): CONTRALATERAL BODY CONTROL -->
+        <div class="bg-gradient-to-b from-[#fff8fa] to-[#fce7f0]/40 border border-pink-200 rounded-2xl p-3.5 sm:p-4 flex flex-col items-center justify-between shadow-sm" dir="rtl">
+          <div class="w-full flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-xs border border-pink-200">
+              סרטוט מוח 1 — שליטה על הגוף
+            </span>
+            <span class="text-[11px] text-slate-500 font-semibold">לחצו על המיספרה או צד בגוף להדגשה</span>
+          </div>
+
+          <svg id="diagram1-body-svg" viewBox="0 0 360 320" class="w-full max-w-[320px] h-auto select-none">
+            <defs>
+              <marker id="d1-arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
+              </marker>
+              <marker id="d1-arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#e11d48"/>
+              </marker>
+            </defs>
+
+            <!-- Side Labels -->
+            <text x="68" y="165" fill="#be123c" font-size="13" font-weight="bold" text-anchor="middle">צד שמאל של הגוף</text>
+            <text x="292" y="165" fill="#1d4ed8" font-size="13" font-weight="bold" text-anchor="middle">צד ימין של הגוף</text>
+
+            <!-- Head Outline -->
+            <circle cx="180" cy="52" r="42" fill="#fff1f2" stroke="#f472b6" stroke-width="2"/>
+            <!-- Neck -->
+            <rect x="168" y="92" width="24" height="16" rx="4" fill="#ffe4e6" stroke="#f472b6" stroke-width="1.5"/>
+
+            <!-- Brain in Head: Left Hemisphere (Screen Left, Blue #60a5fa) & Right Hemisphere (Screen Right, Red #fda4af) -->
+            <g id="d1-left-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
+              <path d="M 178,20 C 156,20 144,34 146,50 C 148,64 162,70 178,68 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
+              <path d="M 154,36 Q 165,32 174,38 M 152,48 Q 165,44 175,50" fill="none" stroke="#eff6ff" stroke-width="1.6" stroke-linecap="round"/>
+              <text x="135" y="14" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+            </g>
+            <g id="d1-right-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
+              <path d="M 182,20 C 204,20 216,34 214,50 C 212,64 198,70 182,68 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2"/>
+              <path d="M 206,36 Q 195,32 186,38 M 208,48 Q 195,44 185,50" fill="none" stroke="#fff1f2" stroke-width="1.6" stroke-linecap="round"/>
+              <text x="225" y="14" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+            </g>
+
+            <!-- Split Human Body: Left Half in Pastel Red (#fda4af), Right Half in Pastel Blue (#60a5fa) -->
+            <!-- Left Half of Body (Screen Left - Red) -->
+            <g id="d1-left-body" class="cursor-pointer transition-all">
+              <path d="M 180,106
+                       L 136,106
+                       C 122,106 114,116 110,132
+                       L 94,195
+                       C 92,203 104,207 108,198
+                       L 124,142
+                       L 134,142
+                       L 134,295
+                       C 134,305 152,305 154,295
+                       L 158,212
+                       L 180,212 Z"
+                    fill="#fda4af" stroke="#e11d48" stroke-width="2.2" stroke-linejoin="round"/>
+            </g>
+
+            <!-- Right Half of Body (Screen Right - Blue) -->
+            <g id="d1-right-body" class="cursor-pointer transition-all">
+              <path d="M 180,106
+                       L 224,106
+                       C 238,106 246,116 250,132
+                       L 266,195
+                       C 268,203 256,207 252,198
+                       L 236,142
+                       L 226,142
+                       L 226,295
+                       C 226,305 208,305 206,295
+                       L 202,212
+                       L 180,212 Z"
+                    fill="#60a5fa" stroke="#2563eb" stroke-width="2.2" stroke-linejoin="round"/>
+            </g>
+
+            <!-- Center Body Dividing Line -->
+            <line x1="180" y1="104" x2="180" y2="214" stroke="#ffffff" stroke-width="2" stroke-dasharray="4,3"/>
+
+            <!-- Crossing Arrows (Contralateral Control) -->
+            <!-- Blue Arrow from Left Hemisphere to Right Side of Body -->
+            <path id="d1-arrow-blue-path" d="M 162,62 C 166,105 198,130 218,175" fill="none" stroke="#1d4ed8" stroke-width="3.8" marker-end="url(#d1-arrow-blue)" class="vp-flow-line"/>
+            <!-- Red Arrow from Right Hemisphere to Left Side of Body -->
+            <path id="d1-arrow-red-path" d="M 198,62 C 194,105 162,130 142,175" fill="none" stroke="#e11d48" stroke-width="3.8" marker-end="url(#d1-arrow-red)" class="vp-flow-line"/>
+          </svg>
+
+          <!-- Caption for Diagram 1 -->
+          <div class="w-full mt-2 bg-white/95 border border-pink-200 rounded-xl p-2.5 text-center shadow-sm">
+            <p class="text-xs sm:text-sm font-extrabold text-slate-800 leading-relaxed">
+              ״השליטה על הגוף היא בהצלבה: <span class="text-blue-700">המיספרה שמאל שולטת על צידו הימני של הגוף.</span> <span class="text-rose-700">המיספרה ימין שולטת על צד שמאל של הגוף</span>״
+            </p>
+          </div>
+        </div>
+
+        <!-- DIAGRAM 2 (PHYSICAL RIGHT OF SCREEN): IPSILATERAL OLFACTION (NOSE) -->
+        <div class="bg-gradient-to-b from-[#fff8fa] to-[#fce7f0]/40 border border-pink-200 rounded-2xl p-3.5 sm:p-4 flex flex-col items-center justify-between shadow-sm" dir="rtl">
+          <div class="w-full flex items-center justify-between mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-xs border border-pink-200">
+              סרטוט מוח 2 — חוש הריח (אף ונחיריים)
+            </span>
+            <span class="text-[11px] text-slate-500 font-semibold">לחצו על נחיר או המיספרה להדגשה</span>
+          </div>
+
+          <svg id="diagram2-nose-svg" viewBox="0 0 360 320" class="w-full max-w-[320px] h-auto select-none">
+            <defs>
+              <marker id="d2-arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
+              </marker>
+              <marker id="d2-arrow-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#e11d48"/>
+              </marker>
+            </defs>
+
+            <!-- Person's Face Contour & Ears -->
+            <ellipse cx="96" cy="185" rx="12" ry="22" fill="#ffedd5" stroke="#f472b6" stroke-width="2"/>
+            <ellipse cx="264" cy="185" rx="12" ry="22" fill="#ffedd5" stroke="#f472b6" stroke-width="2"/>
+            <ellipse cx="180" cy="172" rx="84" ry="102" fill="#ffedd5" stroke="#f472b6" stroke-width="2.5"/>
+
+            <!-- Brain at Top of Head: Left Hemisphere (Blue #60a5fa) & Right Hemisphere (Red #fda4af) -->
+            <g id="d2-left-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
+              <path d="M 177,42 C 138,40 112,66 116,96 C 120,114 148,122 177,118 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2.2"/>
+              <path d="M 132,68 Q 152,60 170,70 M 128,88 Q 152,80 172,90" fill="none" stroke="#eff6ff" stroke-width="2" stroke-linecap="round"/>
+              <text x="145" y="30" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+            </g>
+            <g id="d2-right-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
+              <path d="M 183,42 C 222,40 248,66 244,96 C 240,114 212,122 183,118 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2.2"/>
+              <path d="M 228,68 Q 208,60 190,70 M 232,88 Q 208,80 188,90" fill="none" stroke="#fff1f2" stroke-width="2" stroke-linecap="round"/>
+              <text x="215" y="30" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+            </g>
+
+            <!-- Gentle Closed/Calm Eyes & Eyebrows -->
+            <path d="M 126,152 Q 142,145 158,152" fill="none" stroke="#9d4b6c" stroke-width="2.5" stroke-linecap="round"/>
+            <path d="M 202,152 Q 218,145 234,152" fill="none" stroke="#9d4b6c" stroke-width="2.5" stroke-linecap="round"/>
+            <ellipse cx="142" cy="166" rx="13" ry="8" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
+            <circle cx="142" cy="166" r="4.5" fill="#64748b"/>
+            <ellipse cx="218" cy="166" rx="13" ry="8" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
+            <circle cx="218" cy="166" r="4.5" fill="#64748b"/>
+
+            <!-- Nose Divided into Left Half (Blue #60a5fa) and Right Half (Red #fda4af) -->
+            <g id="d2-left-nose" class="cursor-pointer">
+              <path d="M 180,162 L 180,224 L 154,224 C 148,224 148,210 156,202 L 172,162 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="166" cy="218" r="5" fill="#1e3a8a"/>
+              <text x="112" y="222" fill="#1d4ed8" font-size="12" font-weight="bold" text-anchor="middle">נחיר שמאל</text>
+            </g>
+            <g id="d2-right-nose" class="cursor-pointer">
+              <path d="M 180,162 L 180,224 L 206,224 C 212,224 212,210 204,202 L 188,162 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2" stroke-linejoin="round"/>
+              <circle cx="194" cy="218" r="5" fill="#881337"/>
+              <text x="248" y="222" fill="#be123c" font-size="12" font-weight="bold" text-anchor="middle">נחיר ימין</text>
+            </g>
+
+            <!-- Friendly Smile -->
+            <path d="M 158,248 Q 180,260 202,248" fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round"/>
+
+            <!-- Straight Uncrossed Arrows (Ipsilateral Olfactory Pathway) -->
+            <!-- Blue Arrow: Left Nostril straight up to Left Hemisphere -->
+            <path id="d2-arrow-blue-path" d="M 164,206 Q 154,160 152,116" fill="none" stroke="#1d4ed8" stroke-width="3.8" marker-end="url(#d2-arrow-blue)" class="vp-flow-line"/>
+            <!-- Red Arrow: Right Nostril straight up to Right Hemisphere -->
+            <path id="d2-arrow-red-path" d="M 196,206 Q 206,160 208,116" fill="none" stroke="#e11d48" stroke-width="3.8" marker-end="url(#d2-arrow-red)" class="vp-flow-line"/>
+          </svg>
+
+          <!-- Caption for Diagram 2 -->
+          <div class="w-full mt-2 bg-white/95 border border-pink-200 rounded-xl p-2.5 text-center shadow-sm">
+            <p class="text-xs sm:text-sm font-extrabold text-slate-800 leading-relaxed">
+              ״לא בהצלבה: <span class="text-blue-700">המידע מנחיר שמאל מעובד בהמיספרה שמאל.</span> <span class="text-rose-700">המידע מנחיר ימין מעובד בהמיספרה ימין.</span>״
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DIAGRAM 3: INTERACTIVE VISUAL PATHWAYS (Bringing the Britannica Visual Pathways Diagram to Life!) -->
+      <div class="w-full bg-gradient-to-b from-[#fff7fa] to-[#fce7f0]/50 border-2 border-pink-200/90 rounded-2xl p-3.5 sm:p-5 shadow-md">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+          <div>
+            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-xs border border-pink-200">
+              סרטוט מוח 3 — מסלולי הראייה ושדות הראייה (Visual Pathways)
+            </span>
+            <h3 class="text-sm sm:text-lg font-extrabold text-slate-800 mt-1">
+              החייאת מסלולי הראייה: משדה הראייה דרך שתי העיניים ותצלובת העצבים אל האונה האוקסיפיטלית
+            </h3>
+            <p class="text-xs text-slate-600 font-medium">
+              לחצו על <strong class="text-blue-700">המיספרה שמאל / שדה הראייה הימני</strong> או על <strong class="text-rose-700">המיספרה ימין / שדה הראייה השמאלי</strong> בסרטוט או בכפתורים:
+            </p>
+          </div>
+          <div class="flex flex-wrap items-center gap-2">
+            <button id="btn-vp-blue" type="button" class="px-3 py-1.5 rounded-xl bg-blue-50 hover:bg-blue-100 text-blue-800 border border-blue-300 text-xs font-extrabold transition shadow-sm">
+              🔵 שדה ראייה ימני ← המיספרה שמאל
+            </button>
+            <button id="btn-vp-red" type="button" class="px-3 py-1.5 rounded-xl bg-rose-50 hover:bg-rose-100 text-rose-800 border border-rose-300 text-xs font-extrabold transition shadow-sm">
+              🔴 שדה ראייה שמאלי ← המיספרה ימין
+            </button>
+            <button id="btn-vp-both" type="button" class="px-3 py-1.5 rounded-xl bg-white hover:bg-pink-100 text-pink-900 border border-pink-300 text-xs font-bold transition shadow-sm">
+              ✨ הצג את שני המסלולים יחד
+            </button>
+          </div>
+        </div>
+
+        <!-- High-Detail SVG Recreation of Britannica "Visual pathways" (1024x560) with ZERO black lines (Warm rose-brown outlines) -->
+        <div class="w-full bg-[#fffafa] border border-pink-200 rounded-xl p-2 sm:p-3 overflow-hidden shadow-inner">
+          <svg id="visual-pathways-svg" viewBox="0 0 1024 540" class="w-full h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <filter id="vpGlowBlue" x="-15%" y="-15%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#3b82f6" flood-opacity="0.85"/>
+              </filter>
+              <filter id="vpGlowRed" x="-15%" y="-15%" width="130%" height="130%">
+                <feDropShadow dx="0" dy="0" stdDeviation="6" flood-color="#f43f5e" flood-opacity="0.85"/>
+              </filter>
+            </defs>
+
+            <!-- BRAIN HORIZONTAL SECTION (Scalloped cortical outline, exact match to Britannica reference) -->
+            <!-- Top Half of Brain in Diagram: LEFT SIDE OF BRAIN (המיספרה שמאל) -->
+            <g id="vp-click-left-hem" class="cursor-pointer">
+              <path class="vp-part vp-hem-left"
+                    d="M 92,270
+                       C 82,254 86,232 100,220
+                       C 94,198 106,176 124,168
+                       C 126,146 146,128 168,128
+                       C 182,110 212,106 232,116
+                       C 254,104 284,106 302,118
+                       C 324,106 356,108 372,122
+                       C 396,112 426,118 440,136
+                       C 464,132 488,146 494,168
+                       C 514,174 528,194 524,216
+                       C 536,234 532,256 516,270
+                       Z"
+                    fill="#dbeafe" fill-opacity="0.65" stroke="#8b4c63" stroke-width="2.6" stroke-linejoin="round"/>
+            </g>
+
+            <!-- Bottom Half of Brain in Diagram: RIGHT SIDE OF BRAIN (המיספרה ימין) -->
+            <g id="vp-click-right-hem" class="cursor-pointer">
+              <path class="vp-part vp-hem-right"
+                    d="M 92,270
+                       C 82,286 86,308 100,320
+                       C 94,342 106,364 124,372
+                       C 126,394 146,412 168,412
+                       C 182,430 212,434 232,424
+                       C 254,436 284,434 302,422
+                       C 324,434 356,432 372,418
+                       C 396,428 426,422 440,404
+                       C 464,408 488,394 494,372
+                       C 514,366 528,346 524,324
+                       C 536,306 532,284 516,270
+                       Z"
+                    fill="#ffe4e6" fill-opacity="0.65" stroke="#8b4c63" stroke-width="2.6" stroke-linejoin="round"/>
+            </g>
+
+            <!-- Center Interhemispheric Line -->
+            <line x1="92" y1="270" x2="516" y2="270" stroke="#9d4b6c" stroke-width="1.8" stroke-dasharray="6,4" opacity="0.55"/>
+
+            <!-- WHITE OPTIC TRACT CHANNELS INSIDE THE BRAIN (Exact shape from Britannica image) -->
+            <path d="M 468,212
+                     L 392,256
+                     L 468,212
+                     M 126,242
+                     C 162,158 268,148 322,208
+                     L 380,256
+                     L 468,205
+                     L 476,225
+                     L 398,270
+                     L 476,315
+                     L 468,335
+                     L 380,284
+                     L 322,332
+                     C 268,392 162,382 126,298
+                     L 154,292
+                     C 184,354 260,360 304,312
+                     L 360,270
+                     L 304,228
+                     C 260,180 184,186 154,248
+                     Z"
+                  fill="#ffffff" stroke="#8b4c63" stroke-width="2.4" stroke-linejoin="round"/>
+
+            <!-- LIGHT RAYS FROM OBJECT TO BOTH EYES -->
+            <!-- Top Half of Object = LEFT VISUAL FIELD (שדה ראייה שמאלי - Red/Coral -> goes to Right Hemisphere!) -->
+            <g id="vp-rays-left-field" class="cursor-pointer">
+              <!-- Cone from Left Visual Field (top of object: y=118..270) to Left Eye (top eye lens at 535,212) -->
+              <polygon class="vp-part vp-fill-red" points="745,172 745,270 534,212" fill="#fb7185" opacity="0.58"/>
+              <!-- Cone from Left Visual Field (top of object: y=118..270) to Right Eye (bottom eye lens at 535,328) -->
+              <polygon class="vp-part vp-fill-red" points="745,172 745,270 534,328" fill="#fb7185" opacity="0.58"/>
+            </g>
+
+            <!-- Bottom Half of Object = RIGHT VISUAL FIELD (שדה ראייה ימני - Blue -> goes to Left Hemisphere!) -->
+            <g id="vp-rays-right-field" class="cursor-pointer">
+              <!-- Cone from Right Visual Field (bottom of object: y=270..422) to Left Eye (top eye lens at 535,212) -->
+              <polygon class="vp-part vp-fill-blue" points="745,270 745,368 534,212" fill="#60a5fa" opacity="0.58"/>
+              <!-- Cone from Right Visual Field (bottom of object: y=270..422) to Right Eye (bottom eye lens at 535,328) -->
+              <polygon class="vp-part vp-fill-blue" points="745,270 745,368 534,328" fill="#60a5fa" opacity="0.58"/>
+            </g>
+
+            <!-- Crisp Dividing Lines along Light Rays (Warm white/pink, as in Britannica diagram) -->
+            <line x1="745" y1="172" x2="534" y2="212" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+            <line x1="745" y1="270" x2="534" y2="212" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+            <line x1="745" y1="368" x2="534" y2="212" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+            <line x1="745" y1="172" x2="534" y2="328" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+            <line x1="745" y1="270" x2="534" y2="328" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+            <line x1="745" y1="368" x2="534" y2="328" stroke="#ffffff" stroke-width="1.4" opacity="0.85"/>
+
+            <!-- TWO ANATOMICAL EYES (Left Eye at top y=212, Right Eye at bottom y=328) -->
+            <!-- Top Eye: Left Eye (עין שמאל) -->
+            <g id="vp-left-eye">
+              <circle cx="502" cy="212" r="38" fill="#ffffff" stroke="#8b4c63" stroke-width="2.5"/>
+              <circle cx="502" cy="212" r="32" fill="#fffafa" stroke="#b56581" stroke-width="1.5"/>
+              <!-- Upper half of retina in Left Eye receives light from Bottom/Right Visual Field (Blue) -->
+              <polygon class="vp-part vp-fill-blue" points="530,212 472,194 470,212" fill="#3b82f6" opacity="0.85"/>
+              <!-- Lower half of retina in Left Eye receives light from Top/Left Visual Field (Red) -->
+              <polygon class="vp-part vp-fill-red" points="530,212 470,212 472,230" fill="#f43f5e" opacity="0.85"/>
+              <!-- Eye Lens & Cornea -->
+              <ellipse cx="530" cy="212" rx="4.5" ry="13" fill="#fdf2f8" stroke="#8b4c63" stroke-width="2"/>
+            </g>
+
+            <!-- Bottom Eye: Right Eye (עין ימין) -->
+            <g id="vp-right-eye">
+              <circle cx="502" cy="328" r="38" fill="#ffffff" stroke="#8b4c63" stroke-width="2.5"/>
+              <circle cx="502" cy="328" r="32" fill="#fffafa" stroke="#b56581" stroke-width="1.5"/>
+              <!-- Upper half of retina in Right Eye receives light from Bottom/Right Visual Field (Blue) -->
+              <polygon class="vp-part vp-fill-blue" points="530,328 472,310 470,328" fill="#3b82f6" opacity="0.85"/>
+              <!-- Lower half of retina in Right Eye receives light from Top/Left Visual Field (Red) -->
+              <polygon class="vp-part vp-fill-red" points="530,328 470,328 472,346" fill="#f43f5e" opacity="0.85"/>
+              <!-- Eye Lens & Cornea -->
+              <ellipse cx="530" cy="328" rx="4.5" ry="13" fill="#fdf2f8" stroke="#8b4c63" stroke-width="2"/>
+            </g>
+
+            <!-- OPTIC NERVE & OPTIC TRACT FIBERS (Crossing at Optic Chiasma x=380, y=270) -->
+            <!-- BLUE PATHWAY FIBERS: From Upper Retina of BOTH Eyes -> Left Side of Brain (Upper Tract) -->
+            <g id="vp-fibers-blue">
+              <!-- Uncrossed fiber from Left Eye upper retina to Left Hemisphere -->
+              <path class="vp-part vp-stroke-blue" d="M 468,208 L 384,258 L 314,218 C 264,164 176,170 144,244" fill="none" stroke="#3b82f6" stroke-width="3.2" stroke-linecap="round"/>
+              <!-- Crossed fiber from Right Eye upper retina across Optic Chiasm to Left Hemisphere -->
+              <path class="vp-part vp-stroke-blue" d="M 468,322 L 380,270 L 310,224 C 262,174 182,180 150,246" fill="none" stroke="#2563eb" stroke-width="3.2" stroke-linecap="round"/>
+              <!-- Glowing animated flow overlay (visible when Blue pathway is active) -->
+              <path id="vp-flow-anim-blue-1" d="M 745,320 L 530,212 L 468,208 L 384,258 L 314,218 C 264,164 176,170 144,244" fill="none" stroke="#60a5fa" stroke-width="5" class="vp-flow-line hidden" filter="url(#vpGlowBlue)"/>
+              <path id="vp-flow-anim-blue-2" d="M 745,320 L 530,328 L 468,322 L 380,270 L 310,224 C 262,174 182,180 150,246" fill="none" stroke="#3b82f6" stroke-width="5" class="vp-flow-line hidden" filter="url(#vpGlowBlue)"/>
+            </g>
+
+            <!-- RED PATHWAY FIBERS: From Lower Retina of BOTH Eyes -> Right Side of Brain (Lower Tract) -->
+            <g id="vp-fibers-red">
+              <!-- Crossed fiber from Left Eye lower retina across Optic Chiasm to Right Hemisphere -->
+              <path class="vp-part vp-stroke-red" d="M 468,218 L 380,270 L 310,316 C 262,366 182,360 150,294" fill="none" stroke="#e11d48" stroke-width="3.2" stroke-linecap="round"/>
+              <!-- Uncrossed fiber from Right Eye lower retina to Right Hemisphere -->
+              <path class="vp-part vp-stroke-red" d="M 468,332 L 384,282 L 314,322 C 264,376 176,370 144,296" fill="none" stroke="#f43f5e" stroke-width="3.2" stroke-linecap="round"/>
+              <!-- Glowing animated flow overlay (visible when Red pathway is active) -->
+              <path id="vp-flow-anim-red-1" d="M 745,220 L 530,212 L 468,218 L 380,270 L 310,316 C 262,366 182,360 150,294" fill="none" stroke="#fb7185" stroke-width="5" class="vp-flow-line hidden" filter="url(#vpGlowRed)"/>
+              <path id="vp-flow-anim-red-2" d="M 745,220 L 530,328 L 468,332 L 384,282 L 314,322 C 264,376 176,370 144,296" fill="none" stroke="#f43f5e" stroke-width="5" class="vp-flow-line hidden" filter="url(#vpGlowRed)"/>
+            </g>
+
+            <!-- OCCIPITAL CORTEX IMAGE HEXAGON (At left of brain x=108..156, y=240..300) -->
+            <g id="vp-occipital-image">
+              <!-- Top half of cortical image: processed in Left Hemisphere (Blue) -->
+              <polygon class="vp-part vp-fill-blue" points="108,254 132,240 156,254 156,270 108,270" fill="#3b82f6" stroke="#8b4c63" stroke-width="2.2" stroke-linejoin="round"/>
+              <!-- Bottom half of cortical image: processed in Right Hemisphere (Red) -->
+              <polygon class="vp-part vp-fill-red" points="108,270 156,270 156,286 132,300 108,286" fill="#f43f5e" stroke="#8b4c63" stroke-width="2.2" stroke-linejoin="round"/>
+            </g>
+
+            <!-- LARGE HEXAGONAL OBJECT / VISUAL FIELD ON RIGHT (x=745..965, y=118..422) -->
+            <!-- Top Half: Left Visual Field (שדה הראייה השמאלי - Red/Coral, clickable) -->
+            <g id="vp-object-left-field" class="cursor-pointer">
+              <polygon class="vp-part vp-fill-red" points="745,172 855,118 965,172 965,270 745,270" fill="#fb7185" stroke="#8b4c63" stroke-width="3" stroke-linejoin="round"/>
+              <text x="855" y="210" fill="#ffffff" font-size="18" font-weight="800" text-anchor="middle">שדה הראייה השמאלי</text>
+              <text x="855" y="234" fill="#fff1f2" font-size="13.5" font-weight="bold" text-anchor="middle">(מעובד בהמיספרה ימין)</text>
+            </g>
+
+            <!-- Bottom Half: Right Visual Field (שדה הראייה הימני - Blue, clickable) -->
+            <g id="vp-object-right-field" class="cursor-pointer">
+              <polygon class="vp-part vp-fill-blue" points="745,270 965,270 965,368 855,422 745,368" fill="#60a5fa" stroke="#8b4c63" stroke-width="3" stroke-linejoin="round"/>
+              <text x="855" y="322" fill="#ffffff" font-size="18" font-weight="800" text-anchor="middle">שדה הראייה הימני</text>
+              <text x="855" y="346" fill="#eff6ff" font-size="13.5" font-weight="bold" text-anchor="middle">(מעובד בהמיספרה שמאל)</text>
+            </g>
+
+            <!-- ANATOMICAL LABELS & POINTER LINES (All in warm rose-brown #7a3552, NO black!) -->
+            <g fill="#7a3552" font-size="15" font-weight="800">
+              <!-- Title -->
+              <text x="45" y="42" font-size="20" fill="#831843" text-anchor="start">מסלולי הראייה (Visual Pathways)</text>
+
+              <!-- Occipital Lobe Top -->
+              <text x="115" y="92" text-anchor="middle">האונה האוקסיפיטלית</text>
+              <line x1="115" y1="100" x2="155" y2="154" stroke="#8b4c63" stroke-width="2"/>
+
+              <!-- Occipital Lobe Bottom -->
+              <text x="115" y="462" text-anchor="middle">האונה האוקסיפיטלית</text>
+              <line x1="115" y1="442" x2="155" y2="390" stroke="#8b4c63" stroke-width="2"/>
+
+              <!-- Image in Cortex -->
+              <text x="58" y="342" text-anchor="middle">תמונה מעובדת</text>
+              <line x1="68" y1="324" x2="116" y2="288" stroke="#8b4c63" stroke-width="2"/>
+
+              <!-- Left Hemisphere Label -->
+              <text x="372" y="166" fill="#1e40af" font-size="16" text-anchor="middle">המיספרה שמאל</text>
+              <text x="372" y="185" fill="#1d4ed8" font-size="12.5" text-anchor="middle">(לוחצים כאן להדגשה)</text>
+
+              <!-- Right Hemisphere Label -->
+              <text x="372" y="370" fill="#9f1239" font-size="16" text-anchor="middle">המיספרה ימין</text>
+              <text x="372" y="389" fill="#be123c" font-size="12.5" text-anchor="middle">(לוחצים כאן להדגשה)</text>
+
+              <!-- Optic Chiasma -->
+              <text x="272" y="275" text-anchor="middle">תצלובת העצבים (Optic Chiasm)</text>
+              <line x1="354" y1="270" x2="375" y2="270" stroke="#8b4c63" stroke-width="2"/>
+
+              <!-- Optic Nerve Top & Bottom -->
+              <text x="446" y="74" text-anchor="middle">עצב הראייה</text>
+              <line x1="446" y1="84" x2="446" y2="218" stroke="#8b4c63" stroke-width="2"/>
+              <text x="446" y="476" text-anchor="middle">עצב הראייה</text>
+              <line x1="446" y1="456" x2="446" y2="322" stroke="#8b4c63" stroke-width="2"/>
+
+              <!-- Left Eye & Right Eye -->
+              <text x="606" y="138" text-anchor="middle">עין שמאל</text>
+              <line x1="576" y1="144" x2="524" y2="184" stroke="#8b4c63" stroke-width="2"/>
+              <text x="606" y="416" text-anchor="middle">עין ימין</text>
+              <line x1="576" y1="402" x2="524" y2="356" stroke="#8b4c63" stroke-width="2"/>
+
+              <!-- Object -->
+              <text x="920" y="96" text-anchor="middle">אובייקט (שדה הראייה)</text>
+              <line x1="905" y1="104" x2="882" y2="134" stroke="#8b4c63" stroke-width="2"/>
+            </g>
+          </svg>
+        </div>
+
+        <!-- Status Bar for Visual Pathways -->
+        <div id="vp-status-bar" class="mt-2.5 bg-white/95 border border-pink-200 rounded-xl p-2.5 text-center text-xs sm:text-sm font-bold text-slate-700 shadow-sm">
+          💡 לחצו על <span class="text-blue-700">המיספרה שמאל / שדה הראייה הימני</span> או על <span class="text-rose-700">המיספרה ימין / שדה הראייה השמאלי</span> כדי לראות כיצד כל שדה ראייה נקלט בשתי העיניים וזורם להמיספרה הנגדית!
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- SECTION 3: RIGHT HEMISPHERE BACKUP, HEMISPATIAL NEGLECT & RELATED DISORDERS -->
+    <!-- ========================================================================= -->
+    <section class="w-full bg-white/95 border border-pink-200/90 rounded-2xl shadow-lg shadow-pink-100/50 p-3 sm:p-5 mb-4">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div>
+          <span class="inline-block bg-pink-100 text-pink-900 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-pink-200 mb-1">
+            קשב מרחבי והפרעות נלוות בקורס
+          </span>
+          <h2 class="text-base sm:text-xl font-extrabold text-slate-800">
+            מנגנון ה״גיבוי״ של המיספרה ימין ותופעת הזנחת צד (Hemispatial Neglect)
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+            בעוד שהמיספרה שמאל מפנה קשב רק לצד ימין של המרחב, <strong>המיספרה ימין מפנה קשב גם לצד שמאל וגם ״מגבה״ את צד ימין</strong>. מה קורה כשהיא נפגעת?
+          </p>
+        </div>
+        <!-- Toggle Buttons: Intact vs Right Hemisphere Lesion -->
+        <div class="flex items-center gap-2">
+          <button id="btn-neglect-normal" type="button" class="px-3.5 py-2 rounded-xl bg-pink-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition">
+            ✅ מוח תקין: ימין מגבה את כל המרחב
+          </button>
+          <button id="btn-neglect-damaged" type="button" class="px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-800 border-2 border-rose-300 font-extrabold text-xs sm:text-sm shadow-sm transition">
+            ❌ פגיעה בהמיספרה ימין (הזנחת צד שמאל)
+          </button>
+        </div>
+      </div>
+
+      <!-- Two Synchronized Detailed Graphic Views (Matching the 2 uploaded slides!) -->
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
+        
+        <!-- VIEW A: Schematic Boxes, Crossing Arrows & Pizza Plate (Slide 1) -->
+        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center shadow-sm">
+          <div id="neglect-title-a" class="text-xs sm:text-sm font-extrabold text-rose-800 mb-2 text-center">
+            באופן גרפי: כשימין מגבה את כל המרחב...
+          </div>
+          <svg viewBox="0 0 440 250" class="w-full max-w-[400px] h-auto select-none">
+            <defs>
+              <marker id="neg-arr-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
+              </marker>
+              <marker id="neg-arr-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#e11d48"/>
+              </marker>
+            </defs>
+
+            <!-- Left Hemisphere Box (Screen Left, Blue) -->
+            <rect x="35" y="20" width="155" height="46" rx="8" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+            <text x="112" y="48" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+
+            <!-- Right Hemisphere Box (Screen Right, Pastel Red) -->
+            <rect x="250" y="20" width="155" height="46" rx="8" fill="#f43f5e" stroke="#be123c" stroke-width="2"/>
+            <text x="327" y="48" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+
+            <!-- Blue X over Right Hemisphere (Hidden in normal mode, shown in damaged mode) -->
+            <g id="neglect-x-mark" class="hidden">
+              <line x1="275" y1="12" x2="380" y2="74" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
+              <line x1="380" y1="12" x2="275" y2="74" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
+            </g>
+
+            <!-- Blue Arrow from Left Hemisphere to Right Space -->
+            <line x1="115" y1="74" x2="295" y2="182" stroke="#3b82f6" stroke-width="7" stroke-linecap="round" marker-end="url(#neg-arr-blue)"/>
+
+            <!-- Red Arrows from Right Hemisphere to BOTH Left Space and Right Space (Hidden when right hemisphere is damaged) -->
+            <g id="neglect-right-arrows-a" class="transition-opacity duration-300">
+              <!-- Arrow to Left Space -->
+              <line x1="345" y1="74" x2="155" y2="182" stroke="#e11d48" stroke-width="7" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+              <!-- Backup Arrow to Right Space -->
+              <line x1="275" y1="74" x2="388" y2="168" stroke="#e11d48" stroke-width="7" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+            </g>
+
+            <!-- Plate with Pizza in Center-Bottom (In normal mode: whole pizza; in neglect mode: left half neglected/empty, right half visible) -->
+            <g transform="translate(220, 145)">
+              <circle cx="0" cy="0" r="34" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5"/>
+              <circle cx="0" cy="0" r="26" fill="#f1f5f9"/>
+              <!-- Right Half of Pizza (Always perceived via Left Hemisphere) -->
+              <path d="M 0,-26 A 26,26 0 0,1 0,26 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+              <path d="M 0,-22 A 22,22 0 0,1 0,22 Z" fill="#ef4444"/>
+              <circle cx="9" cy="-9" r="3" fill="#fde047"/>
+              <circle cx="12" cy="4" r="3" fill="#22c55e"/>
+              <circle cx="6" cy="12" r="3" fill="#fde047"/>
+              <!-- Left Half of Pizza (Perceived in normal mode; disappears/fades when Right Hemisphere is damaged) -->
+              <g id="neglect-pizza-left" class="transition-opacity duration-300">
+                <path d="M 0,-26 A 26,26 0 0,0 0,26 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
+                <path d="M 0,-22 A 22,22 0 0,0 0,22 Z" fill="#ef4444"/>
+                <circle cx="-9" cy="-8" r="3" fill="#fde047"/>
+                <circle cx="-12" cy="5" r="3" fill="#22c55e"/>
+                <circle cx="-6" cy="12" r="3" fill="#fde047"/>
+              </g>
+            </g>
+
+            <text x="115" y="222" fill="#be123c" font-size="12.5" font-weight="bold" text-anchor="middle">מרחב שמאל</text>
+            <text x="325" y="222" fill="#1d4ed8" font-size="12.5" font-weight="bold" text-anchor="middle">מרחב ימין (מגובה!)</text>
+          </svg>
+        </div>
+
+        <!-- VIEW B: Top-Down Brain with Gyri/Sulci & Everyday Objects on Both Sides (Slide 2) -->
+        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center shadow-sm">
+          <div id="neglect-title-b" class="text-xs sm:text-sm font-extrabold text-rose-800 mb-2 text-center">
+            מבט גרפי נוסף: המיספרת ימין ׳מגבה׳ את כל המרחב...
+          </div>
+          <svg viewBox="0 0 440 250" class="w-full max-w-[400px] h-auto select-none">
+            <!-- Badges: שמאל / ימין -->
+            <rect x="122" y="14" width="52" height="24" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.2"/>
+            <text x="148" y="30" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle">שמאל</text>
+            <rect x="266" y="14" width="52" height="24" rx="5" fill="#ffe4e6" stroke="#fda4af" stroke-width="1.2"/>
+            <text x="292" y="30" fill="#881337" font-size="13" font-weight="800" text-anchor="middle">ימין</text>
+
+            <!-- Top-Down Brain with Gyri/Sulci -->
+            <!-- Left Hemisphere (Blue) -->
+            <path d="M 218,32 C 194,30 176,48 176,78 C 176,108 194,126 218,124 Z" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+            <path d="M 186,56 Q 202,50 214,58 M 182,76 Q 200,70 215,78 M 186,96 Q 202,92 214,100" fill="none" stroke="#bfdbfe" stroke-width="2.2" stroke-linecap="round"/>
+
+            <!-- Right Hemisphere (Pastel Red/Coral) -->
+            <path id="neglect-brain-right" d="M 222,32 C 246,30 264,48 264,78 C 264,108 246,126 222,124 Z" fill="#fb7185" stroke="#be123c" stroke-width="2"/>
+            <path d="M 254,56 Q 238,50 226,58 M 258,76 Q 240,70 225,78 M 254,96 Q 238,92 226,100" fill="none" stroke="#ffe4e6" stroke-width="2.2" stroke-linecap="round"/>
+
+            <!-- Cortical Lesion Spot on Right Hemisphere (Shown in damage mode, matching Slide 2) -->
+            <g id="neglect-lesion-spot" class="hidden">
+              <circle cx="248" cy="78" r="15" fill="#475569" opacity="0.75"/>
+              <circle cx="250" cy="78" r="9" fill="#1e293b" opacity="0.85"/>
+              <circle cx="246" cy="74" r="18" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="3,2"/>
+            </g>
+
+            <!-- Curved Arrows from Brain to Objects -->
+            <!-- Curved Blue Arrow from Left Hemisphere to Right Objects -->
+            <path d="M 212,110 C 225,142 265,145 302,162" fill="none" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-blue)"/>
+
+            <!-- Curved Red Arrows from Right Hemisphere to BOTH Left Objects and Right Objects -->
+            <g id="neglect-right-arrows-b" class="transition-opacity duration-300">
+              <path d="M 192,82 C 148,96 122,124 114,158" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+              <path d="M 256,82 C 300,96 326,124 334,158" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+            </g>
+
+            <!-- LEFT SIDE OBJECTS (Cup, Apple, Book, Pen - Fade out in Right Hemisphere Damage Mode!) -->
+            <g id="neglect-objects-left" class="transition-opacity duration-500" transform="translate(55, 165)">
+              <!-- Mug/Cup -->
+              <rect x="28" y="0" width="22" height="26" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+              <path d="M 50,5 C 57,5 57,19 50,19" fill="none" stroke="#475569" stroke-width="2"/>
+              <!-- Apple -->
+              <circle cx="14" cy="28" r="12" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
+              <path d="M 14,14 Q 17,10 20,12" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
+              <!-- Book -->
+              <polygon points="56,18 96,10 114,22 74,32" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+              <!-- Pen -->
+              <line x1="38" y1="38" x2="78" y2="46" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+            </g>
+
+            <!-- RIGHT SIDE OBJECTS (Cup, Apple, Book, Pen - Always Visible!) -->
+            <g id="neglect-objects-right" transform="translate(265, 165)">
+              <!-- Mug/Cup -->
+              <rect x="28" y="0" width="22" height="26" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
+              <path d="M 50,5 C 57,5 57,19 50,19" fill="none" stroke="#475569" stroke-width="2"/>
+              <!-- Apple -->
+              <circle cx="14" cy="28" r="12" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
+              <path d="M 14,14 Q 17,10 20,12" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
+              <!-- Book -->
+              <polygon points="56,18 96,10 114,22 74,32" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
+              <!-- Pen -->
+              <line x1="38" y1="38" x2="78" y2="46" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+            </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Explanation Banner for Neglect Widget -->
+      <div id="neglect-explanation-box" class="w-full bg-pink-50/90 border border-pink-200 rounded-xl p-3 text-xs sm:text-sm text-slate-700 mb-4 leading-relaxed">
+        <strong class="text-pink-950">🧠 למה הזנחת צד מופיעה כמעט תמיד בצד שמאל (בעקבות פגיעה ימנית)?</strong>
+        מכיוון שהמיספרה ימין נותנת ״גיבוי״ קשבי לכל המרחב (גם לשמאל וגם לימין), אם המיספרה שמאל נפגעת — המיספרה ימין עדיין מחפה על צד ימין. לעומת זאת, <strong>כאשר המיספרה ימין נפגעת (לרוב באונה הפריאטלית הימנית), אין כמעט פיקוח על צד שמאל</strong>, והאדם מתעלם מחפצים, מאוכל בצלחת או מגירויים הנמצאים בשדה השמאלי.
+      </div>
+
+      <!-- Mini Interactive Cards for Other Course Disorders (Blindsight, Aphasia) + Direct Link to Split-Brain -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+        <!-- Mini Card 1: Blindsight -->
+        <div class="bg-[#fff5f9] border border-pink-200 rounded-xl p-3 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-[#fbcfe8] text-pink-950">קשור לאונה האוקסיפיטלית</span>
+              <span>👁️✨</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-extrabold text-pink-950">ראייה עיוורת (Blindsight)</h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              פגיעה בקורטקס הראייה הראשוני (באונה האוקסיפיטלית) גורמת לאובדן המודעות הראייתית, אך מסלולים תת-קורטיקליים מאפשרים להגיב מוטורית או ״לנחש״ היכן מופיע חפץ במרחב.
+            </p>
+          </div>
+          <button id="btn-mini-blindsight" type="button" class="mt-2.5 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-pink-100 text-pink-900 border border-pink-300 text-xs font-bold transition">
+            הדגם תגובת ראייה עיוורת
+          </button>
+          <div id="mini-blindsight-output" class="hidden mt-2 p-2 rounded-lg bg-white border border-pink-200 text-[11px] text-pink-950 font-semibold">
+            🗣️ דיווח מודע: ״אני לא רואה שום דבר״ | ✋ פעולה בפועל: היד מושיטה ותופסת את החפץ או עוקפת מכשול בהצלחה!
+          </div>
+        </div>
+
+        <!-- Mini Card 2: Aphasia (Broca vs Wernicke) -->
+        <div class="bg-[#f4fdf7] border border-emerald-200 rounded-xl p-3 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-[#bbf7d0] text-emerald-950">פרונטלית מול טמפורלית (שמאל)</span>
+              <span>🗣️👂</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-extrabold text-emerald-950">אפזיה (Aphasia) — הפרעות שפה</h3>
+            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
+              פגיעה באזורי השפה (לרוב בהמיספרה שמאל): <strong>אפזיית ברוקה</strong> (אונה פרונטלית) פוגעת בהפקת הדיבור, ואילו <strong>אפזיית ורניקה</strong> (אונה טמפורלית) פוגעת בהבנת השפה.
+            </p>
+          </div>
+          <button id="btn-mini-aphasia" type="button" class="mt-2.5 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition">
+            השווה בין ברוקה ל-ורניקה
+          </button>
+          <div id="mini-aphasia-output" class="hidden mt-2 p-2 rounded-lg bg-white border border-emerald-200 text-[11px] text-emerald-950 font-semibold">
+            🔹 <strong>ברוקה (פרונטלית):</strong> מבין היטב, אך הדיבור מקוטע ומאומץ.<br/>
+            🔸 <strong>ורניקה (טמפורלית):</strong> דיבור שוטף אך חסר משמעות וקושי בהבנת שפה.
+          </div>
+        </div>
+
+        <!-- Card 3: Direct Link to Split-Brain Full Simulation -->
+        <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-pink-50 border-2 border-blue-300 rounded-xl p-3 flex flex-col justify-between shadow-sm">
+          <div>
+            <div class="flex items-center justify-between mb-1">
+              <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-blue-100 text-blue-900">מעבדה אינטראקטיבית מלאה</span>
+              <span>🧠✂️</span>
+            </div>
+            <h3 class="text-sm sm:text-base font-extrabold text-blue-950">הדמיית מוח חצוי (Split-Brain)</h3>
+            <p class="text-xs text-slate-700 mt-1 leading-relaxed">
+              עכשיו כשראינו כיצד כל המיספרה שולטת בהצלבה על הגוף ועל שדות הראייה (וללא הצלבה בריח) — בואו לבדוק מה קורה כשהקורפוס קולוסום ביניהן מנותק!
+            </p>
+          </div>
+          <button id="btn-goto-split-brain" type="button" class="mt-2.5 w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold transition shadow flex items-center justify-center gap-1.5">
+            <span>עברו להדמיית מוח חצוי</span>
+            <span>⬅️</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- ========================================================================= -->
+  <!-- VIEW 2: SPLIT-BRAIN SIMULATION (הדמיית מוח חצוי הקיימת בשלמותה)            -->
+  <!-- ========================================================================= -->
+  <div id="view-split-brain" class="w-full max-w-5xl hidden flex-col items-center relative z-10">
 
   <!-- Header -->
   <header class="w-full max-w-5xl mb-2.5 text-center">
@@ -834,15 +2107,16 @@
       </div>
     </div>
   </main>
+  </div>
 
-  <!-- Footer with user signature -->
-  <footer class="mt-4 mb-2 text-center flex flex-col items-center justify-center gap-2">
-    <!-- User Signature Image (Subtle, elegant, scaled down) -->
-    <div class="flex items-center justify-center gap-1.5 opacity-90 hover:opacity-100 transition-opacity">
+  <!-- Footer with user signature (Click signature to stop/resume background sparkles) -->
+  <footer class="mt-4 mb-2 text-center flex flex-col items-center justify-center gap-2 relative z-10">
+    <!-- User Signature Image (Subtle, elegant, scaled down; clickable to stop sparkles) -->
+    <button id="signature-toggle" type="button" title="לחצו לעצירה או הפעלה של הנצנצים ברקע" class="flex items-center justify-center gap-1.5 opacity-90 hover:opacity-100 transition-all cursor-pointer focus:outline-none">
       <img src="data:image/png;base64,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" alt="Alisa" class="h-8 sm:h-9 w-auto select-none pointer-events-none" />
-    </div>
-    <div class="text-xs text-slate-500 font-medium">
-      הדמיה לימודית אינטראקטיבית בקודפן | קורס פסיכולוגיה פיזיולוגית — מוח חצוי (Split-Brain)
+    </button>
+    <div id="footer-subtitle" class="text-xs text-slate-500 font-medium">
+      הדמיה לימודית אינטראקטיבית | קורס פסיכולוגיה פיזיולוגית — המיספרות ואונות המוח ומוח חצוי
     </div>
   </footer>
 
@@ -1148,6 +2422,388 @@
     document.getElementById('btn-act-4').addEventListener('click', () => triggerScenario(runScenario4));
     document.getElementById('btn-act-5').addEventListener('click', () => triggerScenario(runScenario5));
     document.getElementById('btn-act-6').addEventListener('click', () => triggerScenario(runScenario6));
+
+    // =========================================================================
+    // 1. FLOATING BACKGROUND SPARKLES & FOOTER SIGNATURE TOGGLE
+    // =========================================================================
+    const sparklesLayer = document.getElementById('sparkles-layer');
+    const signatureToggle = document.getElementById('signature-toggle');
+    let sparklesRunning = true;
+
+    function initBackgroundSparkles() {
+      const sparkleSymbols = ['✦', '✧', '⋆', '✶', '•'];
+      const sparkleColors = ['#f472b6', '#fb7185', '#c084fc', '#60a5fa', '#facc15', '#f9a8d4'];
+      const count = 34;
+
+      for (let i = 0; i < count; i++) {
+        const sp = document.createElement('span');
+        sp.className = 'fairy-sparkle';
+        sp.textContent = sparkleSymbols[i % sparkleSymbols.length];
+
+        // Distribute predominantly along side margins & soft background space
+        const onLeftMargin = i % 2 === 0;
+        const leftPct = onLeftMargin
+          ? (Math.random() * 16 + 1)
+          : (Math.random() * 16 + 83);
+        const topPct = Math.random() * 94 + 2;
+        const sizePx = Math.floor(Math.random() * 11) + 10;
+        const duration = (Math.random() * 6 + 6).toFixed(2);
+        const delay = (Math.random() * 6).toFixed(2);
+
+        sp.style.left = `${leftPct}%`;
+        sp.style.top = `${topPct}%`;
+        sp.style.fontSize = `${sizePx}px`;
+        sp.style.color = sparkleColors[i % sparkleColors.length];
+        sp.style.animation = `sparkle-float-up ${duration}s ease-in-out ${delay}s infinite`;
+        sparklesLayer.appendChild(sp);
+      }
+    }
+
+    initBackgroundSparkles();
+
+    signatureToggle.addEventListener('click', () => {
+      sparklesRunning = !sparklesRunning;
+      if (sparklesRunning) {
+        sparklesLayer.classList.remove('sparkles-paused');
+      } else {
+        sparklesLayer.classList.add('sparkles-paused');
+      }
+    });
+
+    // =========================================================================
+    // 2. TOP TABS NAVIGATION (Lobes & Hemispheres <-> Split-Brain)
+    // =========================================================================
+    const tabBtnLobes = document.getElementById('tab-btn-lobes');
+    const tabBtnSplit = document.getElementById('tab-btn-split');
+    const viewLobes = document.getElementById('view-lobes');
+    const viewSplitBrain = document.getElementById('view-split-brain');
+    const btnGotoSplitBrain = document.getElementById('btn-goto-split-brain');
+
+    function switchTab(tabName, scrollUp = false) {
+      const activeClasses = ['bg-gradient-to-r', 'from-pink-100', 'via-rose-100', 'to-pink-50', 'text-pink-950', 'border-pink-300', 'shadow-sm'];
+      const inactiveClasses = ['bg-white', 'hover:bg-pink-50/70', 'text-slate-600', 'hover:text-pink-900', 'border-transparent', 'hover:border-pink-200'];
+
+      if (tabName === 'split-brain') {
+        viewLobes.classList.add('hidden');
+        viewLobes.classList.remove('flex');
+        viewSplitBrain.classList.remove('hidden');
+        viewSplitBrain.classList.add('flex');
+
+        tabBtnSplit.classList.remove(...inactiveClasses);
+        tabBtnSplit.classList.add(...activeClasses);
+        tabBtnLobes.classList.remove(...activeClasses);
+        tabBtnLobes.classList.add(...inactiveClasses);
+        document.title = 'הדמיית מוח חצוי (Split-Brain Simulation)';
+      } else {
+        viewSplitBrain.classList.add('hidden');
+        viewSplitBrain.classList.remove('flex');
+        viewLobes.classList.remove('hidden');
+        viewLobes.classList.add('flex');
+
+        tabBtnLobes.classList.remove(...inactiveClasses);
+        tabBtnLobes.classList.add(...activeClasses);
+        tabBtnSplit.classList.remove(...activeClasses);
+        tabBtnSplit.classList.add(...inactiveClasses);
+        document.title = 'המיספרות ואונות המוח — מבנה ותפקוד';
+      }
+
+      if (scrollUp) {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+
+    tabBtnLobes.addEventListener('click', () => {
+      history.replaceState(null, '', '#lobes');
+      switchTab('lobes');
+    });
+
+    tabBtnSplit.addEventListener('click', () => {
+      history.replaceState(null, '', '#split-brain');
+      switchTab('split-brain');
+    });
+
+    btnGotoSplitBrain.addEventListener('click', () => {
+      history.replaceState(null, '', '#split-brain');
+      switchTab('split-brain', true);
+    });
+
+    if (window.location.hash === '#split-brain') {
+      switchTab('split-brain');
+    } else {
+      switchTab('lobes');
+    }
+
+    // =========================================================================
+    // 3. INTERACTIVE 4 LOBES OF THE BRAIN
+    // =========================================================================
+    const lobeNames = ['occipital', 'temporal', 'frontal', 'parietal'];
+    const lobeStatusHint = document.getElementById('lobe-status-hint');
+    let currentActiveLobe = null;
+
+    const lobeDescriptions = {
+      occipital: '🌸 האונה האוקסיפיטלית פעילה: קליטה ועיבוד של מידע ראייתי (עין + גלגל שיניים)',
+      temporal: '🌿 האונה הטמפורלית פעילה: שמיעה ועיבוד שפתי ודיבור (אוזן + איש מדבר)',
+      frontal: '💎 האונה הפרונטלית פעילה: מנהלת העל — תכנון, ריכוז, בקרה, שיפוט וחשיבה',
+      parietal: '🌟 האונה הפריאטלית פעילה: עיבוד מרחבי, מפת המרחב וזרקור קשב במרחב'
+    };
+
+    function selectLobe(selected) {
+      currentActiveLobe = selected;
+
+      lobeNames.forEach(name => {
+        const svgGroup = document.getElementById(`svg-lobe-${name}`);
+        const card = document.getElementById(`card-lobe-${name}`);
+        const popup = document.getElementById(`popup-${name}`);
+        const cardIcons = card.querySelector('.lobe-card-icons');
+
+        svgGroup.classList.remove(`lobe-active-${name}`, 'lobe-dimmed');
+        popup.classList.add('hidden');
+        cardIcons.classList.add('hidden');
+        card.classList.remove('ring-2', 'ring-pink-400', 'scale-[1.01]');
+
+        if (selected) {
+          if (name === selected) {
+            svgGroup.classList.add(`lobe-active-${name}`);
+            popup.classList.remove('hidden');
+            cardIcons.classList.remove('hidden');
+            card.classList.add('ring-2', 'ring-pink-400', 'scale-[1.01]');
+          } else {
+            svgGroup.classList.add('lobe-dimmed');
+          }
+        }
+      });
+
+      if (selected && lobeDescriptions[selected]) {
+        lobeStatusHint.textContent = lobeDescriptions[selected];
+        lobeStatusHint.className = 'text-pink-900 font-bold';
+      } else {
+        lobeStatusHint.textContent = '💡 לחצו על אחת האונות כדי להציג אייקונים והסבר חי על המוח';
+        lobeStatusHint.className = 'text-slate-500';
+      }
+    }
+
+    lobeNames.forEach(name => {
+      document.getElementById(`svg-lobe-${name}`).addEventListener('click', () => {
+        selectLobe(currentActiveLobe === name ? null : name);
+      });
+      document.getElementById(`card-lobe-${name}`).addEventListener('click', () => {
+        selectLobe(currentActiveLobe === name ? null : name);
+      });
+    });
+
+    document.getElementById('btn-reset-lobes').addEventListener('click', () => selectLobe(null));
+
+    // =========================================================================
+    // 4. INTERACTIVE DIAGRAMS 1 & 2 (Body Contralateral & Nose Ipsilateral)
+    // =========================================================================
+    const d1LeftHem = document.getElementById('d1-left-hem');
+    const d1RightHem = document.getElementById('d1-right-hem');
+    const d1LeftBody = document.getElementById('d1-left-body');
+    const d1RightBody = document.getElementById('d1-right-body');
+    const d1ArrowBlue = document.getElementById('d1-arrow-blue-path');
+    const d1ArrowRed = document.getElementById('d1-arrow-red-path');
+
+    function highlightDiagram1(side) {
+      if (side === 'blue') {
+        d1LeftHem.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
+        d1RightBody.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
+        d1RightHem.style.opacity = '0.45';
+        d1LeftBody.style.opacity = '0.45';
+        d1ArrowRed.style.opacity = '0.25';
+        d1ArrowBlue.style.opacity = '1';
+      } else if (side === 'red') {
+        d1RightHem.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
+        d1LeftBody.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
+        d1LeftHem.style.opacity = '0.45';
+        d1RightBody.style.opacity = '0.45';
+        d1ArrowBlue.style.opacity = '0.25';
+        d1ArrowRed.style.opacity = '1';
+      } else {
+        d1LeftHem.style.filter = '';
+        d1RightHem.style.filter = '';
+        d1LeftBody.style.filter = '';
+        d1RightBody.style.filter = '';
+        d1LeftHem.style.opacity = '1';
+        d1RightHem.style.opacity = '1';
+        d1LeftBody.style.opacity = '1';
+        d1RightBody.style.opacity = '1';
+        d1ArrowBlue.style.opacity = '1';
+        d1ArrowRed.style.opacity = '1';
+      }
+    }
+
+    let d1State = null;
+    [d1LeftHem, d1RightBody].forEach(el => el.addEventListener('click', () => {
+      d1State = d1State === 'blue' ? null : 'blue';
+      highlightDiagram1(d1State);
+    }));
+    [d1RightHem, d1LeftBody].forEach(el => el.addEventListener('click', () => {
+      d1State = d1State === 'red' ? null : 'red';
+      highlightDiagram1(d1State);
+    }));
+
+    const d2LeftHem = document.getElementById('d2-left-hem');
+    const d2RightHem = document.getElementById('d2-right-hem');
+    const d2LeftNose = document.getElementById('d2-left-nose');
+    const d2RightNose = document.getElementById('d2-right-nose');
+    const d2ArrowBlue = document.getElementById('d2-arrow-blue-path');
+    const d2ArrowRed = document.getElementById('d2-arrow-red-path');
+
+    function highlightDiagram2(side) {
+      if (side === 'blue') {
+        d2LeftHem.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
+        d2LeftNose.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
+        d2RightHem.style.opacity = '0.45';
+        d2RightNose.style.opacity = '0.45';
+        d2ArrowRed.style.opacity = '0.25';
+        d2ArrowBlue.style.opacity = '1';
+      } else if (side === 'red') {
+        d2RightHem.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
+        d2RightNose.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
+        d2LeftHem.style.opacity = '0.45';
+        d2LeftNose.style.opacity = '0.45';
+        d2ArrowBlue.style.opacity = '0.25';
+        d2ArrowRed.style.opacity = '1';
+      } else {
+        d2LeftHem.style.filter = '';
+        d2RightHem.style.filter = '';
+        d2LeftNose.style.filter = '';
+        d2RightNose.style.filter = '';
+        d2LeftHem.style.opacity = '1';
+        d2RightHem.style.opacity = '1';
+        d2LeftNose.style.opacity = '1';
+        d2RightNose.style.opacity = '1';
+        d2ArrowBlue.style.opacity = '1';
+        d2ArrowRed.style.opacity = '1';
+      }
+    }
+
+    let d2State = null;
+    [d2LeftHem, d2LeftNose].forEach(el => el.addEventListener('click', () => {
+      d2State = d2State === 'blue' ? null : 'blue';
+      highlightDiagram2(d2State);
+    }));
+    [d2RightHem, d2RightNose].forEach(el => el.addEventListener('click', () => {
+      d2State = d2State === 'red' ? null : 'red';
+      highlightDiagram2(d2State);
+    }));
+
+    // =========================================================================
+    // 5. DIAGRAM 3: INTERACTIVE VISUAL PATHWAYS (Uniform Rose-Brown -> Blue/Red Flow)
+    // =========================================================================
+    const vpSvg = document.getElementById('visual-pathways-svg');
+    const vpStatusBar = document.getElementById('vp-status-bar');
+    const vpFlowBlue1 = document.getElementById('vp-flow-anim-blue-1');
+    const vpFlowBlue2 = document.getElementById('vp-flow-anim-blue-2');
+    const vpFlowRed1 = document.getElementById('vp-flow-anim-red-1');
+    const vpFlowRed2 = document.getElementById('vp-flow-anim-red-2');
+    let vpTimer = null;
+
+    function resetVisualPathways() {
+      if (vpTimer) clearTimeout(vpTimer);
+      vpSvg.classList.remove('vp-uniform', 'vp-focus-blue', 'vp-focus-red');
+      vpFlowBlue1.classList.add('hidden');
+      vpFlowBlue2.classList.add('hidden');
+      vpFlowRed1.classList.add('hidden');
+      vpFlowRed2.classList.add('hidden');
+      vpStatusBar.innerHTML = '💡 לחצו על <span class="text-blue-700">המיספרה שמאל / שדה הראייה הימני</span> או על <span class="text-rose-700">המיספרה ימין / שדה הראייה השמאלי</span> כדי לראות כיצד כל שדה ראייה נקלט בשתי העיניים וזורם להמיספרה הנגדית!';
+    }
+
+    function activateVisualPathway(colorMode) {
+      if (vpTimer) clearTimeout(vpTimer);
+
+      // Step 1: Turn entire model into uniform warm rose-brown / strong soft pink (no black)
+      vpSvg.classList.remove('vp-focus-blue', 'vp-focus-red');
+      vpFlowBlue1.classList.add('hidden');
+      vpFlowBlue2.classList.add('hidden');
+      vpFlowRed1.classList.add('hidden');
+      vpFlowRed2.classList.add('hidden');
+      vpSvg.classList.add('vp-uniform');
+
+      vpStatusBar.innerHTML = '✨ מאפס את הדגם לצבע בסיס אחיד ומתחיל זרימה משדה הראייה אל ההמיספרה...';
+
+      // Step 2: Light up the chosen visual field (in BOTH eyes) and its target hemisphere + glowing flow
+      vpTimer = setTimeout(() => {
+        vpSvg.classList.remove('vp-uniform');
+        if (colorMode === 'blue') {
+          vpSvg.classList.add('vp-focus-blue');
+          vpFlowBlue1.classList.remove('hidden');
+          vpFlowBlue2.classList.remove('hidden');
+          vpStatusBar.innerHTML = '🔵 <strong>שדה הראייה הימני ← המיספרה שמאל:</strong> האור משדה הראייה הימני נקלט גם בעין ימין וגם בעין שמאל, מצטלב בתצלובת העצבים וזורם בזוהר כחול אל האונה האוקסיפיטלית בהמיספרה שמאל!';
+        } else {
+          vpSvg.classList.add('vp-focus-red');
+          vpFlowRed1.classList.remove('hidden');
+          vpFlowRed2.classList.remove('hidden');
+          vpStatusBar.innerHTML = '🔴 <strong>שדה הראייה השמאלי ← המיספרה ימין:</strong> האור משדה הראייה השמאלי נקלט גם בעין שמאל וגם בעין ימין, מצטלב בתצלובת העצבים וזורם בזוהר אדום אל האונה האוקסיפיטלית בהמיספרה ימין!';
+        }
+      }, 380);
+    }
+
+    ['vp-click-left-hem', 'vp-object-right-field', 'vp-rays-right-field', 'btn-vp-blue'].forEach(id => {
+      document.getElementById(id).addEventListener('click', () => activateVisualPathway('blue'));
+    });
+
+    ['vp-click-right-hem', 'vp-object-left-field', 'vp-rays-left-field', 'btn-vp-red'].forEach(id => {
+      document.getElementById(id).addEventListener('click', () => activateVisualPathway('red'));
+    });
+
+    document.getElementById('btn-vp-both').addEventListener('click', resetVisualPathways);
+
+    // =========================================================================
+    // 6. SECTION 3: RIGHT HEMISPHERE BACKUP, NEGLECT & MINI DISORDERS
+    // =========================================================================
+    const btnNeglectNormal = document.getElementById('btn-neglect-normal');
+    const btnNeglectDamaged = document.getElementById('btn-neglect-damaged');
+    const neglectTitleA = document.getElementById('neglect-title-a');
+    const neglectTitleB = document.getElementById('neglect-title-b');
+    const neglectXMark = document.getElementById('neglect-x-mark');
+    const neglectRightArrowsA = document.getElementById('neglect-right-arrows-a');
+    const neglectPizzaLeft = document.getElementById('neglect-pizza-left');
+    const neglectLesionSpot = document.getElementById('neglect-lesion-spot');
+    const neglectRightArrowsB = document.getElementById('neglect-right-arrows-b');
+    const neglectObjectsLeft = document.getElementById('neglect-objects-left');
+    const neglectBrainRight = document.getElementById('neglect-brain-right');
+
+    function setNeglectMode(damaged) {
+      if (damaged) {
+        neglectTitleA.textContent = 'באופן גרפי: כאשר ימין נפגע, אין כמעט פיקוח על שמאל...';
+        neglectTitleB.textContent = 'באופן גרפי נוסף: כאשר ימין נפגע, אין כמעט פיקוח על שמאל...';
+        neglectXMark.classList.remove('hidden');
+        neglectRightArrowsA.style.opacity = '0';
+        neglectPizzaLeft.style.opacity = '0.08';
+        neglectLesionSpot.classList.remove('hidden');
+        neglectRightArrowsB.style.opacity = '0';
+        neglectObjectsLeft.style.opacity = '0.16';
+        neglectBrainRight.setAttribute('fill', '#cbd5e1');
+
+        btnNeglectDamaged.className = 'px-3.5 py-2 rounded-xl bg-rose-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition';
+        btnNeglectNormal.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-pink-50 text-pink-900 border-2 border-pink-300 font-extrabold text-xs sm:text-sm shadow-sm transition';
+      } else {
+        neglectTitleA.textContent = 'באופן גרפי: כשימין מגבה את כל המרחב...';
+        neglectTitleB.textContent = 'מבט גרפי נוסף: המיספרת ימין ׳מגבה׳ את כל המרחב...';
+        neglectXMark.classList.add('hidden');
+        neglectRightArrowsA.style.opacity = '1';
+        neglectPizzaLeft.style.opacity = '1';
+        neglectLesionSpot.classList.add('hidden');
+        neglectRightArrowsB.style.opacity = '1';
+        neglectObjectsLeft.style.opacity = '1';
+        neglectBrainRight.setAttribute('fill', '#fb7185');
+
+        btnNeglectNormal.className = 'px-3.5 py-2 rounded-xl bg-pink-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition';
+        btnNeglectDamaged.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-800 border-2 border-rose-300 font-extrabold text-xs sm:text-sm shadow-sm transition';
+      }
+    }
+
+    btnNeglectNormal.addEventListener('click', () => setNeglectMode(false));
+    btnNeglectDamaged.addEventListener('click', () => setNeglectMode(true));
+
+    document.getElementById('btn-mini-blindsight').addEventListener('click', () => {
+      document.getElementById('mini-blindsight-output').classList.toggle('hidden');
+    });
+
+    document.getElementById('btn-mini-aphasia').addEventListener('click', () => {
+      document.getElementById('mini-aphasia-output').classList.toggle('hidden');
+    });
   </script>
 </body>
 </html>
