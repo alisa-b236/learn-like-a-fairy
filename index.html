@@ -11,9 +11,35 @@
     body {
       font-family: 'Assistant', 'Rubik', sans-serif;
       background: linear-gradient(135deg, #fff2f5 0%, #fce7f0 50%, #fdf4f8 100%);
-      color: #1e293b;
+      color: #5c3344;
       min-height: 100vh;
       overflow-x: hidden;
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg%3E%3Cline x1='9.5' y1='9.5' x2='28.5' y2='28.5' stroke='%23883955' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='9.5' y1='9.5' x2='28.5' y2='28.5' stroke='%23f9a8d4' stroke-width='2.2' stroke-linecap='round'/%3E%3Cpath d='M13.5 13.5 C10 15.5 11.5 18.5 14.5 15.5 C17.5 18.5 18.5 14.5 15.5 13.5 Z' fill='%23f472b6' stroke='%239d174d' stroke-width='0.9'/%3E%3Cpath d='M7.5 1.5 L9.3 5.3 L13.5 5.9 L10.4 8.8 L11.2 13 L7.5 11 L3.8 13 L4.6 8.8 L1.5 5.9 L5.7 5.3 Z' fill='%23fde047' stroke='%23be185d' stroke-width='1.2' stroke-linejoin='round'/%3E%3Ccircle cx='7.5' cy='7.6' r='2' fill='%23f472b6'/%3E%3Ccircle cx='16.5' cy='4.5' r='1.2' fill='%23f472b6'/%3E%3Ccircle cx='4.5' cy='16.5' r='1.2' fill='%23fde047'/%3E%3C/g%3E%3C/svg%3E") 7 7, auto;
+    }
+
+    /* Fairy Wand Cursor on Interactive Elements (with extra sparkle glow) */
+    button, a, [role="button"], .cursor-pointer, .lobe-group, .lobe-card {
+      cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cg%3E%3Cline x1='9.5' y1='9.5' x2='28.5' y2='28.5' stroke='%23883955' stroke-width='4.2' stroke-linecap='round'/%3E%3Cline x1='9.5' y1='9.5' x2='28.5' y2='28.5' stroke='%23fbcfe8' stroke-width='2.4' stroke-linecap='round'/%3E%3Cpath d='M13.5 13.5 C9.5 15.5 11 19 14.5 15.5 C18 19 19 14.5 15.5 13.5 Z' fill='%23ec4899' stroke='%23831843' stroke-width='0.9'/%3E%3Cpath d='M7.5 1 L9.5 5.1 L14 5.7 L10.7 8.8 L11.5 13.3 L7.5 11.1 L3.5 13.3 L4.3 8.8 L1 5.7 L5.5 5.1 Z' fill='%23fef08a' stroke='%23db2777' stroke-width='1.3' stroke-linejoin='round'/%3E%3Ccircle cx='7.5' cy='7.5' r='2.2' fill='%23ec4899'/%3E%3Cpath d='M18 2 L18.8 4.2 L21 5 L18.8 5.8 L18 8 L17.2 5.8 L15 5 L17.2 4.2 Z' fill='%23f472b6'/%3E%3Cpath d='M4 16 L4.6 17.6 L6.2 18.2 L4.6 18.8 L4 20.4 L3.4 18.8 L1.8 18.2 L3.4 17.6 Z' fill='%23fde047' stroke='%23d97706' stroke-width='0.4'/%3E%3C/g%3E%3C/svg%3E") 7 7, pointer !important;
+    }
+
+    /* Warm Dark Rosy-Brown Text Palette (Replacing all black/cold-slate text across the site) */
+    .text-slate-950, .text-slate-900, .text-gray-900 {
+      color: #4e2737 !important;
+    }
+    .text-slate-800, .text-gray-800 {
+      color: #5c3344 !important;
+    }
+    .text-slate-700, .text-gray-700 {
+      color: #6b3d50 !important;
+    }
+    .text-slate-600, .text-gray-600 {
+      color: #7a495d !important;
+    }
+    .text-slate-500, .text-gray-500 {
+      color: #8c586d !important;
+    }
+    .hover\:text-slate-900:hover {
+      color: #4e2737 !important;
     }
 
     /* Pulse Glow Animations for Hemispheres - Pastel style */
@@ -503,10 +529,10 @@
   <!-- Background Floating Sparkles Layer (Behind all content; click signature at bottom to stop/start) -->
   <div id="sparkles-layer" aria-hidden="true"></div>
 
-  <!-- Top Side Brand Logo: "learn like a fairy" in Elegant Feminine Cursive + Small Fairy Icon -->
-  <div class="w-full max-w-5xl flex items-center justify-between mb-1.5 px-1.5 relative z-10">
+  <!-- Top Side Brand Logo: "learn like a fairy" in Elegant Feminine Cursive + Small Fairy Icon (Directly on background, no frame) -->
+  <div class="w-full max-w-5xl flex items-center justify-between mb-1 px-1.5 relative z-10">
     <div></div>
-    <div dir="ltr" class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white/80 border border-pink-200/90 shadow-sm select-none">
+    <div dir="ltr" class="inline-flex items-center gap-1.5 px-1 select-none">
       <!-- Small Delicate Fairy Icon (Wings, Silhouette & Magic Wand with Star) -->
       <svg class="w-5 h-5 text-pink-500 princess-crown-icon shrink-0" viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <!-- Upper & Lower Fairy Wings -->
@@ -2731,8 +2757,8 @@
 
   <!-- Footer with user signature (Click signature to stop/resume background sparkles) -->
   <footer class="mt-4 mb-2 text-center flex flex-col items-center justify-center gap-2 relative z-10">
-    <!-- User Signature & "learn like a fairy by Alisa" (Clickable to stop/resume sparkles) -->
-    <button id="signature-toggle" dir="ltr" type="button" title="לחצו לעצירה או הפעלה של הנצנצים ברקע" class="inline-flex items-center justify-center gap-2 px-4 py-1 rounded-full bg-white/75 hover:bg-white/95 border border-pink-200/80 shadow-sm opacity-95 hover:opacity-100 transition-all cursor-pointer focus:outline-none">
+    <!-- User Signature & "learn like a fairy by Alisa" Directly on Background (Clickable to stop/resume sparkles) -->
+    <button id="signature-toggle" dir="ltr" type="button" title="לחצו לעצירה או הפעלה של הנצנצים ברקע" class="inline-flex items-center justify-center gap-2 px-1 opacity-95 hover:opacity-100 transition-all cursor-pointer focus:outline-none">
       <!-- Small Delicate Fairy Icon -->
       <svg class="w-5 h-5 text-pink-500 princess-crown-icon shrink-0" viewBox="0 0 36 36" fill="none" aria-hidden="true">
         <path d="M17 16 C10 6, 2 9, 5 17 C7 21, 13 20, 17 18 Z" fill="#fbcfe8" fill-opacity="0.85" stroke="#db2777" stroke-width="1.2" stroke-linejoin="round"/>
