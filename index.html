@@ -579,7 +579,7 @@
     #glinda-speech-bubble {
       pointer-events: auto;
       position: relative;
-      max-width: 225px;
+      max-width: min(245px, calc(100vw - 88px));
       padding: 12px 16px;
       border-radius: 30px;
       background: radial-gradient(
@@ -605,6 +605,35 @@
       visibility: hidden !important;
       transform: translateY(10px) scale(0.82) !important;
       pointer-events: none !important;
+    }
+
+    /* =========================================================================
+       MINIMUM 14PX FONT SIZE FLOOR & MULTI-DEVICE RESPONSIVE ADAPTATION
+       (Desktop, iPad/Tablet, Mobile Phone)
+       ========================================================================= */
+    .text-xs,
+    .text-\[10px\],
+    .text-\[11px\],
+    .text-\[12px\],
+    .text-\[13px\],
+    .sm\:text-\[11px\],
+    .sm\:text-\[12px\],
+    .sm\:text-\[13px\],
+    .sm\:text-xs {
+      font-size: 0.875rem !important; /* 14px minimum everywhere */
+      line-height: 1.45 !important;
+    }
+
+    @media (max-width: 640px) {
+      #floating-fairy-widget {
+        bottom: 12px;
+        left: 12px;
+        gap: 8px;
+      }
+      #floating-fairy-btn {
+        width: 42px;
+        height: 42px;
+      }
     }
   </style>
 </head>
@@ -651,7 +680,7 @@
       <span class="w-3 h-3 rounded-full absolute -bottom-1.5 -left-2 border border-white/95 bg-gradient-to-br from-white/95 via-pink-100/90 to-pink-300/70 shadow-sm pointer-events-none" aria-hidden="true"></span>
       <span class="w-2 h-2 rounded-full absolute -bottom-3 -left-4 border border-white/95 bg-gradient-to-br from-white/95 via-pink-100/90 to-pink-300/70 shadow-sm pointer-events-none" aria-hidden="true"></span>
 
-      <p id="glinda-bubble-text" class="text-xs sm:text-[13px] font-bold text-[#5c3344] leading-relaxed relative z-10">
+      <p id="glinda-bubble-text" class="text-sm font-bold text-[#5c3344] leading-relaxed relative z-10">
         תמיד תוכלי לבקש ממני להפסיק לפזר אבק פיות ונצנצים
       </p>
     </div>
@@ -684,16 +713,16 @@
   </div>
 
   <!-- Top Navigation Tabs (Only Titles, No "Tab 1 / Tab 2" prefix — Baby Pink Princess Style) -->
-  <nav class="w-full max-w-5xl mb-3 bg-white/95 border border-pink-200/90 rounded-2xl p-1.5 sm:p-2 shadow-md shadow-pink-100/60 flex flex-wrap sm:flex-nowrap items-center justify-center gap-2 relative z-10">
-    <button id="tab-btn-lobes" type="button" class="flex-1 py-2 px-3 sm:py-2.5 sm:px-5 rounded-xl font-extrabold text-xs sm:text-base transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-[#ffe4ef] via-[#fbcfe8] to-[#ffe4ef] text-pink-950 border border-pink-300 shadow-sm">
+  <nav class="w-full max-w-5xl mb-3 bg-white/95 border border-pink-200/90 rounded-2xl p-1.5 sm:p-2 shadow-md shadow-pink-100/60 flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2 relative z-10">
+    <button id="tab-btn-lobes" type="button" class="flex-1 py-2 px-3 sm:py-2.5 sm:px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center justify-center gap-2 bg-gradient-to-r from-[#ffe4ef] via-[#fbcfe8] to-[#ffe4ef] text-pink-950 border border-pink-300 shadow-sm">
       <span class="text-pink-500 text-sm sm:text-base">✦</span>
       <span>המיספרות ואונות המוח — מבנה ותפקוד</span>
-      <span class="text-pink-400 text-xs sm:text-sm">✧</span>
+      <span class="text-pink-400 text-sm">✧</span>
     </button>
-    <button id="tab-btn-split" type="button" class="flex-1 py-2 px-3 sm:py-2.5 sm:px-5 rounded-xl font-extrabold text-xs sm:text-base transition-all flex items-center justify-center gap-2 bg-white hover:bg-pink-50/70 text-slate-600 hover:text-pink-900 border border-transparent hover:border-pink-200">
+    <button id="tab-btn-split" type="button" class="flex-1 py-2 px-3 sm:py-2.5 sm:px-5 rounded-xl font-extrabold text-sm sm:text-base transition-all flex items-center justify-center gap-2 bg-white hover:bg-pink-50/70 text-slate-600 hover:text-pink-900 border border-transparent hover:border-pink-200">
       <span class="text-pink-400 text-sm sm:text-base">✧</span>
       <span>הדמיית מוח חצוי (Split-Brain)</span>
-      <span class="text-pink-400 text-xs sm:text-sm">✦</span>
+      <span class="text-pink-400 text-sm">✦</span>
     </button>
   </nav>
 
@@ -817,9 +846,9 @@
             </div>
           </div>
 
-          <div class="pt-1 flex items-center justify-between text-xs text-slate-500">
+          <div class="pt-1 flex flex-wrap items-center justify-between gap-2 text-sm text-slate-500">
             <span id="lobe-status-hint">💡 לחצו על אחת האונות כדי להציג אייקונים והסבר חי על המוח</span>
-            <button id="btn-reset-lobes" type="button" class="px-2.5 py-1 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 font-semibold transition">
+            <button id="btn-reset-lobes" type="button" class="px-3 py-1.5 rounded-lg bg-pink-50 hover:bg-pink-100 text-pink-800 border border-pink-200 font-semibold text-sm transition">
               הצג את כל האונות יחד
             </button>
           </div>
@@ -828,14 +857,14 @@
         <!-- Left Column (in RTL): High-Detail Interactive Brain SVG (Side / Front / Back views) -->
         <div id="lobes-brain-stage" class="lg:col-span-6 flex flex-col items-center justify-center bg-gradient-to-b from-[#fff7fa] to-[#fdebf3]/50 border border-pink-200/80 rounded-2xl p-2 sm:p-4 relative">
           <!-- Interactive Rotation Buttons: Back (עורף) | Side (מבט מהצד) | Front (מצח) -->
-          <div class="w-full flex flex-wrap justify-between items-center gap-1.5 px-1 mb-2">
-            <button id="btn-brain-view-back" type="button" class="px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 shadow-sm" title="סובב למבט מאחור (עורף)">
+          <div class="w-full flex flex-wrap justify-center sm:justify-between items-center gap-1.5 px-1 mb-2">
+            <button id="btn-brain-view-back" type="button" class="px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 shadow-sm" title="סובב למבט מאחור (עורף)">
               <span>🔄 אחורי המוח (עורף) ➡️</span>
             </button>
-            <button id="btn-brain-view-side" type="button" class="px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-pink-600 text-white border border-pink-600 shadow-sm" title="מבט מהצד (פרופיל)">
+            <button id="btn-brain-view-side" type="button" class="px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-pink-600 text-white border border-pink-600 shadow-sm" title="מבט מהצד (פרופיל)">
               <span>🧠 מבט מהצד</span>
             </button>
-            <button id="btn-brain-view-front" type="button" class="px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-sky-100 text-sky-900 border border-sky-200 shadow-sm" title="סובב למבט מקדימה (מצח)">
+            <button id="btn-brain-view-front" type="button" class="px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-sky-100 text-sky-900 border border-sky-200 shadow-sm" title="סובב למבט מקדימה (מצח)">
               <span>⬅️ קדמת המוח (מצח) 🔄</span>
             </button>
           </div>
@@ -999,8 +1028,8 @@
             <!-- =============================================================== -->
             <g id="brain-angle-front" class="hidden">
               <!-- Title Badge for Front View -->
-              <rect x="172" y="8" width="220" height="26" rx="13" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-              <text x="282" y="25" fill="#0c4a6e" font-size="13" font-weight="800" text-anchor="middle">מבט מקדימה — קדמת המוח (מצח)</text>
+              <rect x="157" y="6" width="250" height="28" rx="14" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="282" y="25" fill="#0c4a6e" font-size="14" font-weight="800" text-anchor="middle">מבט מקדימה — קדמת המוח (מצח)</text>
 
               <!-- Brainstem & Pons at bottom-center (Same white + #ec6ead style) -->
               <g filter="url(#lobeSoftShadow)">
@@ -1032,7 +1061,7 @@
                          C 406,86 346,82 284,92 Z"
                       fill="#fef08a" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round"/>
                 <path d="M 192,66 Q 214,76 236,68 M 372,66 Q 350,76 328,68" fill="none" stroke="#ec6ead" stroke-width="3.8" stroke-linecap="round"/>
-                <text x="282" y="77" fill="#713f12" font-size="13.5" font-weight="800" text-anchor="middle" pointer-events="none">פריאטלית (כתר המוח)</text>
+                <text x="282" y="77" fill="#713f12" font-size="14" font-weight="800" text-anchor="middle" pointer-events="none">פריאטלית (כתר המוח)</text>
               </g>
 
               <!-- Lower Sides: Temporal Poles (#bbf7d0) -->
@@ -1106,8 +1135,8 @@
             <!-- =============================================================== -->
             <g id="brain-angle-back" class="hidden">
               <!-- Title Badge for Back View -->
-              <rect x="172" y="8" width="220" height="26" rx="13" fill="#fdf2f8" stroke="#f472b6" stroke-width="1.5"/>
-              <text x="282" y="25" fill="#831843" font-size="13" font-weight="800" text-anchor="middle">מבט מאחור — אחורי המוח (עורף)</text>
+              <rect x="157" y="6" width="250" height="28" rx="14" fill="#fdf2f8" stroke="#f472b6" stroke-width="1.5"/>
+              <text x="282" y="25" fill="#831843" font-size="14" font-weight="800" text-anchor="middle">מבט מאחור — אחורי המוח (עורף)</text>
 
               <!-- Cerebellum & Brainstem at Bottom-Back (White + #ec6ead foliated lines) -->
               <g filter="url(#lobeSoftShadow)">
@@ -1176,8 +1205,8 @@
                          C 412,298 428,256 456,220 Z"
                       fill="#bbf7d0" stroke="#ec6ead" stroke-width="4.5" stroke-linejoin="round"/>
                 <path d="M 96,268 Q 118,282 140,292 M 468,268 Q 446,282 424,292" fill="none" stroke="#ec6ead" stroke-width="3.8" stroke-linecap="round"/>
-                <text x="116" y="294" fill="#14532d" font-size="13.5" font-weight="800" text-anchor="middle" pointer-events="none">טמפורלית</text>
-                <text x="448" y="294" fill="#14532d" font-size="13.5" font-weight="800" text-anchor="middle" pointer-events="none">טמפורלית</text>
+                <text x="116" y="294" fill="#14532d" font-size="14" font-weight="800" text-anchor="middle" pointer-events="none">טמפורלית</text>
+                <text x="448" y="294" fill="#14532d" font-size="14" font-weight="800" text-anchor="middle" pointer-events="none">טמפורלית</text>
               </g>
 
               <!-- Center-Back: Prominent Occipital Lobes (#fbcfe8) -->
@@ -1235,7 +1264,7 @@
                 <circle cx="0" cy="0" r="3.5" fill="#1e293b"/>
                 <circle cx="2.5" cy="-2.5" r="1.8" fill="#ffffff"/>
               </g>
-              <text x="95" y="72" fill="#9d174d" font-size="13" font-weight="800" text-anchor="middle">עיבוד ראייה</text>
+              <text x="95" y="72" fill="#9d174d" font-size="14" font-weight="800" text-anchor="middle">עיבוד ראייה</text>
             </g>
 
             <!-- Temporal Icons Callout: Ear + Speaking Person -->
@@ -1253,21 +1282,21 @@
                 <path d="M -18,14 C -18,4 6,4 6,14" fill="#dcfce7" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round"/>
                 <path class="sound-wave-anim" d="M 8,-8 L 18,-13 M 9,-2 L 20,-2 M 8,4 L 18,9" stroke="#16a34a" stroke-width="2.2" stroke-linecap="round"/>
               </g>
-              <text x="107" y="72" fill="#14532d" font-size="13" font-weight="800" text-anchor="middle">שמיעה ועיבוד שפתי</text>
+              <text x="107" y="72" fill="#14532d" font-size="14" font-weight="800" text-anchor="middle">שמיעה ועיבוד שפתי</text>
             </g>
 
             <!-- Frontal Icons Callout: Custom Vector Executive Manager + Checklist + Lightbulb (Same style as Occipital & Temporal!) -->
             <g id="popup-frontal" class="hidden floating-icon-badge" transform="translate(8, 275)">
-              <rect x="0" y="0" width="225" height="84" rx="16" fill="#ffffff" stroke="#60a5fa" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
+              <rect x="0" y="0" width="242" height="84" rx="16" fill="#ffffff" stroke="#60a5fa" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
               <!-- Icon 1: Executive Manager (Head + Blazer Collar) -->
-              <g transform="translate(46, 36)">
+              <g transform="translate(50, 36)">
                 <circle cx="0" cy="-7" r="8.5" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.2"/>
                 <path d="M -8,-9 Q 0,-17 8,-9" fill="none" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
                 <path d="M -14,15 C -14,4 14,4 14,15 Z" fill="#bae6fd" stroke="#0284c7" stroke-width="2.2" stroke-linejoin="round"/>
                 <path d="M -5,5 L 0,13 L 5,5" fill="#ffffff" stroke="#0284c7" stroke-width="1.8" stroke-linejoin="round"/>
               </g>
               <!-- Icon 2: Executive Checklist / Clipboard (תכנון ובקרה) -->
-              <g transform="translate(112, 36)">
+              <g transform="translate(121, 36)">
                 <rect x="-13" y="-14" width="26" height="29" rx="4" fill="#e0f2fe" stroke="#0284c7" stroke-width="2.2"/>
                 <rect x="-6" y="-17" width="12" height="5" rx="2" fill="#bae6fd" stroke="#0284c7" stroke-width="2"/>
                 <!-- Checkmarks & plan lines -->
@@ -1277,19 +1306,19 @@
                 <line x1="3" y1="7" x2="8" y2="7" stroke="#0284c7" stroke-width="2" stroke-linecap="round"/>
               </g>
               <!-- Icon 3: Glowing Lightbulb (חשיבה, ריכוז ושיפוט) -->
-              <g transform="translate(178, 36)">
+              <g transform="translate(190, 36)">
                 <path d="M -7,4 C -12,-2 -10,-12 0,-12 C 10,-12 12,-2 7,4 C 5,7 4,9 4,11 L -4,11 C -4,9 -5,7 -7,4 Z" fill="#fef08a" stroke="#0284c7" stroke-width="2.2" stroke-linejoin="round"/>
                 <line x1="-3.5" y1="14.5" x2="3.5" y2="14.5" stroke="#0284c7" stroke-width="2.2" stroke-linecap="round"/>
                 <path class="sound-wave-anim" d="M 0,-18 L 0,-15 M -14,-10 L -11,-8 M 14,-10 L 11,-8" stroke="#38bdf8" stroke-width="2.2" stroke-linecap="round"/>
               </g>
-              <text x="112" y="72" fill="#0c4a6e" font-size="13" font-weight="800" text-anchor="middle">תפקודים ניהוליים: תכנון וחשיבה</text>
+              <text x="121" y="72" fill="#0c4a6e" font-size="14" font-weight="800" text-anchor="middle">תפקודים ניהוליים: תכנון וחשיבה</text>
             </g>
 
             <!-- Parietal Icons Callout: Custom Vector Folded Map + Location Pin + Compass (Same style as Occipital & Temporal!) -->
-            <g id="popup-parietal" class="hidden floating-icon-badge" transform="translate(275, 4)">
-              <rect x="0" y="0" width="225" height="84" rx="16" fill="#ffffff" stroke="#facc15" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
+            <g id="popup-parietal" class="hidden floating-icon-badge" transform="translate(268, 4)">
+              <rect x="0" y="0" width="232" height="84" rx="16" fill="#ffffff" stroke="#facc15" stroke-width="2.5" filter="url(#lobeSoftShadow)"/>
               <!-- Icon 1: Folded Spatial Map + Location Pin -->
-              <g transform="translate(64, 36)">
+              <g transform="translate(68, 36)">
                 <polygon points="-22,-9 -8,-14 -8,12 -22,17" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.2" stroke-linejoin="round"/>
                 <polygon points="-8,-14 8,-9 8,17 -8,12" fill="#fde047" stroke="#ca8a04" stroke-width="2.2" stroke-linejoin="round"/>
                 <polygon points="8,-9 22,-14 22,12 8,17" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.2" stroke-linejoin="round"/>
@@ -1298,7 +1327,7 @@
                 <circle cx="4" cy="-9" r="2.3" fill="#b45309"/>
               </g>
               <!-- Icon 2: Spatial Compass & Attentional Spotlight -->
-              <g transform="translate(158, 36)">
+              <g transform="translate(162, 36)">
                 <circle cx="0" cy="0" r="15.5" fill="#fef9c3" stroke="#ca8a04" stroke-width="2.4"/>
                 <line x1="0" y1="-15" x2="0" y2="-11" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"/>
                 <line x1="0" y1="11" x2="0" y2="15" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"/>
@@ -1310,7 +1339,7 @@
                   <circle cx="0" cy="0" r="2" fill="#713f12"/>
                 </g>
               </g>
-              <text x="112" y="72" fill="#713f12" font-size="13" font-weight="800" text-anchor="middle">עיבוד מרחבי וקשב במרחב</text>
+              <text x="116" y="72" fill="#713f12" font-size="14" font-weight="800" text-anchor="middle">עיבוד מרחבי וקשב במרחב</text>
             </g>
           </svg>
         </div>
@@ -1322,14 +1351,14 @@
     <!-- ========================================================================= -->
     <section class="w-full bg-white/95 border border-pink-200/90 rounded-2xl fairy-section-card p-3 sm:p-5 mb-4">
       <div class="mb-4 text-center sm:text-right">
-        <span class="inline-flex items-center gap-1.5 fairy-pill-badge text-pink-900 text-xs sm:text-sm font-extrabold px-3.5 py-1 rounded-full mb-1.5">
+        <span class="inline-flex items-center gap-1.5 fairy-pill-badge text-pink-900 text-sm font-extrabold px-3.5 py-1 rounded-full mb-1.5">
           <span class="text-pink-500">✦</span>
           <span>המיספרה שמאל מול המיספרה ימין — הצלבה מול חוסר הצלבה</span>
         </span>
         <h2 class="text-base sm:text-xl font-extrabold text-slate-800">
           כיצד מחוברות שתי ההמיספרות אל הגוף, אל חוש הריח ואל שדות הראייה?
         </h2>
-        <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
+        <p class="text-sm text-slate-600 mt-0.5">
           בכל הסרטוטים: <span class="inline-block px-2 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">המיספרה שמאל בצבע כחול</span> ו-<span class="inline-block px-2 py-0.5 rounded bg-rose-100 text-rose-800 font-bold">המיספרה ימין בגוון אדום</span>.
         </p>
       </div>
@@ -1340,14 +1369,14 @@
         
         <!-- DIAGRAM 1 (PHYSICAL LEFT OF SCREEN): CONTRALATERAL BODY CONTROL -->
         <div class="bg-gradient-to-b from-[#fff8fa] to-[#fce7f0]/40 border border-pink-200 rounded-2xl p-3.5 sm:p-4 flex flex-col items-center justify-between shadow-sm" dir="rtl">
-          <div class="w-full flex items-center justify-between mb-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-xs border border-pink-200">
+          <div class="w-full flex flex-wrap items-center justify-between gap-1.5 mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-sm border border-pink-200">
               שליטה על הגוף
             </span>
-            <span class="text-[11px] text-slate-500 font-semibold">לחצו על המיספרה או צד בגוף להדגשה</span>
+            <span class="text-sm text-slate-500 font-semibold">לחצו על המיספרה או צד בגוף להדגשה</span>
           </div>
 
-          <svg id="diagram1-body-svg" viewBox="0 0 380 330" class="w-full max-w-[330px] h-auto select-none">
+          <svg id="diagram1-body-svg" viewBox="0 0 380 330" class="w-full max-w-[340px] h-auto select-none">
             <defs>
               <marker id="d1-arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
@@ -1366,17 +1395,17 @@
               <path d="M 188,36 C 166,36 155,50 157,66 C 159,80 172,85 188,83 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2"/>
               <path d="M 164,52 Q 175,48 184,54 M 162,64 Q 175,60 185,66" fill="none" stroke="#eff6ff" stroke-width="1.6" stroke-linecap="round"/>
               <!-- Clear badge label above-left, completely outside the head circle -->
-              <line x1="115" y1="26" x2="162" y2="44" stroke="#60a5fa" stroke-width="1.8" stroke-dasharray="3,2"/>
-              <rect x="24" y="8" width="102" height="24" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-              <text x="75" y="24" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+              <line x1="122" y1="26" x2="162" y2="44" stroke="#60a5fa" stroke-width="1.8" stroke-dasharray="3,2"/>
+              <rect x="14" y="6" width="116" height="26" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="72" y="24" fill="#1d4ed8" font-size="14" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
             </g>
             <g id="d1-right-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
               <path d="M 192,36 C 214,36 225,50 223,66 C 221,80 208,85 192,83 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2"/>
               <path d="M 216,52 Q 205,48 196,54 M 218,64 Q 205,60 195,66" fill="none" stroke="#fff1f2" stroke-width="1.6" stroke-linecap="round"/>
               <!-- Clear badge label above-right, completely outside the head circle -->
-              <line x1="265" y1="26" x2="218" y2="44" stroke="#fb7185" stroke-width="1.8" stroke-dasharray="3,2"/>
-              <rect x="254" y="8" width="102" height="24" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
-              <text x="305" y="24" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+              <line x1="258" y1="26" x2="218" y2="44" stroke="#fb7185" stroke-width="1.8" stroke-dasharray="3,2"/>
+              <rect x="250" y="6" width="116" height="26" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+              <text x="308" y="24" fill="#be123c" font-size="14" font-weight="800" text-anchor="middle">המיספרה ימין</text>
             </g>
 
             <!-- Split Human Body: Left Half in Pastel Red (#fda4af), Right Half in Pastel Blue (#60a5fa) -->
@@ -1395,8 +1424,8 @@
                        L 190,222 Z"
                     fill="#fda4af" stroke="#e11d48" stroke-width="2.2" stroke-linejoin="round"/>
               <!-- Side Label in clear badge below left arm -->
-              <rect x="10" y="232" width="118" height="24" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
-              <text x="69" y="248" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">צד שמאל של הגוף</text>
+              <rect x="4" y="231" width="132" height="26" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+              <text x="70" y="249" fill="#be123c" font-size="14" font-weight="800" text-anchor="middle">צד שמאל של הגוף</text>
             </g>
 
             <!-- Right Half of Body (Screen Right - Blue) -->
@@ -1414,8 +1443,8 @@
                        L 190,222 Z"
                     fill="#60a5fa" stroke="#2563eb" stroke-width="2.2" stroke-linejoin="round"/>
               <!-- Side Label in clear badge below right arm -->
-              <rect x="252" y="232" width="118" height="24" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-              <text x="311" y="248" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">צד ימין של הגוף</text>
+              <rect x="244" y="231" width="132" height="26" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="310" y="249" fill="#1d4ed8" font-size="14" font-weight="800" text-anchor="middle">צד ימין של הגוף</text>
             </g>
 
             <!-- Center Body Dividing Line -->
@@ -1430,7 +1459,7 @@
 
           <!-- Caption for Diagram 1 -->
           <div class="w-full mt-2 bg-white/95 border border-pink-200 rounded-xl p-2.5 text-center shadow-sm">
-            <p class="text-xs sm:text-sm font-extrabold text-slate-800 leading-relaxed">
+            <p class="text-sm font-extrabold text-slate-800 leading-relaxed">
               ״השליטה על הגוף היא בהצלבה: <span class="text-blue-700">המיספרה שמאל שולטת על צידו הימני של הגוף.</span> <span class="text-rose-700">המיספרה ימין שולטת על צד שמאל של הגוף</span>״
             </p>
           </div>
@@ -1438,14 +1467,14 @@
 
         <!-- DIAGRAM 2 (PHYSICAL RIGHT OF SCREEN): IPSILATERAL OLFACTION (NOSE) -->
         <div class="bg-gradient-to-b from-[#fff8fa] to-[#fce7f0]/40 border border-pink-200 rounded-2xl p-3.5 sm:p-4 flex flex-col items-center justify-between shadow-sm" dir="rtl">
-          <div class="w-full flex items-center justify-between mb-2">
-            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-xs border border-pink-200">
+          <div class="w-full flex flex-wrap items-center justify-between gap-1.5 mb-2">
+            <span class="px-2.5 py-0.5 rounded-full bg-pink-100 text-pink-900 font-bold text-sm border border-pink-200">
               חוש הריח (אף ונחיריים)
             </span>
-            <span class="text-[11px] text-slate-500 font-semibold">לחצו על נחיר או המיספרה להדגשה</span>
+            <span class="text-sm text-slate-500 font-semibold">לחצו על נחיר או המיספרה להדגשה</span>
           </div>
 
-          <svg id="diagram2-nose-svg" viewBox="0 0 380 330" class="w-full max-w-[330px] h-auto select-none">
+          <svg id="diagram2-nose-svg" viewBox="0 0 380 330" class="w-full max-w-[340px] h-auto select-none">
             <defs>
               <marker id="d2-arrow-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
                 <path d="M 0 1 L 9 5 L 0 9 z" fill="#2563eb"/>
@@ -1465,17 +1494,17 @@
               <path d="M 187,52 C 150,50 126,74 130,102 C 134,118 160,126 187,122 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2.2"/>
               <path d="M 144,76 Q 164,68 180,78 M 140,94 Q 164,86 182,96" fill="none" stroke="#eff6ff" stroke-width="2" stroke-linecap="round"/>
               <!-- Clear badge label above-left, completely separated -->
-              <line x1="115" y1="28" x2="154" y2="56" stroke="#60a5fa" stroke-width="1.8" stroke-dasharray="3,2"/>
-              <rect x="24" y="8" width="102" height="24" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-              <text x="75" y="24" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+              <line x1="122" y1="28" x2="154" y2="56" stroke="#60a5fa" stroke-width="1.8" stroke-dasharray="3,2"/>
+              <rect x="14" y="6" width="116" height="26" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="72" y="24" fill="#1d4ed8" font-size="14" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
             </g>
             <g id="d2-right-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
               <path d="M 193,52 C 230,50 254,74 250,102 C 246,118 220,126 193,122 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2.2"/>
               <path d="M 236,76 Q 216,68 200,78 M 240,94 Q 216,86 198,96" fill="none" stroke="#fff1f2" stroke-width="2" stroke-linecap="round"/>
               <!-- Clear badge label above-right, completely separated -->
-              <line x1="265" y1="28" x2="226" y2="56" stroke="#fb7185" stroke-width="1.8" stroke-dasharray="3,2"/>
-              <rect x="254" y="8" width="102" height="24" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
-              <text x="305" y="24" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+              <line x1="258" y1="28" x2="226" y2="56" stroke="#fb7185" stroke-width="1.8" stroke-dasharray="3,2"/>
+              <rect x="250" y="6" width="116" height="26" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+              <text x="308" y="24" fill="#be123c" font-size="14" font-weight="800" text-anchor="middle">המיספרה ימין</text>
             </g>
 
             <!-- Gentle Eyes & Natural Eyebrows (Inner end towards nose slightly higher than outer end) -->
@@ -1496,9 +1525,9 @@
                     fill="#93c5fd" stroke="#2563eb" stroke-width="1.8" stroke-linejoin="round"/>
               <ellipse cx="182" cy="202" rx="3.2" ry="2.2" fill="#1e3a8a"/>
               <!-- Clear badge outside left cheek with pointer line to left nostril -->
-              <line x1="96" y1="212" x2="172" y2="201" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="3,2"/>
-              <rect x="14" y="200" width="82" height="24" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-              <text x="55" y="216" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">נחיר שמאל</text>
+              <line x1="102" y1="212" x2="172" y2="201" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="3,2"/>
+              <rect x="8" y="199" width="94" height="26" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="55" y="217" fill="#1d4ed8" font-size="14" font-weight="800" text-anchor="middle">נחיר שמאל</text>
             </g>
             <g id="d2-right-nose" class="cursor-pointer">
               <path d="M 190,168
@@ -1509,9 +1538,9 @@
                     fill="#fda4af" stroke="#e11d48" stroke-width="1.8" stroke-linejoin="round"/>
               <ellipse cx="198" cy="202" rx="3.2" ry="2.2" fill="#881337"/>
               <!-- Clear badge outside right cheek with pointer line to right nostril -->
-              <line x1="284" y1="212" x2="208" y2="201" stroke="#e11d48" stroke-width="1.6" stroke-dasharray="3,2"/>
-              <rect x="284" y="200" width="82" height="24" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
-              <text x="325" y="216" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">נחיר ימין</text>
+              <line x1="278" y1="212" x2="208" y2="201" stroke="#e11d48" stroke-width="1.6" stroke-dasharray="3,2"/>
+              <rect x="278" y="199" width="94" height="26" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+              <text x="325" y="217" fill="#be123c" font-size="14" font-weight="800" text-anchor="middle">נחיר ימין</text>
             </g>
 
             <!-- Friendly Smile (Raised to natural position closer to nose) -->
@@ -1526,7 +1555,7 @@
 
           <!-- Caption for Diagram 2 -->
           <div class="w-full mt-2 bg-white/95 border border-pink-200 rounded-xl p-2.5 text-center shadow-sm">
-            <p class="text-xs sm:text-sm font-extrabold text-slate-800 leading-relaxed">
+            <p class="text-sm font-extrabold text-slate-800 leading-relaxed">
               ״לא בהצלבה: <span class="text-blue-700">המידע מנחיר שמאל מעובד בהמיספרה שמאל.</span> <span class="text-rose-700">המידע מנחיר ימין מעובד בהמיספרה ימין.</span>״
             </p>
           </div>
@@ -1838,14 +1867,14 @@
                   <!-- Lighter Red Backup Arrow from Right Hemisphere center to Right Space with "גיבוי" label -->
                   <line x1="327" y1="68" x2="385" y2="176" stroke="#fda4af" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-light-red)"/>
                   <g transform="translate(358, 120) rotate(61)">
-                    <rect x="-24" y="-10" width="48" height="18" rx="6" fill="#fff1f2" stroke="#fb7185" stroke-width="1.4"/>
-                    <text x="0" y="3" fill="#be123c" font-size="11" font-weight="800" text-anchor="middle">גיבוי</text>
+                    <rect x="-28" y="-12" width="56" height="22" rx="7" fill="#fff1f2" stroke="#fb7185" stroke-width="1.4"/>
+                    <text x="0" y="4" fill="#be123c" font-size="14" font-weight="800" text-anchor="middle">גיבוי</text>
                   </g>
                 </g>
 
                 <!-- Left Space & Right Space Labels on the same horizontal row as the Plate (y=215) -->
-                <text x="82" y="216" fill="#be123c" font-size="13.5" font-weight="800" text-anchor="middle">מרחב שמאל</text>
-                <text id="neglect-space-right-label" x="358" y="216" fill="#1d4ed8" font-size="13.5" font-weight="800" text-anchor="middle">מרחב ימין (מגובה!)</text>
+                <text x="82" y="216" fill="#be123c" font-size="14" font-weight="800" text-anchor="middle">מרחב שמאל</text>
+                <text id="neglect-space-right-label" x="358" y="216" fill="#1d4ed8" font-size="14" font-weight="800" text-anchor="middle">מרחב ימין (מגובה!)</text>
 
                 <!-- Plate Positioned at the EXACT same height (y=212) right between "מרחב שמאל" and "מרחב ימין" -->
                 <g transform="translate(220, 212)">
@@ -1868,8 +1897,8 @@
                 </g>
 
                 <!-- Plate Status Caption Below Plate -->
-                <rect x="20" y="252" width="400" height="24" rx="8" fill="#fff1f2" stroke="#fbcfe8" stroke-width="1.2"/>
-                <text id="neglect-plate-caption" x="220" y="268" fill="#881337" font-size="12" font-weight="800" text-anchor="middle">
+                <rect x="8" y="250" width="424" height="26" rx="8" fill="#fff1f2" stroke="#fbcfe8" stroke-width="1.2"/>
+                <text id="neglect-plate-caption" x="220" y="268" fill="#881337" font-size="14" font-weight="800" text-anchor="middle">
                   🍽️ האדם אכל מכל הצלחת
                 </text>
               </svg>
@@ -1877,10 +1906,10 @@
 
             <!-- Side Illustration Beside View A: Shaving Face (גילוח הפנים) -->
             <div class="w-full sm:w-[37%] sm:border-r sm:border-pink-200/80 sm:pr-2.5 flex flex-col items-center justify-center">
-              <div class="text-xs font-extrabold text-pink-950 mb-1 text-center">
+              <div class="text-sm font-extrabold text-pink-950 mb-1 text-center">
                 🪒 גילוח הפנים
               </div>
-              <svg viewBox="0 0 230 180" class="w-full max-w-[175px] h-auto select-none">
+              <svg viewBox="0 0 230 180" class="w-full max-w-[185px] h-auto select-none">
                 <!-- Ears -->
                 <ellipse cx="59" cy="78" rx="9" ry="16" fill="#ffedd5" stroke="#f472b6" stroke-width="1.8"/>
                 <ellipse cx="171" cy="78" rx="9" ry="16" fill="#ffedd5" stroke="#f472b6" stroke-width="1.8"/>
@@ -1920,8 +1949,8 @@
                 <path d="M 99,104 Q 115,114 131,104" fill="none" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round"/>
 
                 <!-- Clean-shaven sparkle on Right Cheek & Left Cheek -->
-                <text x="153" y="106" font-size="13">✨</text>
-                <text id="neglect-shave-sparkle-left" x="67" y="106" font-size="13">✨</text>
+                <text x="153" y="106" font-size="14">✨</text>
+                <text id="neglect-shave-sparkle-left" x="67" y="106" font-size="14">✨</text>
 
                 <!-- Caption Pill -->
                 <rect x="6" y="145" width="218" height="28" rx="8" fill="#fff1f2" stroke="#fbcfe8" stroke-width="1.2"/>
@@ -1935,7 +1964,7 @@
 
         <!-- CARD 2: Top-Down Brain + Colorful Objects AND Pencil-Drawn Flower Right Beside It -->
         <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-2.5 sm:p-3.5 flex flex-col justify-between shadow-sm">
-          <div id="neglect-title-b" class="text-xs sm:text-sm font-extrabold text-rose-800 mb-1.5 text-center">
+          <div id="neglect-title-b" class="text-sm font-extrabold text-rose-800 mb-1.5 text-center">
             המיספרת ימין ׳מגבה׳ את כל המרחב...
           </div>
           <div class="flex flex-col sm:flex-row items-center justify-between gap-2.5 w-full">
@@ -1943,10 +1972,10 @@
             <div class="w-full sm:w-[63%] flex justify-center">
               <svg viewBox="0 0 440 280" class="w-full h-auto select-none">
                 <!-- Badges: שמאל / ימין -->
-                <rect x="122" y="14" width="52" height="24" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.2"/>
-                <text x="148" y="30" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle">שמאל</text>
-                <rect x="266" y="14" width="52" height="24" rx="5" fill="#ffe4e6" stroke="#fda4af" stroke-width="1.2"/>
-                <text x="292" y="30" fill="#881337" font-size="13" font-weight="800" text-anchor="middle">ימין</text>
+                <rect x="118" y="13" width="56" height="25" rx="6" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.2"/>
+                <text x="146" y="30" fill="#1e3a8a" font-size="14" font-weight="800" text-anchor="middle">שמאל</text>
+                <rect x="266" y="13" width="56" height="25" rx="6" fill="#ffe4e6" stroke="#fda4af" stroke-width="1.2"/>
+                <text x="294" y="30" fill="#881337" font-size="14" font-weight="800" text-anchor="middle">ימין</text>
 
                 <!-- Top-Down Brain with Gyri/Sulci -->
                 <!-- Left Hemisphere (Blue) -->
@@ -1962,9 +1991,9 @@
                   <circle cx="248" cy="78" r="15" fill="#475569" opacity="0.75"/>
                   <circle cx="250" cy="78" r="9" fill="#1e293b" opacity="0.85"/>
                   <circle cx="246" cy="74" r="18" fill="none" stroke="#eab308" stroke-width="2.2" stroke-dasharray="3,2"/>
-                  <line x1="264" y1="74" x2="294" y2="62" stroke="#b45309" stroke-width="1.6" stroke-dasharray="2,2"/>
-                  <rect x="282" y="44" width="150" height="22" rx="6" fill="#fef08a" stroke="#eab308" stroke-width="1.4"/>
-                  <text x="357" y="59" fill="#713f12" font-size="10.5" font-weight="800" text-anchor="middle">פגיעה באונה הפריאטלית בימין</text>
+                  <line x1="264" y1="74" x2="294" y2="64" stroke="#b45309" stroke-width="1.6" stroke-dasharray="2,2"/>
+                  <rect x="256" y="40" width="180" height="26" rx="7" fill="#fef08a" stroke="#eab308" stroke-width="1.4"/>
+                  <text x="346" y="58" fill="#713f12" font-size="14" font-weight="800" text-anchor="middle">פגיעה באונה הפריאטלית בימין</text>
                 </g>
 
                 <!-- Curved Blue Arrow from Left Hemisphere (x=202, y=114) to Right Objects -->
@@ -2386,8 +2415,8 @@
           </g>
           
           <!-- Speech Center Badge -->
-          <rect x="325" y="131" width="90" height="20" rx="6" fill="#1e3a8a" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
-          <text x="370" y="145" fill="#eff6ff" font-size="12" font-weight="bold" text-anchor="middle">יכולת הדיבור 🗣️</text>
+          <rect x="316" y="129" width="108" height="24" rx="6" fill="#1e3a8a" stroke="#bfdbfe" stroke-width="1.2" filter="url(#shadow)"/>
+          <text x="370" y="146" fill="#eff6ff" font-size="14" font-weight="bold" text-anchor="middle">יכולת הדיבור 🗣️</text>
         </g>
 
         <!-- RIGHT HEMISPHERE (PASTEL CORAL / ROSE) -->
@@ -2442,8 +2471,8 @@
           </g>
           
           <!-- Spatial / Motor Badge -->
-          <rect x="485" y="131" width="90" height="20" rx="6" fill="#881337" stroke="#fecdd3" stroke-width="1.2" filter="url(#shadow)"/>
-          <text x="530" y="145" fill="#fff1f2" font-size="12" font-weight="bold" text-anchor="middle">עיבוד מרחבי 📐</text>
+          <rect x="476" y="129" width="108" height="24" rx="6" fill="#881337" stroke="#fecdd3" stroke-width="1.2" filter="url(#shadow)"/>
+          <text x="530" y="146" fill="#fff1f2" font-size="14" font-weight="bold" text-anchor="middle">עיבוד מרחבי 📐</text>
         </g>
 
         <!-- UPPER TORSO & BODY (Redesigned natural character body & T-shirt) -->
@@ -2671,8 +2700,8 @@
 
           <!-- Flower Label - Positioned UNDER the flower element -->
           <g id="flower-label">
-            <rect x="105" y="555" width="70" height="24" rx="6" fill="#ffffff" stroke="#f472b6" stroke-width="1.5" filter="url(#shadow)"/>
-            <text x="140" y="571" fill="#db2777" font-size="13" font-weight="bold" text-anchor="middle">🌸 פרח</text>
+            <rect x="101" y="554" width="78" height="26" rx="6" fill="#ffffff" stroke="#f472b6" stroke-width="1.5" filter="url(#shadow)"/>
+            <text x="140" y="572" fill="#db2777" font-size="14" font-weight="bold" text-anchor="middle">🌸 פרח</text>
           </g>
         </g>
 
@@ -2701,8 +2730,8 @@
 
           <!-- Coffee Cup Label - Positioned UNDER the coffee cup element -->
           <g id="cup-label">
-            <rect x="720" y="535" width="90" height="24" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)"/>
-            <text x="765" y="551" fill="#d97706" font-size="13" font-weight="bold" text-anchor="middle">☕ ספל קפה</text>
+            <rect x="716" y="534" width="98" height="26" rx="6" fill="#ffffff" stroke="#f59e0b" stroke-width="1.5" filter="url(#shadow)"/>
+            <text x="765" y="552" fill="#d97706" font-size="14" font-weight="bold" text-anchor="middle">☕ ספל קפה</text>
           </g>
         </g>
 
@@ -2760,7 +2789,7 @@
       <div id="status-title" class="text-sm sm:text-lg font-bold text-slate-800 leading-snug">
         מצב ניטרלי: לפניכם אדם שמוחו חצוי, משמאלו פרח ומימינו ספל קפה
       </div>
-      <div id="status-subtitle" class="text-xs sm:text-sm text-slate-600 mt-0.5 font-medium leading-snug">
+      <div id="status-subtitle" class="text-sm text-slate-600 mt-0.5 font-medium leading-snug">
         בקשו מהאדם לבצע פעולות בעזרת הכפתורים למטה כדי לצפות בתגובתו
       </div>
     </div>
@@ -2770,110 +2799,110 @@
       
       <!-- Utility Buttons: Reset & Aroma Toggle -->
       <div class="flex flex-wrap items-center justify-between gap-2 mb-2.5">
-        <h3 class="text-xs sm:text-sm font-bold text-slate-800 flex items-center gap-1.5">
+        <h3 class="text-sm font-bold text-slate-800 flex items-center gap-1.5">
           <span>🎮</span>
           <span>בקשות לפעולה (לחצו לבדיקת תגובת הדמות):</span>
         </h3>
-        <div class="flex items-center gap-1.5 sm:gap-2">
+        <div class="flex flex-wrap items-center gap-1.5 sm:gap-2">
           <!-- Button to stop/pause aromas for concentration -->
-          <button id="btn-toggle-aroma" class="text-[11px] sm:text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm" title="עצור או הפעל את אנימציית הניחוחות">
+          <button id="btn-toggle-aroma" class="text-sm px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm" title="עצור או הפעל את אנימציית הניחוחות">
             <span id="aroma-btn-icon">✨</span>
             <span id="aroma-btn-text">עצור ניחוחות</span>
           </button>
           <!-- Reset button -->
-          <button id="btn-reset" class="text-[11px] sm:text-xs px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm">
+          <button id="btn-reset" class="text-sm px-2.5 py-1 sm:px-3 sm:py-1.5 rounded-lg bg-white hover:bg-pink-100 text-slate-700 hover:text-slate-900 border border-pink-300 font-semibold transition-all flex items-center gap-1 shadow-sm">
             <span>🔄 איפוס למצב רגיל</span>
           </button>
         </div>
       </div>
 
-      <!-- 6 Interactive Action Buttons (2 cols on mobile & tablet, 3 cols on desktop) -->
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5">
+      <!-- 6 Interactive Action Buttons (1 col on mobile phone, 2 cols on iPad/tablet, 3 cols on desktop) -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-2 sm:gap-2.5">
         <!-- Button 1 -->
-        <button id="btn-act-1" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
+        <button id="btn-act-1" class="btn-action flex items-center gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
             ☕
           </span>
           <div class="min-w-0">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700 leading-tight">
+            <div class="font-bold text-sm sm:text-base text-slate-800 group-hover:text-blue-700 leading-snug">
               תרים את הספל ביד ימין
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+            <div class="text-sm text-slate-500 leading-snug mt-0.5">
               הרמת הספל בצד ימין עם יד ימין
             </div>
           </div>
         </button>
 
         <!-- Button 2 -->
-        <button id="btn-act-2" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
+        <button id="btn-act-2" class="btn-action flex items-center gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
             🌸
           </span>
           <div class="min-w-0">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700 leading-tight">
+            <div class="font-bold text-sm sm:text-base text-slate-800 group-hover:text-blue-700 leading-snug">
               תריח בנחיר שמאל
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+            <div class="text-sm text-slate-500 leading-snug mt-0.5">
               הרחת הפרח בצד שמאל בנחיר שמאל
             </div>
           </div>
         </button>
 
         <!-- Button 3 -->
-        <button id="btn-act-3" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
+        <button id="btn-act-3" class="btn-action flex items-center gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white hover:bg-blue-50/70 border border-pink-200/90 hover:border-blue-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-blue-50 text-blue-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-blue-200 shadow-inner">
             👁️
           </span>
           <div class="min-w-0">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-blue-700 leading-tight">
+            <div class="font-bold text-sm sm:text-base text-slate-800 group-hover:text-blue-700 leading-snug">
               מה אתה רואה בצד ימין?
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+            <div class="text-sm text-slate-500 leading-snug mt-0.5">
               דיווח מילולי על מה שהוא רואה בימין
             </div>
           </div>
         </button>
 
         <!-- Button 4 -->
-        <button id="btn-act-4" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
+        <button id="btn-act-4" class="btn-action flex items-center gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
             🌸
           </span>
           <div class="min-w-0">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700 leading-tight">
+            <div class="font-bold text-sm sm:text-base text-slate-800 group-hover:text-rose-700 leading-snug">
               תרים את הפרח ביד שמאל
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+            <div class="text-sm text-slate-500 leading-snug mt-0.5">
               הרמת הפרח שנמצא בצד שמאל
             </div>
           </div>
         </button>
 
         <!-- Button 5 -->
-        <button id="btn-act-5" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
+        <button id="btn-act-5" class="btn-action flex items-center gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
             ☕
           </span>
           <div class="min-w-0">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700 leading-tight">
+            <div class="font-bold text-sm sm:text-base text-slate-800 group-hover:text-rose-700 leading-snug">
               תריח בנחיר ימין
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+            <div class="text-sm text-slate-500 leading-snug mt-0.5">
               הרחת הקפה בצד ימין בנחיר ימין
             </div>
           </div>
         </button>
 
         <!-- Button 6 -->
-        <button id="btn-act-6" class="btn-action flex items-center gap-2 sm:gap-3 p-2 sm:p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
-          <span class="flex-shrink-0 h-8 w-8 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
+        <button id="btn-act-6" class="btn-action flex items-center gap-2.5 sm:gap-3 p-2.5 rounded-xl bg-white hover:bg-rose-50/70 border border-pink-200/90 hover:border-rose-300 text-right transition-all group shadow-sm">
+          <span class="flex-shrink-0 h-9 w-9 sm:h-10 sm:w-10 flex items-center justify-center rounded-lg bg-rose-50 text-rose-600 group-hover:scale-110 transition-transform text-base sm:text-lg border border-rose-200 shadow-inner">
             👁️
           </span>
           <div class="min-w-0">
-            <div class="font-bold text-xs sm:text-sm text-slate-800 group-hover:text-rose-700 leading-tight">
+            <div class="font-bold text-sm sm:text-base text-slate-800 group-hover:text-rose-700 leading-snug">
               מה אתה רואה בצד שמאל?
             </div>
-            <div class="text-[10px] sm:text-[11px] text-slate-500 leading-tight mt-0.5">
+            <div class="text-sm text-slate-500 leading-snug mt-0.5">
               דיווח מילולי על מה שהוא רואה בשמאל
             </div>
           </div>
@@ -3439,14 +3468,14 @@
     };
 
     function updateBrainViewButtons(angle) {
-      const inactiveBack = 'px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 shadow-sm';
-      const activeBack = 'px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-pink-600 text-white border border-pink-600 shadow-sm';
+      const inactiveBack = 'px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 shadow-sm';
+      const activeBack = 'px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-pink-600 text-white border border-pink-600 shadow-sm';
 
-      const inactiveSide = 'px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 shadow-sm';
-      const activeSide = 'px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-pink-600 text-white border border-pink-600 shadow-sm';
+      const inactiveSide = 'px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-pink-100 text-pink-800 border border-pink-200 shadow-sm';
+      const activeSide = 'px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-pink-600 text-white border border-pink-600 shadow-sm';
 
-      const inactiveFront = 'px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-sky-100 text-sky-900 border border-sky-200 shadow-sm';
-      const activeFront = 'px-2.5 py-1 rounded-xl text-[11px] sm:text-xs font-extrabold transition-all flex items-center gap-1 bg-sky-600 text-white border border-sky-600 shadow-sm';
+      const inactiveFront = 'px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-white hover:bg-sky-100 text-sky-900 border border-sky-200 shadow-sm';
+      const activeFront = 'px-2.5 py-1 rounded-xl text-sm font-extrabold transition-all flex items-center gap-1 bg-sky-600 text-white border border-sky-600 shadow-sm';
 
       btnBrainViewBack.className = angle === 'back' ? activeBack : inactiveBack;
       btnBrainViewSide.className = angle === 'side' ? activeSide : inactiveSide;
