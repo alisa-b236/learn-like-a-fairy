@@ -1394,23 +1394,28 @@
     <section class="w-full bg-white/95 border border-pink-200/90 rounded-2xl shadow-lg shadow-pink-100/50 p-3 sm:p-5 mb-4">
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div>
-          <span class="inline-block bg-pink-100 text-pink-900 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-pink-200 mb-1">
-            קשב מרחבי והפרעות
-          </span>
+          <div class="flex flex-wrap items-center gap-1.5 mb-1">
+            <span class="inline-block bg-pink-100 text-pink-900 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-pink-200">
+              קשב מרחבי והפרעות
+            </span>
+            <span class="inline-block bg-[#fef08a] text-amber-950 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-yellow-300 shadow-sm">
+              📍 פגיעה באונה הפריאטלית בהמיספרה ימין
+            </span>
+          </div>
           <h2 class="text-base sm:text-xl font-extrabold text-slate-800">
             מנגנון ה״גיבוי״ של המיספרה ימין ותופעת הזנחת צד (Hemispatial Neglect)
           </h2>
-          <p class="text-xs sm:text-sm text-slate-600 mt-0.5">
-            בעוד שהמיספרה שמאל מפנה קשב רק לצד ימין של המרחב, <strong>המיספרה ימין מפנה קשב גם לצד שמאל וגם ״מגבה״ את צד ימין</strong>. מה קורה כשהיא נפגעת?
+          <p class="text-xs sm:text-sm text-slate-600 mt-0.5 leading-relaxed">
+            <strong>הזנחת צד מתרחשת כאשר נפגעת <mark class="bg-[#fef08a] text-amber-950 font-bold px-1.5 py-0.5 rounded shadow-sm">האונה הפריאטלית בהמיספרה ימין</mark></strong> (האחראית על עיבוד מרחבי וקשב במרחב). בעוד שהמיספרה שמאל מפנה קשב רק לצד ימין של המרחב, <strong>המיספרה ימין מפנה קשב גם לצד שמאל וגם ״מגבה״ את צד ימין</strong>.
           </p>
         </div>
-        <!-- Toggle Buttons: Intact vs Right Hemisphere Lesion -->
-        <div class="flex items-center gap-2">
+        <!-- Toggle Buttons: Intact vs Right Hemisphere Parietal Lesion -->
+        <div class="flex flex-wrap items-center gap-2">
           <button id="btn-neglect-normal" type="button" class="px-3.5 py-2 rounded-xl bg-pink-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition">
             ✅ מוח תקין: ימין מגבה את כל המרחב
           </button>
           <button id="btn-neglect-damaged" type="button" class="px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-800 border-2 border-rose-300 font-extrabold text-xs sm:text-sm shadow-sm transition">
-            ❌ פגיעה בהמיספרה ימין (הזנחת צד שמאל)
+            ❌ פגיעה באונה הפריאטלית בימין (הזנחת צד שמאל)
           </button>
         </div>
       </div>
@@ -1582,11 +1587,14 @@
                 <path id="neglect-brain-right" d="M 222,32 C 246,30 264,48 264,78 C 264,108 246,126 222,124 Z" fill="#fb7185" stroke="#be123c" stroke-width="2"/>
                 <path d="M 254,56 Q 238,50 226,58 M 258,76 Q 240,70 225,78 M 254,96 Q 238,92 226,100" fill="none" stroke="#ffe4e6" stroke-width="2.2" stroke-linecap="round"/>
 
-                <!-- Cortical Lesion Spot on Right Hemisphere -->
+                <!-- Cortical Lesion Spot on Right Parietal Lobe -->
                 <g id="neglect-lesion-spot" class="hidden">
                   <circle cx="248" cy="78" r="15" fill="#475569" opacity="0.75"/>
                   <circle cx="250" cy="78" r="9" fill="#1e293b" opacity="0.85"/>
-                  <circle cx="246" cy="74" r="18" fill="none" stroke="#e11d48" stroke-width="2" stroke-dasharray="3,2"/>
+                  <circle cx="246" cy="74" r="18" fill="none" stroke="#eab308" stroke-width="2.2" stroke-dasharray="3,2"/>
+                  <line x1="264" y1="74" x2="294" y2="62" stroke="#b45309" stroke-width="1.6" stroke-dasharray="2,2"/>
+                  <rect x="282" y="44" width="150" height="22" rx="6" fill="#fef08a" stroke="#eab308" stroke-width="1.4"/>
+                  <text x="357" y="59" fill="#713f12" font-size="10.5" font-weight="800" text-anchor="middle">פגיעה באונה הפריאטלית בימין</text>
                 </g>
 
                 <!-- Curved Blue Arrow from Left Hemisphere (x=202, y=114) to Right Objects -->
@@ -1685,8 +1693,8 @@
 
       <!-- Explanation Banner for Neglect Widget -->
       <div id="neglect-explanation-box" class="w-full bg-pink-50/90 border border-pink-200 rounded-xl p-3 text-xs sm:text-sm text-slate-700 mb-4 leading-relaxed">
-        <strong class="text-pink-950">🧠 למה הזנחת צד מופיעה כמעט תמיד בצד שמאל (בעקבות פגיעה ימנית)?</strong>
-        מכיוון שהמיספרה ימין נותנת ״גיבוי״ קשבי לכל המרחב (גם לשמאל וגם לימין), אם המיספרה שמאל נפגעת — המיספרה ימין עדיין מחפה על צד ימין. לעומת זאת, <strong>כאשר המיספרה ימין נפגעת (לרוב באונה הפריאטלית הימנית), אין כמעט פיקוח על צד שמאל</strong>, והאדם מתעלם מחפצים, מאוכל בצלחת או מגירויים הנמצאים בשדה השמאלי.
+        <strong class="text-pink-950">🧠 איזו אונה נפגעת בהזנחת צד ולמה ההזנחה מופיעה בצד שמאל?</strong>
+        הזנחת צד מתרחשת בעקבות <mark class="bg-[#fef08a] text-amber-950 font-bold px-1.5 py-0.5 rounded shadow-sm">פגיעה באונה הפריאטלית בהמיספרה ימין</mark> (האחראית על עיבוד מרחבי וקשב במרחב). מכיוון שהמיספרה ימין נותנת ״גיבוי״ קשבי לכל המרחב (גם לשמאל וגם לימין), אם האונה הפריאטלית השמאלית נפגעת — המיספרה ימין עדיין מחפה על צד ימין. לעומת זאת, <strong>כאשר נפגעת האונה הפריאטלית בהמיספרה ימין, אין כמעט פיקוח על צד שמאל</strong>, והאדם מתעלם מחפצים, מאוכל בצד שמאל של הצלחת או מגירויים בשדה השמאלי.
       </div>
 
       <!-- Mini Interactive Cards for Other Course Disorders (Blindsight, Aphasia) + Direct Link to Split-Brain -->
