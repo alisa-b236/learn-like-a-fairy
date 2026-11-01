@@ -1108,7 +1108,7 @@
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div>
           <span class="inline-block bg-pink-100 text-pink-900 text-xs sm:text-sm font-extrabold px-3 py-1 rounded-full border border-pink-200 mb-1">
-            קשב מרחבי והפרעות נלוות בקורס
+            קשב מרחבי והפרעות
           </span>
           <h2 class="text-base sm:text-xl font-extrabold text-slate-800">
             מנגנון ה״גיבוי״ של המיספרה ימין ותופעת הזנחת צד (Hemispatial Neglect)
@@ -1131,12 +1131,12 @@
       <!-- Two Synchronized Detailed Graphic Views (Matching the 2 uploaded slides!) -->
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 mb-4">
         
-        <!-- VIEW A: Schematic Boxes, Crossing Arrows & Pizza Plate (Slide 1) -->
-        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center shadow-sm">
+        <!-- VIEW A: Schematic Boxes, Crossing Arrows & Pizza Plate Between Left/Right Space Labels -->
+        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between shadow-sm">
           <div id="neglect-title-a" class="text-xs sm:text-sm font-extrabold text-rose-800 mb-2 text-center">
-            באופן גרפי: כשימין מגבה את כל המרחב...
+            כשימין מגבה את כל המרחב...
           </div>
-          <svg viewBox="0 0 440 250" class="w-full max-w-[400px] h-auto select-none">
+          <svg viewBox="0 0 440 280" class="w-full max-w-[420px] h-auto select-none">
             <defs>
               <marker id="neg-arr-blue" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M 0 1 L 9 5 L 0 9 z" fill="#3b82f6"/>
@@ -1144,64 +1144,81 @@
               <marker id="neg-arr-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
                 <path d="M 0 1 L 9 5 L 0 9 z" fill="#e11d48"/>
               </marker>
+              <marker id="neg-arr-light-red" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+                <path d="M 0 1 L 9 5 L 0 9 z" fill="#fb7185"/>
+              </marker>
             </defs>
 
             <!-- Left Hemisphere Box (Screen Left, Blue) -->
-            <rect x="35" y="20" width="155" height="46" rx="8" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
-            <text x="112" y="48" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
+            <rect x="35" y="16" width="155" height="46" rx="8" fill="#3b82f6" stroke="#1d4ed8" stroke-width="2"/>
+            <text x="112" y="44" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">המיספרה שמאל</text>
 
             <!-- Right Hemisphere Box (Screen Right, Pastel Red) -->
-            <rect x="250" y="20" width="155" height="46" rx="8" fill="#f43f5e" stroke="#be123c" stroke-width="2"/>
-            <text x="327" y="48" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">המיספרה ימין</text>
+            <rect x="250" y="16" width="155" height="46" rx="8" fill="#f43f5e" stroke="#be123c" stroke-width="2"/>
+            <text x="327" y="44" fill="#ffffff" font-size="15" font-weight="800" text-anchor="middle">המיספרה ימין</text>
 
-            <!-- Blue X over Right Hemisphere (Hidden in normal mode, shown in damaged mode) -->
+            <!-- Semi-Transparent Gray X over Right Hemisphere (Hidden in normal mode, shown in damaged mode so text underneath remains visible) -->
             <g id="neglect-x-mark" class="hidden">
-              <line x1="275" y1="12" x2="380" y2="74" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
-              <line x1="380" y1="12" x2="275" y2="74" stroke="#2563eb" stroke-width="9" stroke-linecap="round"/>
+              <line x1="268" y1="10" x2="386" y2="68" stroke="#64748b" stroke-width="9" stroke-linecap="round" stroke-opacity="0.58"/>
+              <line x1="386" y1="10" x2="268" y2="68" stroke="#64748b" stroke-width="9" stroke-linecap="round" stroke-opacity="0.58"/>
             </g>
 
-            <!-- Blue Arrow from Left Hemisphere to Right Space -->
-            <line x1="115" y1="74" x2="295" y2="182" stroke="#3b82f6" stroke-width="7" stroke-linecap="round" marker-end="url(#neg-arr-blue)"/>
+            <!-- Blue Arrow from Left Hemisphere (center-bottom x=112, y=68) to Right Space -->
+            <line x1="112" y1="68" x2="310" y2="176" stroke="#3b82f6" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-blue)"/>
 
-            <!-- Red Arrows from Right Hemisphere to BOTH Left Space and Right Space (Hidden when right hemisphere is damaged) -->
+            <!-- Red Arrows from Right Hemisphere: BOTH start from the exact same center point (x=327, y=68) -->
             <g id="neglect-right-arrows-a" class="transition-opacity duration-300">
-              <!-- Arrow to Left Space -->
-              <line x1="345" y1="74" x2="155" y2="182" stroke="#e11d48" stroke-width="7" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
-              <!-- Backup Arrow to Right Space -->
-              <line x1="275" y1="74" x2="388" y2="168" stroke="#e11d48" stroke-width="7" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
-            </g>
-
-            <!-- Plate with Pizza in Center-Bottom (In normal mode: whole pizza; in neglect mode: left half neglected/empty, right half visible) -->
-            <g transform="translate(220, 145)">
-              <circle cx="0" cy="0" r="34" fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.5"/>
-              <circle cx="0" cy="0" r="26" fill="#f1f5f9"/>
-              <!-- Right Half of Pizza (Always perceived via Left Hemisphere) -->
-              <path d="M 0,-26 A 26,26 0 0,1 0,26 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
-              <path d="M 0,-22 A 22,22 0 0,1 0,22 Z" fill="#ef4444"/>
-              <circle cx="9" cy="-9" r="3" fill="#fde047"/>
-              <circle cx="12" cy="4" r="3" fill="#22c55e"/>
-              <circle cx="6" cy="12" r="3" fill="#fde047"/>
-              <!-- Left Half of Pizza (Perceived in normal mode; disappears/fades when Right Hemisphere is damaged) -->
-              <g id="neglect-pizza-left" class="transition-opacity duration-300">
-                <path d="M 0,-26 A 26,26 0 0,0 0,26 Z" fill="#f59e0b" stroke="#b45309" stroke-width="2"/>
-                <path d="M 0,-22 A 22,22 0 0,0 0,22 Z" fill="#ef4444"/>
-                <circle cx="-9" cy="-8" r="3" fill="#fde047"/>
-                <circle cx="-12" cy="5" r="3" fill="#22c55e"/>
-                <circle cx="-6" cy="12" r="3" fill="#fde047"/>
+              <!-- Main Arrow from Right Hemisphere center to Left Space -->
+              <line x1="327" y1="68" x2="125" y2="176" stroke="#e11d48" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+              <!-- Lighter Red Backup Arrow from Right Hemisphere center to Right Space with "גיבוי" label -->
+              <line x1="327" y1="68" x2="385" y2="176" stroke="#fda4af" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-light-red)"/>
+              <g transform="translate(358, 120) rotate(61)">
+                <rect x="-24" y="-10" width="48" height="18" rx="6" fill="#fff1f2" stroke="#fb7185" stroke-width="1.4"/>
+                <text x="0" y="3" fill="#be123c" font-size="11" font-weight="800" text-anchor="middle">גיבוי</text>
               </g>
             </g>
 
-            <text x="115" y="222" fill="#be123c" font-size="12.5" font-weight="bold" text-anchor="middle">מרחב שמאל</text>
-            <text x="325" y="222" fill="#1d4ed8" font-size="12.5" font-weight="bold" text-anchor="middle">מרחב ימין (מגובה!)</text>
+            <!-- Left Space & Right Space Labels on the same horizontal row as the Plate (y=215) -->
+            <text x="82" y="216" fill="#be123c" font-size="13.5" font-weight="800" text-anchor="middle">מרחב שמאל</text>
+            <text id="neglect-space-right-label" x="358" y="216" fill="#1d4ed8" font-size="13.5" font-weight="800" text-anchor="middle">מרחב ימין (מגובה!)</text>
+
+            <!-- Plate Positioned at the EXACT same height (y=212) right between "מרחב שמאל" and "מרחב ימין" -->
+            <!-- In Normal mode: Plate is EMPTY ("האדם אכל מכל הצלחת"). In Damaged mode: Left half has food ("האדם לא אכל מצד שמאל של הצלחת כי הוא לא מודע אליו") -->
+            <g transform="translate(220, 212)">
+              <!-- Outer & Inner Ceramic Plate -->
+              <circle cx="0" cy="0" r="35" fill="#f8fafc" stroke="#94a3b8" stroke-width="2.5"/>
+              <circle cx="0" cy="0" r="27" fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+              <!-- Tiny crumbs showing food was eaten on the right (and on left in normal mode) -->
+              <circle cx="10" cy="-6" r="1.3" fill="#d97706" opacity="0.5"/>
+              <circle cx="7" cy="9" r="1.1" fill="#d97706" opacity="0.5"/>
+              <circle cx="-8" cy="-5" r="1.2" fill="#d97706" opacity="0.45"/>
+              <circle cx="-10" cy="8" r="1.1" fill="#d97706" opacity="0.45"/>
+
+              <!-- Left Half of Food on Plate: Hidden in Normal mode (person ate everything!), Shown in Damaged mode (person neglected left side!) -->
+              <g id="neglect-pizza-left" class="transition-opacity duration-300" style="opacity: 0;">
+                <path d="M 0,-26 A 26,26 0 0,0 0,26 Z" fill="#f59e0b" stroke="#b45309" stroke-width="1.8"/>
+                <path d="M 0,-22 A 22,22 0 0,0 0,22 Z" fill="#ef4444"/>
+                <circle cx="-9" cy="-9" r="3.2" fill="#fde047"/>
+                <circle cx="-13" cy="3" r="3.2" fill="#22c55e"/>
+                <circle cx="-7" cy="12" r="3.2" fill="#fde047"/>
+                <circle cx="-5" cy="-1" r="2.5" fill="#fef08a"/>
+              </g>
+            </g>
+
+            <!-- Plate Status Caption Below Plate -->
+            <rect x="28" y="252" width="384" height="24" rx="8" fill="#fff1f2" stroke="#fbcfe8" stroke-width="1.2"/>
+            <text id="neglect-plate-caption" x="220" y="268" fill="#881337" font-size="12" font-weight="800" text-anchor="middle">
+              🍽️ האדם אכל מכל הצלחת
+            </text>
           </svg>
         </div>
 
-        <!-- VIEW B: Top-Down Brain with Gyri/Sulci & Everyday Objects on Both Sides (Slide 2) -->
-        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center shadow-sm">
+        <!-- VIEW B: Top-Down Brain with Gyri/Sulci & Colorful Everyday Objects on Both Sides (Slide 2) -->
+        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center justify-between shadow-sm">
           <div id="neglect-title-b" class="text-xs sm:text-sm font-extrabold text-rose-800 mb-2 text-center">
-            מבט גרפי נוסף: המיספרת ימין ׳מגבה׳ את כל המרחב...
+            המיספרת ימין ׳מגבה׳ את כל המרחב...
           </div>
-          <svg viewBox="0 0 440 250" class="w-full max-w-[400px] h-auto select-none">
+          <svg viewBox="0 0 440 280" class="w-full max-w-[420px] h-auto select-none">
             <!-- Badges: שמאל / ימין -->
             <rect x="122" y="14" width="52" height="24" rx="5" fill="#dbeafe" stroke="#93c5fd" stroke-width="1.2"/>
             <text x="148" y="30" fill="#1e3a8a" font-size="13" font-weight="800" text-anchor="middle">שמאל</text>
@@ -1225,42 +1242,168 @@
             </g>
 
             <!-- Curved Arrows from Brain to Objects -->
-            <!-- Curved Blue Arrow from Left Hemisphere to Right Objects -->
-            <path d="M 212,110 C 225,142 265,145 302,162" fill="none" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-blue)"/>
+            <!-- Curved Blue Arrow from Left Hemisphere (x=202, y=114) to Right Objects -->
+            <path d="M 202,114 C 218,146 262,152 302,168" fill="none" stroke="#3b82f6" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-blue)"/>
 
-            <!-- Curved Red Arrows from Right Hemisphere to BOTH Left Objects and Right Objects -->
+            <!-- Curved Red Arrows from RIGHT Hemisphere (x=238..254) to BOTH Left Objects and Right Objects -->
             <g id="neglect-right-arrows-b" class="transition-opacity duration-300">
-              <path d="M 192,82 C 148,96 122,124 114,158" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
-              <path d="M 256,82 C 300,96 326,124 334,158" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+              <!-- Red Arrow starting inside Right Hemisphere (x=236, y=96) curving across to Left Objects -->
+              <path d="M 236,96 C 184,114 134,132 114,166" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+              <!-- Lighter Red Backup Arrow starting inside Right Hemisphere (x=254, y=88) to Right Objects -->
+              <path d="M 254,88 C 298,104 326,130 334,166" fill="none" stroke="#fb7185" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-light-red)"/>
             </g>
 
-            <!-- LEFT SIDE OBJECTS (Cup, Apple, Book, Pen - Fade out in Right Hemisphere Damage Mode!) -->
-            <g id="neglect-objects-left" class="transition-opacity duration-500" transform="translate(55, 165)">
-              <!-- Mug/Cup -->
-              <rect x="28" y="0" width="22" height="26" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
-              <path d="M 50,5 C 57,5 57,19 50,19" fill="none" stroke="#475569" stroke-width="2"/>
-              <!-- Apple -->
-              <circle cx="14" cy="28" r="12" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
-              <path d="M 14,14 Q 17,10 20,12" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
-              <!-- Book -->
-              <polygon points="56,18 96,10 114,22 74,32" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
-              <!-- Pen -->
-              <line x1="38" y1="38" x2="78" y2="46" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- LEFT SIDE OBJECTS (Pink Cup, Red Apple, Purple/Teal Book, Dark Blue Pen - Fade out in Right Hemisphere Damage Mode!) -->
+            <g id="neglect-objects-left" class="transition-opacity duration-500" transform="translate(52, 174)">
+              <!-- Pink Mug/Cup -->
+              <rect x="28" y="0" width="23" height="27" rx="4" fill="#f472b6" stroke="#db2777" stroke-width="1.8"/>
+              <ellipse cx="39.5" cy="2" rx="10" ry="2.5" fill="#fce7f3" stroke="#db2777" stroke-width="1"/>
+              <path d="M 51,6 C 59,6 59,20 51,20" fill="none" stroke="#db2777" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Red Apple with Green Leaf -->
+              <circle cx="14" cy="29" r="12" fill="#f43f5e" stroke="#be123c" stroke-width="1.6"/>
+              <path d="M 14,16 Q 18,10 22,13" fill="none" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round"/>
+              <!-- Colorful Book (Lavender/Purple Cover + Cream Pages) -->
+              <polygon points="58,18 98,9 116,21 76,32" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.6" stroke-linejoin="round"/>
+              <polygon points="60,21 76,32 114,21 112,25 75,36 58,25" fill="#fef9c3" stroke="#6d28d9" stroke-width="1.2" stroke-linejoin="round"/>
+              <!-- Dark Blue Pen -->
+              <line x1="36" y1="40" x2="80" y2="49" stroke="#1e3a8a" stroke-width="4" stroke-linecap="round"/>
+              <line x1="32" y1="39" x2="36" y2="40" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
             </g>
 
-            <!-- RIGHT SIDE OBJECTS (Cup, Apple, Book, Pen - Always Visible!) -->
-            <g id="neglect-objects-right" transform="translate(265, 165)">
-              <!-- Mug/Cup -->
-              <rect x="28" y="0" width="22" height="26" rx="3" fill="#94a3b8" stroke="#475569" stroke-width="1.5"/>
-              <path d="M 50,5 C 57,5 57,19 50,19" fill="none" stroke="#475569" stroke-width="2"/>
-              <!-- Apple -->
-              <circle cx="14" cy="28" r="12" fill="#f43f5e" stroke="#be123c" stroke-width="1.5"/>
-              <path d="M 14,14 Q 17,10 20,12" fill="none" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
-              <!-- Book -->
-              <polygon points="56,18 96,10 114,22 74,32" fill="#cbd5e1" stroke="#475569" stroke-width="1.5"/>
-              <!-- Pen -->
-              <line x1="38" y1="38" x2="78" y2="46" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+            <!-- RIGHT SIDE OBJECTS (Pink Cup, Red Apple, Purple/Teal Book, Dark Blue Pen - Always Visible!) -->
+            <g id="neglect-objects-right" transform="translate(262, 174)">
+              <!-- Pink Mug/Cup -->
+              <rect x="28" y="0" width="23" height="27" rx="4" fill="#f472b6" stroke="#db2777" stroke-width="1.8"/>
+              <ellipse cx="39.5" cy="2" rx="10" ry="2.5" fill="#fce7f3" stroke="#db2777" stroke-width="1"/>
+              <path d="M 51,6 C 59,6 59,20 51,20" fill="none" stroke="#db2777" stroke-width="2.5" stroke-linecap="round"/>
+              <!-- Red Apple with Green Leaf -->
+              <circle cx="14" cy="29" r="12" fill="#f43f5e" stroke="#be123c" stroke-width="1.6"/>
+              <path d="M 14,16 Q 18,10 22,13" fill="none" stroke="#16a34a" stroke-width="2.4" stroke-linecap="round"/>
+              <!-- Colorful Book (Lavender/Purple Cover + Cream Pages) -->
+              <polygon points="58,18 98,9 116,21 76,32" fill="#a78bfa" stroke="#6d28d9" stroke-width="1.6" stroke-linejoin="round"/>
+              <polygon points="60,21 76,32 114,21 112,25 75,36 58,25" fill="#fef9c3" stroke="#6d28d9" stroke-width="1.2" stroke-linejoin="round"/>
+              <!-- Dark Blue Pen -->
+              <line x1="36" y1="40" x2="80" y2="49" stroke="#1e3a8a" stroke-width="4" stroke-linecap="round"/>
+              <line x1="32" y1="39" x2="36" y2="40" stroke="#60a5fa" stroke-width="2.5" stroke-linecap="round"/>
             </g>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Everyday Clinical Examples of Hemispatial Neglect: Shaving Face & Pencil-Drawn Flower -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+        <!-- Example 1: Shaving Face (גילוח הפנים) -->
+        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center shadow-sm">
+          <div class="text-xs sm:text-sm font-extrabold text-pink-950 mb-1">
+            🪒 דוגמה יומיומית 1: גילוח הפנים
+          </div>
+          <svg viewBox="0 0 260 175" class="w-full max-w-[250px] h-auto select-none">
+            <!-- Ears -->
+            <ellipse cx="74" cy="78" rx="9" ry="16" fill="#ffedd5" stroke="#f472b6" stroke-width="1.8"/>
+            <ellipse cx="186" cy="78" rx="9" ry="16" fill="#ffedd5" stroke="#f472b6" stroke-width="1.8"/>
+            <!-- Head/Face -->
+            <ellipse cx="130" cy="74" rx="54" ry="64" fill="#ffedd5" stroke="#f472b6" stroke-width="2.2"/>
+            <!-- Hair -->
+            <path d="M 78,56 C 80,20 180,20 182,56 C 168,36 92,36 78,56 Z" fill="#64748b"/>
+            <!-- Eyes & Eyebrows -->
+            <path d="M 96,60 Q 108,54 118,60" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+            <path d="M 142,60 Q 152,54 164,60" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+            <circle cx="107" cy="70" r="4" fill="#334155"/>
+            <circle cx="153" cy="70" r="4" fill="#334155"/>
+            <!-- Nose -->
+            <path d="M 130,68 L 126,88 L 134,88" fill="none" stroke="#d97706" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+
+            <!-- Unshaven Beard on LEFT side of face (Shown ONLY in Damaged/Neglect Mode!) -->
+            <g id="neglect-beard-left" class="transition-opacity duration-300" style="opacity: 0;">
+              <!-- Left jaw & cheek beard shade -->
+              <path d="M 77,78
+                       C 76,108 98,136 130,138
+                       L 130,96
+                       L 106,96
+                       C 96,96 90,86 88,78 Z"
+                    fill="#475569" fill-opacity="0.42"/>
+              <!-- Left half mustache -->
+              <path d="M 130,95 Q 114,93 105,101" fill="none" stroke="#334155" stroke-width="3.5" stroke-linecap="round"/>
+              <!-- Beard hairs/stubble texture on left side only -->
+              <g stroke="#334155" stroke-width="1.6" stroke-linecap="round">
+                <line x1="84" y1="88" x2="86" y2="93"/><line x1="92" y1="92" x2="94" y2="97"/>
+                <line x1="86" y1="100" x2="88" y2="105"/><line x1="96" y1="102" x2="98" y2="107"/>
+                <line x1="106" y1="106" x2="108" y2="111"/><line x1="92" y1="112" x2="94" y2="117"/>
+                <line x1="102" y1="116" x2="104" y2="121"/><line x1="114" y1="114" x2="116" y2="119"/>
+                <line x1="122" y1="110" x2="124" y2="115"/><line x1="100" y1="125" x2="102" y2="130"/>
+                <line x1="112" y1="126" x2="114" y2="131"/><line x1="123" y1="124" x2="125" y2="129"/>
+                <line x1="118" y1="132" x2="120" y2="136"/><line x1="126" y1="132" x2="127" y2="136"/>
+              </g>
+            </g>
+
+            <!-- Smile -->
+            <path d="M 114,104 Q 130,114 146,104" fill="none" stroke="#e11d48" stroke-width="2.4" stroke-linecap="round"/>
+
+            <!-- Clean-shaven sparkle on Right Cheek (Always visible) & Left Cheek (Visible in Normal mode) -->
+            <text x="168" y="106" font-size="13">✨</text>
+            <text id="neglect-shave-sparkle-left" x="82" y="106" font-size="13">✨</text>
+
+            <!-- Caption Pill -->
+            <rect x="20" y="145" width="220" height="24" rx="8" fill="#fff1f2" stroke="#fbcfe8" stroke-width="1.2"/>
+            <text id="neglect-shave-caption" x="130" y="161" fill="#881337" font-size="12.5" font-weight="800" text-anchor="middle">
+              גילח את שני הצדדים
+            </text>
+          </svg>
+        </div>
+
+        <!-- Example 2: Pencil-Drawn Flower (ציור פרח בעיפרון) -->
+        <div class="bg-[#fff9fb] border border-pink-200 rounded-2xl p-3 sm:p-4 flex flex-col items-center shadow-sm">
+          <div class="text-xs sm:text-sm font-extrabold text-pink-950 mb-1">
+            ✏️ דוגמה יומיומית 2: העתקת ציור פרח בעיפרון
+          </div>
+          <svg viewBox="0 0 260 175" class="w-full max-w-[250px] h-auto select-none">
+            <!-- Sketchbook paper background -->
+            <rect x="45" y="8" width="170" height="130" rx="8" fill="#ffffff" stroke="#cbd5e1" stroke-width="1.5"/>
+
+            <!-- Graphite Pencil Sketch of a Flower (centered at x=130, y=58) -->
+            <g stroke="#475569" fill="none" stroke-linecap="round" stroke-linejoin="round">
+              <!-- Stem -->
+              <path d="M 130,72 Q 132,102 128,130" stroke-width="2.4"/>
+              <!-- Center Circle of Flower with pencil shading -->
+              <circle cx="130" cy="58" r="13" fill="#f1f5f9" stroke-width="2.2"/>
+              <path d="M 123,53 L 137,63 M 123,63 L 137,53 M 126,49 L 134,67" stroke="#94a3b8" stroke-width="1"/>
+
+              <!-- RIGHT-SIDE PETALS & RIGHT LEAF (Always drawn in both modes) -->
+              <g id="neglect-flower-right" stroke="#475569" stroke-width="2">
+                <!-- Top-Right Petal -->
+                <path d="M 135,46 C 144,24 164,28 150,48" fill="#f8fafc"/>
+                <!-- Upper-Mid Right Petal -->
+                <path d="M 142,52 C 168,40 174,58 143,60" fill="#f8fafc"/>
+                <!-- Lower-Mid Right Petal -->
+                <path d="M 142,61 C 172,62 166,80 140,67" fill="#f8fafc"/>
+                <!-- Bottom-Right Petal -->
+                <path d="M 136,69 C 158,86 142,96 131,71" fill="#f8fafc"/>
+                <!-- Right Leaf on Stem -->
+                <path d="M 131,104 C 152,94 160,108 131,114" fill="#f1f5f9"/>
+                <line x1="132" y1="109" x2="146" y2="104" stroke-width="1.2"/>
+              </g>
+
+              <!-- LEFT-SIDE PETALS & LEFT LEAF (Drawn in Normal mode; OMITTED in Neglect mode!) -->
+              <g id="neglect-flower-left" class="transition-opacity duration-300" stroke="#475569" stroke-width="2">
+                <!-- Top-Left Petal -->
+                <path d="M 125,46 C 116,24 96,28 110,48" fill="#f8fafc"/>
+                <!-- Upper-Mid Left Petal -->
+                <path d="M 118,52 C 92,40 86,58 117,60" fill="#f8fafc"/>
+                <!-- Lower-Mid Left Petal -->
+                <path d="M 118,61 C 88,62 94,80 120,67" fill="#f8fafc"/>
+                <!-- Bottom-Left Petal -->
+                <path d="M 124,69 C 102,86 118,96 129,71" fill="#f8fafc"/>
+                <!-- Left Leaf on Stem -->
+                <path d="M 129,106 C 108,96 100,110 129,116" fill="#f1f5f9"/>
+                <line x1="128" y1="111" x2="114" y2="106" stroke-width="1.2"/>
+              </g>
+            </g>
+
+            <!-- Caption Pill -->
+            <rect x="20" y="145" width="220" height="24" rx="8" fill="#fff1f2" stroke="#fbcfe8" stroke-width="1.2"/>
+            <text id="neglect-flower-caption" x="130" y="161" fill="#881337" font-size="12" font-weight="800" text-anchor="middle">
+              ציור מלא של פרח
+            </text>
           </svg>
         </div>
       </div>
@@ -2686,36 +2829,61 @@
     const neglectTitleB = document.getElementById('neglect-title-b');
     const neglectXMark = document.getElementById('neglect-x-mark');
     const neglectRightArrowsA = document.getElementById('neglect-right-arrows-a');
+    const neglectSpaceRightLabel = document.getElementById('neglect-space-right-label');
     const neglectPizzaLeft = document.getElementById('neglect-pizza-left');
+    const neglectPlateCaption = document.getElementById('neglect-plate-caption');
     const neglectLesionSpot = document.getElementById('neglect-lesion-spot');
     const neglectRightArrowsB = document.getElementById('neglect-right-arrows-b');
     const neglectObjectsLeft = document.getElementById('neglect-objects-left');
     const neglectBrainRight = document.getElementById('neglect-brain-right');
+    const neglectBeardLeft = document.getElementById('neglect-beard-left');
+    const neglectShaveSparkleLeft = document.getElementById('neglect-shave-sparkle-left');
+    const neglectShaveCaption = document.getElementById('neglect-shave-caption');
+    const neglectFlowerLeft = document.getElementById('neglect-flower-left');
+    const neglectFlowerCaption = document.getElementById('neglect-flower-caption');
 
     function setNeglectMode(damaged) {
       if (damaged) {
-        neglectTitleA.textContent = 'באופן גרפי: כאשר ימין נפגע, אין כמעט פיקוח על שמאל...';
-        neglectTitleB.textContent = 'באופן גרפי נוסף: כאשר ימין נפגע, אין כמעט פיקוח על שמאל...';
+        neglectTitleA.textContent = 'כאשר ימין נפגע, אין כמעט פיקוח על שמאל...';
+        neglectTitleB.textContent = 'כאשר ימין נפגע, אין כמעט פיקוח על שמאל...';
         neglectXMark.classList.remove('hidden');
         neglectRightArrowsA.style.opacity = '0';
-        neglectPizzaLeft.style.opacity = '0.08';
+        neglectSpaceRightLabel.textContent = 'מרחב ימין';
+        neglectPizzaLeft.style.opacity = '1';
+        neglectPlateCaption.textContent = '🍽️ האדם לא אכל מצד שמאל של הצלחת כי הוא לא מודע אליו';
         neglectLesionSpot.classList.remove('hidden');
         neglectRightArrowsB.style.opacity = '0';
         neglectObjectsLeft.style.opacity = '0.16';
         neglectBrainRight.setAttribute('fill', '#cbd5e1');
 
+        neglectBeardLeft.style.opacity = '1';
+        neglectShaveSparkleLeft.style.opacity = '0';
+        neglectShaveCaption.textContent = 'לא גילח את צד שמאל';
+
+        neglectFlowerLeft.style.opacity = '0';
+        neglectFlowerCaption.textContent = 'צייר עלי כותרת לפרח רק בצד ימין';
+
         btnNeglectDamaged.className = 'px-3.5 py-2 rounded-xl bg-rose-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition';
         btnNeglectNormal.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-pink-50 text-pink-900 border-2 border-pink-300 font-extrabold text-xs sm:text-sm shadow-sm transition';
       } else {
-        neglectTitleA.textContent = 'באופן גרפי: כשימין מגבה את כל המרחב...';
-        neglectTitleB.textContent = 'מבט גרפי נוסף: המיספרת ימין ׳מגבה׳ את כל המרחב...';
+        neglectTitleA.textContent = 'כשימין מגבה את כל המרחב...';
+        neglectTitleB.textContent = 'המיספרת ימין ׳מגבה׳ את כל המרחב...';
         neglectXMark.classList.add('hidden');
         neglectRightArrowsA.style.opacity = '1';
-        neglectPizzaLeft.style.opacity = '1';
+        neglectSpaceRightLabel.textContent = 'מרחב ימין (מגובה!)';
+        neglectPizzaLeft.style.opacity = '0';
+        neglectPlateCaption.textContent = '🍽️ האדם אכל מכל הצלחת';
         neglectLesionSpot.classList.add('hidden');
         neglectRightArrowsB.style.opacity = '1';
         neglectObjectsLeft.style.opacity = '1';
         neglectBrainRight.setAttribute('fill', '#fb7185');
+
+        neglectBeardLeft.style.opacity = '0';
+        neglectShaveSparkleLeft.style.opacity = '1';
+        neglectShaveCaption.textContent = 'גילח את שני הצדדים';
+
+        neglectFlowerLeft.style.opacity = '1';
+        neglectFlowerCaption.textContent = 'ציור מלא של פרח';
 
         btnNeglectNormal.className = 'px-3.5 py-2 rounded-xl bg-pink-600 text-white font-extrabold text-xs sm:text-sm shadow-sm transition';
         btnNeglectDamaged.className = 'px-3.5 py-2 rounded-xl bg-white hover:bg-rose-50 text-rose-800 border-2 border-rose-300 font-extrabold text-xs sm:text-sm shadow-sm transition';
