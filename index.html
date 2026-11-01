@@ -621,20 +621,59 @@
     }
 
     /* =========================================================================
-       MINIMUM 14PX FONT SIZE FLOOR & MULTI-DEVICE RESPONSIVE ADAPTATION
-       (Desktop, iPad/Tablet, Mobile Phone)
+       MINIMUM 15PX FONT SIZE FLOOR, UNBOLDED SMALL TEXT FOR HOFONT CLARITY
+       & MULTI-DEVICE RESPONSIVE ADAPTATION (Desktop, iPad/Tablet, Mobile Phone)
        ========================================================================= */
     .text-xs,
+    .text-sm,
     .text-\[10px\],
     .text-\[11px\],
     .text-\[12px\],
     .text-\[13px\],
+    .text-\[14px\],
     .sm\:text-\[11px\],
     .sm\:text-\[12px\],
     .sm\:text-\[13px\],
-    .sm\:text-xs {
-      font-size: 0.875rem !important; /* 14px minimum everywhere */
-      line-height: 1.45 !important;
+    .sm\:text-\[14px\],
+    .sm\:text-xs,
+    .sm\:text-sm {
+      font-size: 0.9375rem !important; /* 15px minimum everywhere */
+      line-height: 1.48 !important;
+      font-weight: 400 !important;
+      font-synthesis: none !important;
+    }
+
+    /* Remove synthetic bold on smaller text, paragraphs, buttons, pills, captions, and SVG labels */
+    p, li, button, mark, strong, span:not(.fairy-brand-cursive),
+    .lobe-card, .fairy-pill-badge, #status-subtitle, #vp-status-bar,
+    #neglect-title-a, #neglect-title-b, #neglect-explanation-box,
+    svg text {
+      font-weight: 400 !important;
+      font-synthesis: none !important;
+    }
+
+    /* Preserve larger responsive font sizes on >=640px when paired with text-xs/text-sm */
+    @media (min-width: 640px) {
+      .sm\:text-base {
+        font-size: 1rem !important; /* 16px */
+        line-height: 1.5rem !important;
+      }
+      .sm\:text-lg {
+        font-size: 1.125rem !important; /* 18px */
+        line-height: 1.75rem !important;
+      }
+      .sm\:text-xl {
+        font-size: 1.25rem !important; /* 20px */
+        line-height: 1.75rem !important;
+      }
+      .sm\:text-2xl {
+        font-size: 1.5rem !important; /* 24px */
+        line-height: 2rem !important;
+      }
+      .sm\:text-4xl {
+        font-size: 2.25rem !important; /* 36px */
+        line-height: 2.5rem !important;
+      }
     }
 
     @media (max-width: 640px) {
