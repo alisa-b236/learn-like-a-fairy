@@ -1096,10 +1096,10 @@
               </marker>
             </defs>
 
-            <!-- Person's Face Contour & Ears -->
-            <ellipse cx="110" cy="182" rx="11" ry="20" fill="#ffedd5" stroke="#f472b6" stroke-width="2"/>
-            <ellipse cx="270" cy="182" rx="11" ry="20" fill="#ffedd5" stroke="#f472b6" stroke-width="2"/>
-            <ellipse cx="190" cy="170" rx="78" ry="96" fill="#ffedd5" stroke="#f472b6" stroke-width="2.5"/>
+            <!-- Person's Face Contour & Ears (Ears tucked slightly inward) -->
+            <ellipse cx="116" cy="178" rx="9" ry="18" fill="#ffedd5" stroke="#f472b6" stroke-width="2"/>
+            <ellipse cx="264" cy="178" rx="9" ry="18" fill="#ffedd5" stroke="#f472b6" stroke-width="2"/>
+            <ellipse cx="190" cy="168" rx="76" ry="92" fill="#ffedd5" stroke="#f472b6" stroke-width="2.5"/>
 
             <!-- Brain at Top of Head: Left Hemisphere (Blue #60a5fa) & Right Hemisphere (Red #fda4af) -->
             <g id="d2-left-hem" class="cursor-pointer hover:opacity-90 transition-opacity">
@@ -1119,40 +1119,50 @@
               <text x="305" y="24" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">המיספרה ימין</text>
             </g>
 
-            <!-- Gentle Eyes & Eyebrows -->
-            <path d="M 138,150 Q 154,143 170,150" fill="none" stroke="#9d4b6c" stroke-width="2.5" stroke-linecap="round"/>
-            <path d="M 210,150 Q 226,143 242,150" fill="none" stroke="#9d4b6c" stroke-width="2.5" stroke-linecap="round"/>
-            <ellipse cx="154" cy="164" rx="13" ry="8" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
-            <circle cx="154" cy="164" r="4.5" fill="#64748b"/>
-            <ellipse cx="226" cy="164" rx="13" ry="8" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
-            <circle cx="226" cy="164" r="4.5" fill="#64748b"/>
+            <!-- Gentle Eyes & Natural Eyebrows (Inner end towards nose slightly higher than outer end) -->
+            <path d="M 138,153 Q 154,142 170,146" fill="none" stroke="#9d4b6c" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M 210,146 Q 226,142 242,153" fill="none" stroke="#9d4b6c" stroke-width="2.4" stroke-linecap="round"/>
+            <ellipse cx="154" cy="164" rx="12.5" ry="7.5" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
+            <circle cx="154" cy="164" r="4.2" fill="#64748b"/>
+            <ellipse cx="226" cy="164" rx="12.5" ry="7.5" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
+            <circle cx="226" cy="164" r="4.2" fill="#64748b"/>
 
-            <!-- Nose Divided into Left Half (Blue #60a5fa) and Right Half (Red #fda4af) -->
+            <!-- Delicate, Well-Proportioned Nose Divided into Left Half (Blue #60a5fa) and Right Half (Red #fda4af) -->
             <g id="d2-left-nose" class="cursor-pointer">
-              <path d="M 190,160 L 190,220 L 164,220 C 158,220 158,206 166,198 L 182,160 Z" fill="#60a5fa" stroke="#2563eb" stroke-width="2" stroke-linejoin="round"/>
-              <circle cx="176" cy="214" r="5" fill="#1e3a8a"/>
+              <path d="M 190,168
+                       L 190,206
+                       C 182,206 173,205 173,198
+                       C 173,193 178,189 182,184
+                       C 184,178 186,172 190,168 Z"
+                    fill="#93c5fd" stroke="#2563eb" stroke-width="1.8" stroke-linejoin="round"/>
+              <ellipse cx="182" cy="202" rx="3.2" ry="2.2" fill="#1e3a8a"/>
               <!-- Clear badge outside left cheek with pointer line to left nostril -->
-              <line x1="94" y1="226" x2="162" y2="216" stroke="#2563eb" stroke-width="1.8" stroke-dasharray="3,2"/>
-              <rect x="14" y="214" width="82" height="24" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
-              <text x="55" y="230" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">נחיר שמאל</text>
+              <line x1="96" y1="212" x2="172" y2="201" stroke="#2563eb" stroke-width="1.6" stroke-dasharray="3,2"/>
+              <rect x="14" y="200" width="82" height="24" rx="8" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.5"/>
+              <text x="55" y="216" fill="#1d4ed8" font-size="12" font-weight="800" text-anchor="middle">נחיר שמאל</text>
             </g>
             <g id="d2-right-nose" class="cursor-pointer">
-              <path d="M 190,160 L 190,220 L 216,220 C 222,220 222,206 214,198 L 198,160 Z" fill="#fda4af" stroke="#e11d48" stroke-width="2" stroke-linejoin="round"/>
-              <circle cx="204" cy="214" r="5" fill="#881337"/>
+              <path d="M 190,168
+                       L 190,206
+                       C 198,206 207,205 207,198
+                       C 207,193 202,189 198,184
+                       C 196,178 194,172 190,168 Z"
+                    fill="#fda4af" stroke="#e11d48" stroke-width="1.8" stroke-linejoin="round"/>
+              <ellipse cx="198" cy="202" rx="3.2" ry="2.2" fill="#881337"/>
               <!-- Clear badge outside right cheek with pointer line to right nostril -->
-              <line x1="286" y1="226" x2="218" y2="216" stroke="#e11d48" stroke-width="1.8" stroke-dasharray="3,2"/>
-              <rect x="284" y="214" width="82" height="24" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
-              <text x="325" y="230" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">נחיר ימין</text>
+              <line x1="284" y1="212" x2="208" y2="201" stroke="#e11d48" stroke-width="1.6" stroke-dasharray="3,2"/>
+              <rect x="284" y="200" width="82" height="24" rx="8" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+              <text x="325" y="216" fill="#be123c" font-size="12" font-weight="800" text-anchor="middle">נחיר ימין</text>
             </g>
 
-            <!-- Friendly Smile -->
-            <path d="M 168,242 Q 190,254 212,242" fill="none" stroke="#e11d48" stroke-width="3" stroke-linecap="round"/>
+            <!-- Friendly Smile (Raised to natural position closer to nose) -->
+            <path d="M 173,222 Q 190,232 207,222" fill="none" stroke="#e11d48" stroke-width="2.6" stroke-linecap="round"/>
 
             <!-- Straight Uncrossed Arrows (Ipsilateral Olfactory Pathway) -->
             <!-- Blue Arrow: Left Nostril straight up to Left Hemisphere -->
-            <path id="d2-arrow-blue-path" d="M 174,202 Q 164,162 162,120" fill="none" stroke="#1d4ed8" stroke-width="3.8" marker-end="url(#d2-arrow-blue)" class="vp-flow-line"/>
+            <path id="d2-arrow-blue-path" d="M 181,194 Q 168,158 164,120" fill="none" stroke="#1d4ed8" stroke-width="3.5" marker-end="url(#d2-arrow-blue)" class="vp-flow-line"/>
             <!-- Red Arrow: Right Nostril straight up to Right Hemisphere -->
-            <path id="d2-arrow-red-path" d="M 206,202 Q 216,162 218,120" fill="none" stroke="#e11d48" stroke-width="3.8" marker-end="url(#d2-arrow-red)" class="vp-flow-line"/>
+            <path id="d2-arrow-red-path" d="M 199,194 Q 212,158 216,120" fill="none" stroke="#e11d48" stroke-width="3.5" marker-end="url(#d2-arrow-red)" class="vp-flow-line"/>
           </svg>
 
           <!-- Caption for Diagram 2 -->
@@ -1692,70 +1702,92 @@
       </div>
 
       <!-- Explanation Banner for Neglect Widget -->
-      <div id="neglect-explanation-box" class="w-full bg-pink-50/90 border border-pink-200 rounded-xl p-3 text-xs sm:text-sm text-slate-700 mb-4 leading-relaxed">
-        <strong class="text-pink-950">🧠 איזו אונה נפגעת בהזנחת צד ולמה ההזנחה מופיעה בצד שמאל?</strong>
+      <div id="neglect-explanation-box" class="w-full bg-pink-50/90 border border-pink-200 rounded-xl p-3.5 text-xs sm:text-sm text-slate-700 leading-relaxed">
+        <strong class="text-pink-950">איזו אונה נפגעת בהזנחת צד ולמה ההזנחה מופיעה בצד שמאל?</strong>
         הזנחת צד מתרחשת בעקבות <mark class="bg-[#fef08a] text-amber-950 font-bold px-1.5 py-0.5 rounded shadow-sm">פגיעה באונה הפריאטלית בהמיספרה ימין</mark> (האחראית על עיבוד מרחבי וקשב במרחב). מכיוון שהמיספרה ימין נותנת ״גיבוי״ קשבי לכל המרחב (גם לשמאל וגם לימין), אם האונה הפריאטלית השמאלית נפגעת — המיספרה ימין עדיין מחפה על צד ימין. לעומת זאת, <strong>כאשר נפגעת האונה הפריאטלית בהמיספרה ימין, אין כמעט פיקוח על צד שמאל</strong>, והאדם מתעלם מחפצים, מאוכל בצד שמאל של הצלחת או מגירויים בשדה השמאלי.
       </div>
 
-      <!-- Mini Interactive Cards for Other Course Disorders (Blindsight, Aphasia) + Direct Link to Split-Brain -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
-        <!-- Mini Card 1: Blindsight -->
-        <div class="bg-[#fff5f9] border border-pink-200 rounded-xl p-3 flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-[#fbcfe8] text-pink-950">קשור לאונה האוקסיפיטלית</span>
-              <span>👁️✨</span>
-            </div>
-            <h3 class="text-sm sm:text-base font-extrabold text-pink-950">ראייה עיוורת (Blindsight)</h3>
-            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-              פגיעה בקורטקס הראייה הראשוני (באונה האוקסיפיטלית) גורמת לאובדן המודעות הראייתית, אך מסלולים תת-קורטיקליים מאפשרים להגיב מוטורית או ״לנחש״ היכן מופיע חפץ במרחב.
-            </p>
-          </div>
-          <button id="btn-mini-blindsight" type="button" class="mt-2.5 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-pink-100 text-pink-900 border border-pink-300 text-xs font-bold transition">
-            הדגם תגובת ראייה עיוורת
-          </button>
-          <div id="mini-blindsight-output" class="hidden mt-2 p-2 rounded-lg bg-white border border-pink-200 text-[11px] text-pink-950 font-semibold">
-            🗣️ דיווח מודע: ״אני לא רואה שום דבר״ | ✋ פעולה בפועל: היד מושיטה ותופסת את החפץ או עוקפת מכשול בהצלחה!
-          </div>
-        </div>
+      <!-- Spacer (~1.5 lines) + Heading for Additional Disorders -->
+      <div class="mt-8 pt-2">
+        <h3 class="text-base sm:text-lg font-extrabold text-pink-950 mb-3.5">הפרעות נוספות:</h3>
 
-        <!-- Mini Card 2: Aphasia (Broca vs Wernicke) -->
-        <div class="bg-[#f4fdf7] border border-emerald-200 rounded-xl p-3 flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-[#bbf7d0] text-emerald-950">פרונטלית מול טמפורלית (שמאל)</span>
-              <span>🗣️👂</span>
+        <!-- Mini Interactive Cards for Other Course Disorders (Blindsight, Aphasia) + Direct Link to Split-Brain -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 items-start">
+          <!-- Mini Card 1: Blindsight -->
+          <div class="bg-[#fff5f9] border border-pink-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-[#fbcfe8] text-pink-950">קשור לאונה האוקסיפיטלית</span>
+                <svg class="w-4 h-4 text-pink-700 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z"/>
+                  <circle cx="12" cy="12" r="3"/>
+                </svg>
+              </div>
+              <h4 class="text-sm sm:text-base font-extrabold text-pink-950">ראייה עיוורת (Blindsight)</h4>
+              <p class="text-xs sm:text-sm text-slate-700 mt-1.5 leading-relaxed">
+                פגיעה באונה האוקסיפיטלית הגורמת לאובדן ה<mark class="bg-[#fef08a] text-pink-950 font-bold px-1 rounded">מודעות</mark> הראייתית
+              </p>
             </div>
-            <h3 class="text-sm sm:text-base font-extrabold text-emerald-950">אפזיה (Aphasia) — הפרעות שפה</h3>
-            <p class="text-xs text-slate-600 mt-1 leading-relaxed">
-              פגיעה באזורי השפה (לרוב בהמיספרה שמאל): <strong>אפזיית ברוקה</strong> (אונה פרונטלית) פוגעת בהפקת הדיבור, ואילו <strong>אפזיית ורניקה</strong> (אונה טמפורלית) פוגעת בהבנת השפה.
-            </p>
+            <button id="btn-mini-blindsight" type="button" class="mt-3 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-pink-100 text-pink-900 border border-pink-300 text-xs font-bold transition">
+              למידע נוסף
+            </button>
+            <div id="mini-blindsight-output" class="hidden mt-2.5 p-3 rounded-lg bg-white border border-pink-200 text-xs text-slate-700 leading-relaxed space-y-2">
+              <p>
+                ראייה עיוורת זהו מצב בו עיוור מגיב לגירויים ויזואליים בלי מודעות לכך. אדם הסובל מראייה עיוורת לא מצליח לראות דבר. אך אם נבקש ממנו לנחש מהו אובייקט מסוים, 80% מהמקרים ידווח נכון, מה שמעיד על כך שזהו אינו ניחוש. המוח עדיין מעבד מידע חזותי מסוים, אך העיבוד הזה אינו מגיע לכדי &quot;תמונה&quot; מודעת או חוויה חזותית סובייקטיבית.
+              </p>
+              <p class="font-bold text-pink-950">
+                כדי להבין איך זה קורה, אפשר לחלק את העיבוד לשתי רמות:
+              </p>
+              <ul class="space-y-1.5 pr-1">
+                <li>• <strong class="text-pink-950">מה שקורה בפועל (עיבוד לא-מודע):</strong> המידע מהעיניים מגיע למבנים עמוקים וקדומים יותר במוח (כמו ה-Superior Colliculus והתלמוס). המבנים האלה אחראיים על הישרדות, תנועה במרחב, הפניית קשב וזיהוי סכנות. הם מעבדים נתונים כמו מיקום, תנועה, כיוון וצורות גסות.</li>
+                <li>• <strong class="text-pink-950">מה שחסר (התמונה המודעת):</strong> בגלל שהקורטקס החזותי הראשוני פגוע, המוח לא מסוגל &quot;להרכיב&quot; את הנתונים האלה לכדי הולוגרמה או תמונה פנימית שאנו קוראים לה &quot;ראייה&quot;. המטופל מרגיש שהוא בחושך מוחלט.</li>
+              </ul>
+            </div>
           </div>
-          <button id="btn-mini-aphasia" type="button" class="mt-2.5 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition">
-            השווה בין ברוקה ל-ורניקה
-          </button>
-          <div id="mini-aphasia-output" class="hidden mt-2 p-2 rounded-lg bg-white border border-emerald-200 text-[11px] text-emerald-950 font-semibold">
-            🔹 <strong>ברוקה (פרונטלית):</strong> מבין היטב, אך הדיבור מקוטע ומאומץ.<br/>
-            🔸 <strong>ורניקה (טמפורלית):</strong> דיבור שוטף אך חסר משמעות וקושי בהבנת שפה.
-          </div>
-        </div>
 
-        <!-- Card 3: Direct Link to Split-Brain Full Simulation -->
-        <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-pink-50 border-2 border-blue-300 rounded-xl p-3 flex flex-col justify-between shadow-sm">
-          <div>
-            <div class="flex items-center justify-between mb-1">
-              <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-blue-100 text-blue-900">מעבדה אינטראקטיבית מלאה</span>
-              <span>🧠✂️</span>
+          <!-- Mini Card 2: Aphasia (Broca vs Wernicke) -->
+          <div class="bg-[#f4fdf7] border border-emerald-200 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-[#bbf7d0] text-emerald-950">פרונטלית מול טמפורלית (שמאל)</span>
+                <svg class="w-4 h-4 text-emerald-700 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+                </svg>
+              </div>
+              <h4 class="text-sm sm:text-base font-extrabold text-emerald-950">אפזיה (Aphasia) — הפרעות שפה</h4>
+              <p class="text-xs sm:text-sm text-slate-700 mt-1.5 leading-relaxed">
+                פגיעה באזורי השפה (לרוב בהמיספרה שמאל): <strong>אפזיית ברוקה</strong> (אונה פרונטלית) פוגעת בהפקת הדיבור, ואילו <strong>אפזיית ורניקה</strong> (אונה טמפורלית) פוגעת בהבנת השפה.
+              </p>
             </div>
-            <h3 class="text-sm sm:text-base font-extrabold text-blue-950">הדמיית מוח חצוי (Split-Brain)</h3>
-            <p class="text-xs text-slate-700 mt-1 leading-relaxed">
-              עכשיו כשראינו כיצד כל המיספרה שולטת בהצלבה על הגוף ועל שדות הראייה (וללא הצלבה בריח) — בואו לבדוק מה קורה כשהקורפוס קולוסום ביניהן מנותק!
-            </p>
+            <button id="btn-mini-aphasia" type="button" class="mt-3 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition">
+              השווה בין ברוקה ל-ורניקה
+            </button>
+            <div id="mini-aphasia-output" class="hidden mt-2.5 p-2.5 rounded-lg bg-white border border-emerald-200 text-xs text-emerald-950 font-semibold leading-relaxed">
+              • <strong>ברוקה (פרונטלית):</strong> מבין היטב, אך הדיבור מקוטע ומאומץ.<br/>
+              • <strong>ורניקה (טמפורלית):</strong> דיבור שוטף אך חסר משמעות וקושי בהבנת שפה.
+            </div>
           </div>
-          <button id="btn-goto-split-brain" type="button" class="mt-2.5 w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold transition shadow flex items-center justify-center gap-1.5">
-            <span>עברו להדמיית מוח חצוי</span>
-            <span>⬅️</span>
-          </button>
+
+          <!-- Card 3: Direct Link to Split-Brain Full Simulation -->
+          <div class="bg-gradient-to-br from-blue-50 via-indigo-50 to-pink-50 border-2 border-blue-300 rounded-xl p-4 flex flex-col justify-between shadow-sm">
+            <div>
+              <div class="flex items-center justify-between mb-1.5">
+                <span class="text-xs font-extrabold px-2 py-0.5 rounded bg-blue-100 text-blue-900">מעבדה אינטראקטיבית מלאה</span>
+                <svg class="w-4 h-4 text-blue-700 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <circle cx="8" cy="12" r="5"/>
+                  <circle cx="16" cy="12" r="5"/>
+                </svg>
+              </div>
+              <h4 class="text-sm sm:text-base font-extrabold text-blue-950">הדמיית מוח חצוי (Split-Brain)</h4>
+              <p class="text-xs sm:text-sm text-slate-700 mt-1.5 leading-relaxed">
+                עכשיו כשראינו כיצד כל המיספרה שולטת בהצלבה על הגוף ועל שדות הראייה (וללא הצלבה בריח) — בואו לבדוק מה קורה כשהקורפוס קולוסום ביניהן מנותק!
+              </p>
+            </div>
+            <button id="btn-goto-split-brain" type="button" class="mt-3 w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold transition shadow flex items-center justify-center gap-1.5">
+              <span>עברו להדמיית מוח חצוי</span>
+              <span>⬅️</span>
+            </button>
+          </div>
         </div>
       </div>
     </section>
