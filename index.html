@@ -1572,8 +1572,8 @@
             </g>
 
             <!-- Gentle Eyes & Natural Eyebrows (Inner end towards nose slightly higher than outer end) -->
-            <path d="M 138,153 Q 154,142 170,146" fill="none" stroke="#9d4b6c" stroke-width="2.4" stroke-linecap="round"/>
-            <path d="M 210,146 Q 226,142 242,153" fill="none" stroke="#9d4b6c" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M 139,149 Q 154,145 169,147" fill="none" stroke="#9d4b6c" stroke-width="2.4" stroke-linecap="round"/>
+            <path d="M 211,147 Q 226,145 241,149" fill="none" stroke="#9d4b6c" stroke-width="2.4" stroke-linecap="round"/>
             <ellipse cx="154" cy="164" rx="12.5" ry="7.5" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
             <circle cx="154" cy="164" r="4.2" fill="#64748b"/>
             <ellipse cx="226" cy="164" rx="12.5" ry="7.5" fill="#ffffff" stroke="#9d4b6c" stroke-width="1.8"/>
@@ -1927,10 +1927,10 @@
                 <!-- Red Arrows from Right Hemisphere: BOTH start from the exact same center point (x=327, y=68) -->
                 <g id="neglect-right-arrows-a" class="transition-opacity duration-300">
                   <!-- Main Arrow from Right Hemisphere center to Left Space -->
-                  <line x1="327" y1="68" x2="125" y2="176" stroke="#e11d48" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
+                  <line x1="327" y1="68" x2="130" y2="176" stroke="#e11d48" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
                   <!-- Lighter Red Backup Arrow from Right Hemisphere center to Right Space with "גיבוי" label -->
                   <line x1="327" y1="68" x2="385" y2="176" stroke="#fda4af" stroke-width="6.5" stroke-linecap="round" marker-end="url(#neg-arr-light-red)"/>
-                  <g transform="translate(358, 120) rotate(61)">
+                  <g transform="translate(368, 116) rotate(61)">
                     <rect x="-28" y="-12" width="56" height="22" rx="7" fill="#fff1f2" stroke="#fb7185" stroke-width="1.4"/>
                     <text x="0" y="4" fill="#be123c" font-size="15" font-weight="800" text-anchor="middle">גיבוי</text>
                   </g>
@@ -1980,10 +1980,10 @@
                 <!-- Head/Face -->
                 <ellipse cx="115" cy="74" rx="54" ry="64" fill="#ffedd5" stroke="#f472b6" stroke-width="2.2"/>
                 <!-- Hair -->
-                <path d="M 63,56 C 65,20 165,20 167,56 C 153,36 77,36 63,56 Z" fill="#64748b"/>
+                <!-- -->
                 <!-- Eyes & Eyebrows -->
-                <path d="M 81,60 Q 93,54 103,60" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
-                <path d="M 127,60 Q 137,54 149,60" fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 80,60 Q 92,56 104,58" fill="none" stroke="#475569" stroke-width="2.2" stroke-linecap="round"/> fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
+                <path d="M 126,58 Q 138,56 150,60" fill="none" stroke="#475569" stroke-width="2.2" stroke-linecap="round"/> fill="none" stroke="#475569" stroke-width="2" stroke-linecap="round"/>
                 <circle cx="92" cy="70" r="4" fill="#334155"/>
                 <circle cx="138" cy="70" r="4" fill="#334155"/>
                 <!-- Nose -->
@@ -2066,7 +2066,7 @@
                 <!-- Curved Red Arrows from RIGHT Hemisphere (x=236..254) to BOTH Left Objects and Right Objects -->
                 <g id="neglect-right-arrows-b" class="transition-opacity duration-300">
                   <path d="M 236,96 C 184,114 134,132 114,166" fill="none" stroke="#e11d48" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-red)"/>
-                  <path d="M 254,88 C 298,104 326,130 334,166" fill="none" stroke="#fb7185" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-light-red)"/>
+                  <path d="M 254,88 C 298,104 326,130 334,166" fill="none" stroke="#fb7185" stroke-width="4.5" stroke-linecap="round" marker-end="url(#neg-arr-light-red)"/><text x="298" y="133" fill="#be123c" font-size="15" text-anchor="middle" transform="rotate(28 298 133)">גיבוי</text>
                 </g>
 
                 <!-- LEFT SIDE OBJECTS (Pink Cup, Red Apple, Purple Book, Dark Blue Pen) -->
@@ -2117,7 +2117,7 @@
                 <!-- Graphite Pencil Sketch of a Flower (centered at x=115, y=58) -->
                 <g stroke="#475569" fill="none" stroke-linecap="round" stroke-linejoin="round">
                   <!-- Stem -->
-                  <path d="M 115,72 Q 117,102 113,130" stroke-width="2.4"/>
+                  <path d="M 115,66 Q 116,98 114,132" text-anchor="middle" transform="rotate(28 298 133)">גיבוי</text> stroke-width="2.4"/>
                   <!-- Center Circle of Flower with pencil shading -->
                   <circle cx="115" cy="58" r="13" fill="#f1f5f9" stroke-width="2.2"/>
                   <path d="M 108,53 L 122,63 M 108,63 L 122,53 M 111,49 L 119,67" stroke="#94a3b8" stroke-width="1"/>
@@ -3777,7 +3777,7 @@
           vpSvg.classList.add('vp-focus-blue');
           vpFlowBlue1.classList.remove('hidden');
           vpFlowBlue2.classList.remove('hidden');
-          vpStatusBar.innerHTML = '🔵 <strong>שדה הראייה הימני ← המיספרה שמאל:</strong> האור משדה הראייה הימני נקלט גם בעין ימין וגם בעין שמאל, מצטלב בתצלובת העצבים וזורם בזוהר כחול אל האונה האוקסיפיטלית בהמיספרה שמאל!';
+          vpStatusBar.innerHTML = '🔵 <strong>שדה הראייה הימני ← המיספרה שמאל:</strong> האור משדה הראייה הימני נקלט גם בעין ימין וגם בעין שמאל, מצטלב בתצלובת העצבים וזורם מסלולי הראייה: משדה הראייהאל האונה האוקסיפיטלית בהמיספרה שמאל!';
         } else {
           vpSvg.classList.add('vp-focus-red');
           vpFlowRed1.classList.remove('hidden');
