@@ -2189,136 +2189,9 @@
                 פגיעה באזורי השפה (לרוב ב<span class="text-[#1d4ed8] font-bold" style="color:#1d4ed8 !important; font-weight:700 !important;">המיספרה שמאל</span>): פגיעה באזור ברוקה <mark class="bg-[#cfe2f8] text-sky-950 px-1.5 py-0.5 rounded font-bold box-decoration-clone" style="background-color:#cfe2f8 !important; color:#082f49 !important;">באונה הפרונטלית</mark> עלולה לפגוע בהפקת הדיבור, בעוד שהבנת הדיבור עשויה להישמר; פגיעה באזור ורניקה <mark class="bg-[#bbf7d0] text-emerald-950 px-1.5 py-0.5 rounded font-bold box-decoration-clone" style="background-color:#bbf7d0 !important; color:#022c22 !important;">באונה הטמפורלית</mark> עלולה לפגוע בהבנת הדיבור, בעוד שהדיבור נשאר שוטף אך לא מובן.
               </p>
             </div>
-            <button id="btn-mini-aphasia" type="button" class="mt-3 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs">
+            <button id="btn-mini-aphasia" type="button" class="mt-3 w-full py-2 px-3 rounded-lg bg-emerald-50 hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs sm:text-sm font-bold transition flex items-center justify-center gap-1.5 shadow-2xs">
               <span>🔍 למידע נוסף, סרטוטי מוח והדגמת דיבור</span>
             </button>
-            <div id="mini-aphasia-output" class="hidden mt-3 p-3 sm:p-4 rounded-xl bg-white border border-emerald-200 text-slate-800 space-y-4 shadow-sm">
-              
-              <!-- 1. BROCA SECTION -->
-              <div class="p-3 sm:p-3.5 rounded-xl bg-[#f0f9ff] border border-sky-200">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="w-3 h-3 rounded-full bg-sky-500 shrink-0"></span>
-                  <h5 class="text-base font-extrabold text-sky-950">
-                    אזור ברוקה — <mark class="bg-[#cfe2f8] text-sky-950 px-1.5 py-0.5 rounded font-bold" style="background-color:#cfe2f8 !important; color:#082f49 !important;">אונה פרונטלית</mark>
-                  </h5>
-                </div>
-                <p class="text-sm text-slate-700 leading-relaxed mb-2">
-                  • <strong>פגיעה בהפקת הדיבור:</strong> האדם מבין הכל, אך מתקשה מאוד להוציא מילים מהפה.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
-                  <!-- Simplified Brain SVG (Frontal Lobe Light Blue, Lesion like neglect) -->
-                  <div class="bg-white rounded-xl p-2 border border-sky-200 shadow-2xs flex justify-center">
-                    <svg viewBox="0 0 280 165" class="w-full max-w-[240px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                      <!-- Neutral base brain (uncolored rest of brain, NO cerebellum) -->
-                      <path d="M 140,32 C 190,32 248,50 248,80 C 248,110 215,120 180,122 C 140,122 100,125 70,115 C 50,105 38,92 38,78 C 38,55 85,32 140,32 Z" 
-                            fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.2"/>
-
-                      <!-- ONLY FRONTAL LOBE COLORED (Light Blue #cfe2f8) -->
-                      <path d="M 140,32 C 85,32 38,55 38,78 C 38,92 52,96 70,96 C 100,96 130,90 140,85 Z" 
-                            fill="#cfe2f8" stroke="#3b82f6" stroke-width="2.2" stroke-linejoin="round"/>
-                      <path d="M 82,58 Q 98,68 118,62" fill="none" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
-
-                      <!-- Subtle lobe divider lines -->
-                      <line x1="140" y1="32" x2="140" y2="85" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="3,2"/>
-                      <path d="M 70,96 C 100,96 130,90 195,88" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="3,2"/>
-
-                      <!-- LESION SPOT (Exact Neglect Style: dark circles + dashed warning ring + dashed line to badge) -->
-                      <circle cx="95" cy="74" r="13" fill="#475569" opacity="0.8"/>
-                      <circle cx="97" cy="74" r="8" fill="#1e293b" opacity="0.9"/>
-                      <circle cx="93" cy="71" r="17" fill="none" stroke="#e11d48" stroke-width="2.2" stroke-dasharray="3,2"/>
-                      <line x1="93" y1="54" x2="93" y2="34" stroke="#be123c" stroke-width="1.8" stroke-dasharray="2,2"/>
-                      <rect x="18" y="12" width="150" height="24" rx="6" fill="#fff1f2" stroke="#e11d48" stroke-width="1.5"/>
-                      <text x="93" y="29" fill="#9f1239" font-size="15" font-weight="800" text-anchor="middle">פגיעה באזור ברוקה</text>
-
-                      <!-- LOBE LABEL BADGE -->
-                      <rect x="25" y="105" width="115" height="24" rx="6" fill="#eff6ff" stroke="#93c5fd" stroke-width="1.4"/>
-                      <text x="82" y="122" fill="#1e40af" font-size="15" font-weight="800" text-anchor="middle">אונה פרונטלית</text>
-
-                      <!-- ORIENTATION -->
-                      <text x="32" y="152" fill="#64748b" font-size="13" font-weight="bold">← קדימה</text>
-                      <text x="248" y="152" fill="#64748b" font-size="13" font-weight="bold">אחורה →</text>
-                    </svg>
-                  </div>
-
-                  <!-- Speech Bubble: Halting Speech -->
-                  <div class="bg-white border-2 border-sky-300 rounded-xl p-3 shadow-2xs flex flex-col justify-center">
-                    <div class="text-xs text-sky-950 font-extrabold mb-1">
-                      🗣️ מה שומעים כשהוא מדבר?
-                    </div>
-                    <div class="bg-sky-50 border border-sky-200 rounded-xl p-3 text-slate-900 font-extrabold text-sm sm:text-base leading-snug">
-                      💬 &quot;א... אֲנִי... רוֹ... צֶה... מַיִם...&quot;
-                    </div>
-                    <div class="text-xs text-slate-500 mt-1.5 font-medium">
-                      (דיבור איטי, מאומץ ומקוטע — אך מבין הכל)
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 2. WERNICKE SECTION -->
-              <div class="p-3 sm:p-3.5 rounded-xl bg-[#f0fdf4] border border-emerald-200">
-                <div class="flex items-center gap-2 mb-1">
-                  <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
-                  <h5 class="text-base font-extrabold text-emerald-950">
-                    אזור ורניקה — <mark class="bg-[#bbf7d0] text-emerald-950 px-1.5 py-0.5 rounded font-bold" style="background-color:#bbf7d0 !important; color:#022c22 !important;">אונה טמפורלית</mark>
-                  </h5>
-                </div>
-                <p class="text-sm text-slate-700 leading-relaxed mb-2">
-                  • <strong>פגיעה בהבנת הדיבור:</strong> האדם לא מבין שפה, אך מדבר בשטף מלא ג'יבריש וצלילים חסרי משמעות.
-                </p>
-
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
-                  <!-- Simplified Brain SVG (Temporal Lobe Green, Lesion like neglect) -->
-                  <div class="bg-white rounded-xl p-2 border border-emerald-200 shadow-2xs flex justify-center">
-                    <svg viewBox="0 0 280 165" class="w-full max-w-[240px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
-                      <!-- Neutral base brain (uncolored rest of brain, NO cerebellum) -->
-                      <path d="M 140,32 C 190,32 248,50 248,80 C 248,110 215,120 180,122 C 140,122 100,125 70,115 C 50,105 38,92 38,78 C 38,55 85,32 140,32 Z" 
-                            fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.2"/>
-
-                      <!-- ONLY TEMPORAL LOBE COLORED (Pastel Green #bbf7d0) -->
-                      <path d="M 70,115 C 55,108 58,98 70,96 C 100,96 130,90 195,88 C 202,100 195,115 180,122 C 140,122 100,125 70,115 Z" 
-                            fill="#bbf7d0" stroke="#16a34a" stroke-width="2.2" stroke-linejoin="round"/>
-                      <path d="M 90,108 Q 125,104 165,102" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
-
-                      <!-- Subtle lobe divider lines -->
-                      <line x1="140" y1="32" x2="140" y2="85" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="3,2"/>
-                      <path d="M 70,96 C 100,96 130,90 195,88" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="3,2"/>
-
-                      <!-- LESION SPOT (Exact Neglect Style: dark circles + dashed warning ring + dashed line to badge) -->
-                      <circle cx="152" cy="98" r="13" fill="#475569" opacity="0.8"/>
-                      <circle cx="154" cy="98" r="8" fill="#1e293b" opacity="0.9"/>
-                      <circle cx="150" cy="95" r="17" fill="none" stroke="#e11d48" stroke-width="2.2" stroke-dasharray="3,2"/>
-                      <line x1="150" y1="78" x2="150" y2="34" stroke="#be123c" stroke-width="1.8" stroke-dasharray="2,2"/>
-                      <rect x="75" y="12" width="150" height="24" rx="6" fill="#fff1f2" stroke="#e11d48" stroke-width="1.5"/>
-                      <text x="150" y="29" fill="#9f1239" font-size="15" font-weight="800" text-anchor="middle">פגיעה באזור ורניקה</text>
-
-                      <!-- LOBE LABEL BADGE -->
-                      <rect x="95" y="126" width="115" height="24" rx="6" fill="#f0fdf4" stroke="#86efac" stroke-width="1.4"/>
-                      <text x="152" y="143" fill="#14532d" font-size="15" font-weight="800" text-anchor="middle">אונה טמפורלית</text>
-
-                      <!-- ORIENTATION -->
-                      <text x="32" y="152" fill="#64748b" font-size="13" font-weight="bold">← קדימה</text>
-                      <text x="248" y="152" fill="#64748b" font-size="13" font-weight="bold">אחורה →</text>
-                    </svg>
-                  </div>
-
-                  <!-- Speech Bubble: Fluent Gibberish -->
-                  <div class="bg-white border-2 border-emerald-300 rounded-xl p-3 shadow-2xs flex flex-col justify-center">
-                    <div class="text-xs text-emerald-950 font-extrabold mb-1">
-                      🗣️ מה שומעים כשהוא מדבר?
-                    </div>
-                    <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-slate-900 font-extrabold text-sm sm:text-base leading-snug" dir="ltr" style="text-align: right;">
-                      💬 &quot;בְּלָארְג פְלוּפּ #@! klirp שְׁלָאמְפּ טוֹרְקִי %$&amp;*! פְּרֶנְטִיקוֹ... 🎵&quot;
-                    </div>
-                    <div class="text-xs text-slate-500 mt-1.5 font-medium">
-                      (מדבר שוטף ובמהירות, אך רק צלילים ללא שום תוכן או משמעות)
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
           </div>
 
           <!-- Card 3: Direct Link to Split-Brain Full Simulation -->
@@ -2339,6 +2212,160 @@
             <button id="btn-goto-split-brain" type="button" class="mt-3 w-full py-2 px-3 rounded-xl bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-extrabold transition shadow flex items-center justify-center gap-1.5">
               <span>עברו להדמיית מוח חצוי</span>
               <span>⬅️</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Expanded Full-Width Section for Aphasia (Broca vs Wernicke) -->
+        <div id="mini-aphasia-output" class="hidden mt-6 w-full p-4 sm:p-6 rounded-2xl bg-[#f8fdf9] border-2 border-emerald-300 shadow-md">
+          <!-- Header Bar with Title & Close Button -->
+          <div class="flex items-center justify-between pb-3 mb-5 border-b border-emerald-200">
+            <div class="flex items-center gap-2">
+              <span class="text-xl sm:text-2xl">🧠</span>
+              <h4 class="text-base sm:text-lg font-extrabold text-emerald-950">
+                השוואה חזותית: פגיעה באזור ברוקה מול פגיעה באזור ורניקה (המיספרה שמאל)
+              </h4>
+            </div>
+            <button id="btn-close-aphasia" type="button" class="text-xs sm:text-sm font-extrabold text-emerald-900 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 px-3 py-1.5 rounded-lg transition flex items-center gap-1">
+              <span>✕ סגור</span>
+            </button>
+          </div>
+
+          <!-- Two Spacious Side-by-Side Comparison Cards -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+            <!-- 1. BROCA CARD -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-[#f0f9ff] border-2 border-sky-300 shadow-2xs flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-sky-500 shrink-0"></span>
+                  <h5 class="text-base sm:text-lg font-extrabold text-sky-950">
+                    אזור ברוקה — <mark class="bg-[#cfe2f8] text-sky-950 px-2 py-0.5 rounded font-extrabold" style="background-color:#cfe2f8 !important; color:#082f49 !important;">אונה פרונטלית</mark>
+                  </h5>
+                </div>
+                <p class="text-sm sm:text-base text-slate-800 font-bold mb-4 leading-relaxed">
+                  • <strong>פגיעה בהפקת הדיבור:</strong> האדם מבין הכל, אך מתקשה מאוד להוציא מילים מהפה.
+                </p>
+
+                <!-- Simplified Brain SVG (Frontal Lobe Light Blue, Neglect-Style Lesion) -->
+                <div class="bg-white rounded-xl p-3 border border-sky-200 shadow-2xs flex justify-center mb-4">
+                  <svg viewBox="0 0 320 180" class="w-full max-w-[320px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base Brain Outline (Neutral, NO Cerebellum) -->
+                    <path d="M 160,38 C 225,38 280,65 280,100 C 280,128 245,138 200,138 C 160,138 120,142 80,132 C 55,120 42,108 42,92 C 42,65 95,38 160,38 Z" 
+                          fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.2"/>
+
+                    <!-- ONLY FRONTAL LOBE COLORED (Light Sky Blue #cfe2f8) -->
+                    <path d="M 160,38 C 95,38 42,65 42,92 C 42,108 55,112 75,110 C 105,110 135,102 160,95 Z" 
+                          fill="#cfe2f8" stroke="#3b82f6" stroke-width="2.2" stroke-linejoin="round"/>
+                    <path d="M 85,62 Q 105,72 125,66" fill="none" stroke="#93c5fd" stroke-width="2" stroke-linecap="round"/>
+
+                    <!-- Sulcus Division Lines -->
+                    <line x1="160" y1="38" x2="160" y2="95" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3,2"/>
+                    <path d="M 75,110 C 105,110 135,102 200,100" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="3,2"/>
+
+                    <!-- LESION SPOT (Exact Neglect Style: Dark Necrosis + Dashed Red Circle + Pointer + High-Contrast Badge) -->
+                    <circle cx="105" cy="88" r="14" fill="#475569" opacity="0.8"/>
+                    <circle cx="107" cy="88" r="8" fill="#1e293b" opacity="0.9"/>
+                    <circle cx="103" cy="85" r="17" fill="none" stroke="#e11d48" stroke-width="2.2" stroke-dasharray="3,2"/>
+                    <line x1="103" y1="68" x2="103" y2="34" stroke="#be123c" stroke-width="1.8" stroke-dasharray="2,2"/>
+                    <rect x="22" y="12" width="162" height="26" rx="6" fill="#fff1f2" stroke="#e11d48" stroke-width="1.5"/>
+                    <text x="103" y="29" fill="#9f1239" font-size="15" font-weight="800" text-anchor="middle">פגיעה באזור ברוקה</text>
+
+                    <!-- Lobe Label Badge -->
+                    <rect x="35" y="118" width="130" height="26" rx="6" fill="#eff6ff" stroke="#3b82f6" stroke-width="1.5"/>
+                    <text x="100" y="135" fill="#1e40af" font-size="15" font-weight="800" text-anchor="middle">אונה פרונטלית</text>
+
+                    <!-- Anatomical Orientation -->
+                    <text x="25" y="170" fill="#64748b" font-size="14" font-weight="bold">← קדימה (מצח)</text>
+                    <text x="295" y="170" fill="#64748b" font-size="14" font-weight="bold" text-anchor="end">אחורה (עורף) →</text>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Speech Bubble: Halting Speech -->
+              <div class="bg-white border-2 border-sky-300 rounded-xl p-3.5 shadow-2xs">
+                <div class="text-xs sm:text-sm text-sky-950 font-extrabold mb-1.5 flex items-center gap-1.5">
+                  <span>🗣️</span>
+                  <span>מה שומעים כשהוא מדבר?</span>
+                </div>
+                <div class="bg-sky-50 border border-sky-200 rounded-xl p-3 text-slate-900 font-extrabold text-base sm:text-lg leading-relaxed shadow-2xs">
+                  💬 &quot;א... אֲנִי... רוֹ... צֶה... מַיִם...&quot;
+                </div>
+                <div class="text-xs sm:text-sm text-slate-500 mt-2 font-semibold">
+                  (דיבור איטי, מאומץ ומקוטע — אך מבין הכל לחלוטין)
+                </div>
+              </div>
+            </div>
+
+            <!-- 2. WERNICKE CARD -->
+            <div class="p-4 sm:p-5 rounded-2xl bg-[#f0fdf4] border-2 border-emerald-300 shadow-2xs flex flex-col justify-between">
+              <div>
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="w-3.5 h-3.5 rounded-full bg-emerald-500 shrink-0"></span>
+                  <h5 class="text-base sm:text-lg font-extrabold text-emerald-950">
+                    אזור ורניקה — <mark class="bg-[#bbf7d0] text-emerald-950 px-2 py-0.5 rounded font-extrabold" style="background-color:#bbf7d0 !important; color:#022c22 !important;">אונה טמפורלית</mark>
+                  </h5>
+                </div>
+                <p class="text-sm sm:text-base text-slate-800 font-bold mb-4 leading-relaxed">
+                  • <strong>פגיעה בהבנת הדיבור:</strong> האדם לא מבין שפה, אך מדבר בשטף מלא צלילים חסרי משמעות.
+                </p>
+
+                <!-- Simplified Brain SVG (Temporal Lobe Green, Neglect-Style Lesion) -->
+                <div class="bg-white rounded-xl p-3 border border-emerald-200 shadow-2xs flex justify-center mb-4">
+                  <svg viewBox="0 0 320 180" class="w-full max-w-[320px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base Brain Outline (Neutral, NO Cerebellum) -->
+                    <path d="M 160,38 C 225,38 280,65 280,100 C 280,128 245,138 200,138 C 160,138 120,142 80,132 C 55,120 42,108 42,92 C 42,65 95,38 160,38 Z" 
+                          fill="#f8fafc" stroke="#cbd5e1" stroke-width="2.2"/>
+
+                    <!-- ONLY TEMPORAL LOBE COLORED (Pastel Green #bbf7d0) -->
+                    <path d="M 75,110 C 105,110 135,102 190,95 C 230,95 245,105 240,118 C 235,130 205,138 170,138 C 120,138 90,135 75,124 Z" 
+                          fill="#bbf7d0" stroke="#16a34a" stroke-width="2.2" stroke-linejoin="round"/>
+                    <path d="M 95,122 Q 135,118 180,115" fill="none" stroke="#86efac" stroke-width="2" stroke-linecap="round"/>
+
+                    <!-- Sulcus Division Lines -->
+                    <line x1="160" y1="38" x2="160" y2="95" stroke="#94a3b8" stroke-width="2" stroke-dasharray="3,2"/>
+                    <path d="M 75,110 C 105,110 135,102 200,100" fill="none" stroke="#94a3b8" stroke-width="1.8" stroke-dasharray="3,2"/>
+
+                    <!-- LESION SPOT (Exact Neglect Style: Dark Necrosis + Dashed Red Circle + Pointer + High-Contrast Badge) -->
+                    <circle cx="175" cy="106" r="14" fill="#475569" opacity="0.8"/>
+                    <circle cx="177" cy="106" r="8" fill="#1e293b" opacity="0.9"/>
+                    <circle cx="173" cy="103" r="17" fill="none" stroke="#e11d48" stroke-width="2.2" stroke-dasharray="3,2"/>
+                    <line x1="173" y1="86" x2="173" y2="34" stroke="#be123c" stroke-width="1.8" stroke-dasharray="2,2"/>
+                    <rect x="95" y="12" width="162" height="26" rx="6" fill="#fff1f2" stroke="#e11d48" stroke-width="1.5"/>
+                    <text x="176" y="29" fill="#9f1239" font-size="15" font-weight="800" text-anchor="middle">פגיעה באזור ורניקה</text>
+
+                    <!-- Lobe Label Badge -->
+                    <rect x="110" y="145" width="130" height="26" rx="6" fill="#f0fdf4" stroke="#16a34a" stroke-width="1.5"/>
+                    <text x="175" y="162" fill="#14532d" font-size="15" font-weight="800" text-anchor="middle">אונה טמפורלית</text>
+
+                    <!-- Anatomical Orientation -->
+                    <text x="25" y="170" fill="#64748b" font-size="14" font-weight="bold">← קדימה (מצח)</text>
+                    <text x="295" y="170" fill="#64748b" font-size="14" font-weight="bold" text-anchor="end">אחורה (עורף) →</text>
+                  </svg>
+                </div>
+              </div>
+
+              <!-- Speech Bubble: Fluent Gibberish -->
+              <div class="bg-white border-2 border-emerald-300 rounded-xl p-3.5 shadow-2xs">
+                <div class="text-xs sm:text-sm text-emerald-950 font-extrabold mb-1.5 flex items-center gap-1.5">
+                  <span>🗣️</span>
+                  <span>מה שומעים כשהוא מדבר?</span>
+                </div>
+                <div class="bg-emerald-50 border border-emerald-200 rounded-xl p-3 text-slate-900 font-extrabold text-base sm:text-lg leading-relaxed shadow-2xs" dir="ltr" style="text-align: right;">
+                  💬 &quot;בְּלָארְג פְלוּפּ #@! klirp שְׁלָאמְפּ טוֹרְקִי %$&amp;*! פְּרֶנְטִיקוֹ... 🎵&quot;
+                </div>
+                <div class="text-xs sm:text-sm text-slate-500 mt-2 font-semibold">
+                  (דיבור שוטף ומהיר, צלילים וג'יבריש ללא שום מילים אמיתיות או משמעות)
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Bottom Close Button -->
+          <div class="mt-5 pt-3 border-t border-emerald-200 flex justify-center">
+            <button id="btn-close-aphasia-bottom" type="button" class="text-xs sm:text-sm font-extrabold text-emerald-900 hover:text-emerald-950 bg-emerald-100 hover:bg-emerald-200 border border-emerald-300 px-4 py-2 rounded-xl transition flex items-center gap-1.5">
+              <span>▲ סגור סרטוטי מוח</span>
             </button>
           </div>
         </div>
@@ -3999,15 +4026,41 @@
 
     const btnMiniAphasia = document.getElementById('btn-mini-aphasia');
     const miniAphasiaOutput = document.getElementById('mini-aphasia-output');
-    if (btnMiniAphasia && miniAphasiaOutput) {
-      btnMiniAphasia.addEventListener('click', () => {
-        const isHidden = miniAphasiaOutput.classList.toggle('hidden');
+    const btnCloseAphasia = document.getElementById('btn-close-aphasia');
+    const btnCloseAphasiaBottom = document.getElementById('btn-close-aphasia-bottom');
+
+    function toggleAphasiaOutput(forceOpen = null) {
+      if (!miniAphasiaOutput || !btnMiniAphasia) return;
+      const isCurrentlyHidden = miniAphasiaOutput.classList.contains('hidden');
+      const shouldOpen = forceOpen !== null ? forceOpen : isCurrentlyHidden;
+
+      if (shouldOpen) {
+        miniAphasiaOutput.classList.remove('hidden');
         const span = btnMiniAphasia.querySelector('span');
-        if (span) {
-          span.textContent = isHidden 
-            ? '🔍 למידע נוסף, סרטוטי מוח והדגמת דיבור' 
-            : '▲ הסתר מידע נוסף והדגמות';
-        }
+        if (span) span.textContent = '▲ הסתר סרטוטי מוח והדגמות';
+        setTimeout(() => {
+          miniAphasiaOutput.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 50);
+      } else {
+        miniAphasiaOutput.classList.add('hidden');
+        const span = btnMiniAphasia.querySelector('span');
+        if (span) span.textContent = '🔍 למידע נוסף, סרטוטי מוח והדגמת דיבור';
+      }
+    }
+
+    if (btnMiniAphasia) {
+      btnMiniAphasia.addEventListener('click', () => toggleAphasiaOutput());
+    }
+    if (btnCloseAphasia) {
+      btnCloseAphasia.addEventListener('click', () => {
+        toggleAphasiaOutput(false);
+        btnMiniAphasia.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    }
+    if (btnCloseAphasiaBottom) {
+      btnCloseAphasiaBottom.addEventListener('click', () => {
+        toggleAphasiaOutput(false);
+        btnMiniAphasia.scrollIntoView({ behavior: 'smooth', block: 'center' });
       });
     }
   </script>
