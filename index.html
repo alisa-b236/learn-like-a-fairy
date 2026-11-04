@@ -2189,12 +2189,193 @@
                 פגיעה באזורי השפה (לרוב ב<span class="text-[#1d4ed8] font-bold" style="color:#1d4ed8 !important; font-weight:700 !important;">המיספרה שמאל</span>): פגיעה באזור ברוקה <mark class="bg-[#cfe2f8] text-sky-950 px-1.5 py-0.5 rounded font-bold box-decoration-clone" style="background-color:#cfe2f8 !important; color:#082f49 !important;">באונה הפרונטלית</mark> עלולה לפגוע בהפקת הדיבור, בעוד שהבנת הדיבור עשויה להישמר; פגיעה באזור ורניקה <mark class="bg-[#bbf7d0] text-emerald-950 px-1.5 py-0.5 rounded font-bold box-decoration-clone" style="background-color:#bbf7d0 !important; color:#022c22 !important;">באונה הטמפורלית</mark> עלולה לפגוע בהבנת הדיבור, בעוד שהדיבור נשאר שוטף אך לא מובן.
               </p>
             </div>
-            <button id="btn-mini-aphasia" type="button" class="mt-3 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition">
-              השווה בין ברוקה ל-ורניקה
+            <button id="btn-mini-aphasia" type="button" class="mt-3 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition flex items-center justify-center gap-1.5 shadow-2xs">
+              <span>🔍 למידע נוסף, סרטוטי מוח והדגמת דיבור (ברוקה מול ורניקה)</span>
             </button>
-            <div id="mini-aphasia-output" class="hidden mt-2.5 p-2.5 rounded-lg bg-white border border-emerald-200 text-xs text-emerald-950 font-semibold leading-relaxed">
-              • <strong>ברוקה (פרונטלית):</strong> מבין היטב, אך הדיבור מקוטע ומאומץ.<br/>
-              • <strong>ורניקה (טמפורלית):</strong> דיבור שוטף אך חסר משמעות וקושי בהבנת שפה.
+            <div id="mini-aphasia-output" class="hidden mt-3 p-3 sm:p-4 rounded-xl bg-white border border-emerald-200 text-slate-800 space-y-4 shadow-sm">
+              
+              <!-- 1. BROCA'S APHASIA SECTION -->
+              <div class="p-3 sm:p-3.5 rounded-xl bg-[#f0f9ff] border border-sky-200">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="w-3 h-3 rounded-full bg-sky-500 shrink-0"></span>
+                  <h5 class="text-sm sm:text-base font-extrabold text-sky-950">
+                    1. אפזיית ברוקה (Broca) — פגיעה ב<mark class="bg-[#cfe2f8] text-sky-950 px-1.5 py-0.5 rounded font-bold" style="background-color:#cfe2f8 !important; color:#082f49 !important;">אונה הפרונטלית</mark>
+                  </h5>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  • <strong>ברוקה (פרונטלית):</strong> האדם מבין היטב מה שנאמר לו, אך הפקת הדיבור פגועה – הדיבור איטי, מאומץ, מקוטע וחסר מילות קישור ("אפזיה לא-שוטפת" / Non-Fluent Aphasia).
+                </p>
+
+                <!-- Grid: Brain SVG + Halting Speech Bubble -->
+                <div class="mt-2.5 grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
+                  <!-- Brain Diagram showing Frontal Lobe Broca damage -->
+                  <div class="bg-white/95 border border-sky-200 rounded-xl p-2.5 flex flex-col items-center shadow-xs">
+                    <div class="text-xs font-extrabold text-sky-900 mb-1 flex items-center gap-1">
+                      <span>🧠 סרטוט מוח: פגיעה באונה הפרונטלית</span>
+                    </div>
+                    <svg viewBox="0 0 250 160" class="w-full max-w-[210px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <filter id="lesionGlowBroca" x="-40%" y="-40%" width="180%" height="180%">
+                          <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#ef4444" flood-opacity="0.9"/>
+                        </filter>
+                      </defs>
+
+                      <!-- Base Silhouette -->
+                      <path d="M 120,20 C 70,22 28,52 30,85 C 32,100 48,110 65,110 C 65,122 85,128 115,122 C 145,125 185,120 205,105 C 220,95 220,70 190,40 C 160,25 140,20 120,20 Z" fill="#ffffff" stroke="#fbcfe8" stroke-width="3.5"/>
+
+                      <!-- Frontal Lobe (Blue) -->
+                      <path d="M 120,20 C 75,22 30,52 30,85 C 30,95 45,102 65,100 C 85,98 105,95 120,90 Z" fill="#cfe2f8" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="66" y="58" fill="#0369a1" font-size="11.5" font-weight="bold" text-anchor="middle">פרונטלית</text>
+
+                      <!-- Parietal Lobe (Yellow) -->
+                      <path d="M 120,20 C 145,20 175,25 190,42 C 180,65 155,75 120,78 Z" fill="#fef08a" stroke="#eab308" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="150" y="48" fill="#854d0e" font-size="11" font-weight="bold" text-anchor="middle">פריאטלית</text>
+
+                      <!-- Occipital Lobe (Pink) -->
+                      <path d="M 190,42 C 215,55 222,80 205,102 C 185,98 175,85 170,72 C 180,60 185,50 190,42 Z" fill="#fbcfe8" stroke="#f43f5e" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="195" y="80" fill="#9f1239" font-size="10" font-weight="bold" text-anchor="middle">אוקסיפיטלית</text>
+
+                      <!-- Temporal Lobe (Green) -->
+                      <path d="M 65,100 C 75,115 105,122 140,118 C 165,115 178,105 180,88 C 150,85 120,90 65,100 Z" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="120" y="106" fill="#166534" font-size="11" font-weight="bold" text-anchor="middle">טמפורלית</text>
+
+                      <!-- Cerebellum & Brainstem -->
+                      <ellipse cx="180" cy="118" rx="19" ry="12" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+                      <text x="180" y="122" fill="#9d4b6c" font-size="9" text-anchor="middle">מוחון</text>
+                      <path d="M 130,118 L 132,138 L 145,138 L 142,118 Z" fill="#ffe4e6" stroke="#fda4af" stroke-width="1.5"/>
+
+                      <!-- Orientation -->
+                      <text x="35" y="145" fill="#64748b" font-size="9" text-anchor="middle">← קדימה</text>
+                      <text x="205" y="145" fill="#64748b" font-size="9" text-anchor="middle">אחורה →</text>
+
+                      <!-- LESION MARKER AT BROCA (Frontal Lobe) -->
+                      <g filter="url(#lesionGlowBroca)">
+                        <circle cx="86" cy="80" r="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 2"/>
+                        <circle cx="86" cy="80" r="7.5" fill="#dc2626"/>
+                        <path d="M 81,75 L 91,85 M 91,75 L 81,85" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                      </g>
+                      <!-- Callout -->
+                      <path d="M 86,66 L 86,36 L 55,36" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="2 2"/>
+                      <rect x="6" y="24" width="94" height="22" rx="6" fill="#dc2626" stroke="#ffffff" stroke-width="1" filter="url(#lesionGlowBroca)"/>
+                      <text x="53" y="39" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle">⚡ אזור ברוקה (פגוע)</text>
+                    </svg>
+                  </div>
+
+                  <!-- Speech Bubble (Halting Speech) -->
+                  <div class="bg-white border-2 border-sky-300 rounded-xl p-3 shadow-xs flex flex-col justify-between h-full">
+                    <div class="flex items-center justify-between text-xs text-sky-950 font-extrabold mb-1">
+                      <span class="flex items-center gap-1">🗣️ כיצד נשמע הדיבור?</span>
+                      <span class="text-[10px] px-1.5 py-0.5 rounded bg-sky-100 text-sky-800 font-bold">הפקה פגועה ומקוטעת</span>
+                    </div>
+                    
+                    <!-- Comic Speech Bubble -->
+                    <div class="relative bg-sky-50/90 border border-sky-200 rounded-xl p-2.5 my-1 text-slate-800">
+                      <div class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-wide">
+                        💬 &quot;א... אֲנִי... מ... מ... מַיִם... רוֹ... רוֹצֶה...&quot;
+                      </div>
+                      <div class="text-[11px] text-sky-800 mt-1 font-medium">
+                        (דיבור איטי, מאומץ מאוד, מקוטע ודל במילות קישור)
+                      </div>
+                    </div>
+                    
+                    <div class="text-[11px] sm:text-xs text-slate-600 leading-relaxed mt-1">
+                      💡 <strong>הבנת השפה שמורה לחלוטין:</strong> המטופל מבין מעולה כל מה שאומרים לו, אך &quot;נתקע&quot; בניסיון לתכנן ולהפעיל את תנועות הפה והדיבור.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- 2. WERNICKE'S APHASIA SECTION -->
+              <div class="p-3 sm:p-3.5 rounded-xl bg-[#f0fdf4] border border-emerald-200">
+                <div class="flex items-center gap-2 mb-1.5">
+                  <span class="w-3 h-3 rounded-full bg-emerald-500 shrink-0"></span>
+                  <h5 class="text-sm sm:text-base font-extrabold text-emerald-950">
+                    2. אפזיית ורניקה (Wernicke) — פגיעה ב<mark class="bg-[#bbf7d0] text-emerald-950 px-1.5 py-0.5 rounded font-bold" style="background-color:#bbf7d0 !important; color:#022c22 !important;">אונה הטמפורלית</mark>
+                  </h5>
+                </div>
+                <p class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+                  • <strong>ורניקה (טמפורלית):</strong> הפגיעה היא בהבנת השפה. הדיבור נשאר שוטף, מהיר וקולח ("אפזיה שוטפת" / Fluent Aphasia), אך הוא חסר משמעות לחלוטין — רצף צלילים וג'יבריש ("סלט מילים" / Word Salad / Jargon Aphasia).
+                </p>
+
+                <!-- Grid: Brain SVG + Fluent Gibberish Speech Bubble -->
+                <div class="mt-2.5 grid grid-cols-1 md:grid-cols-2 gap-3 items-center">
+                  <!-- Brain Diagram showing Temporal Lobe Wernicke damage -->
+                  <div class="bg-white/95 border border-emerald-200 rounded-xl p-2.5 flex flex-col items-center shadow-xs">
+                    <div class="text-xs font-extrabold text-emerald-900 mb-1 flex items-center gap-1">
+                      <span>🧠 סרטוט מוח: פגיעה באונה הטמפורלית</span>
+                    </div>
+                    <svg viewBox="0 0 250 160" class="w-full max-w-[210px] h-auto select-none" xmlns="http://www.w3.org/2000/svg">
+                      <defs>
+                        <filter id="lesionGlowWernicke" x="-40%" y="-40%" width="180%" height="180%">
+                          <feDropShadow dx="0" dy="0" stdDeviation="3.5" flood-color="#ef4444" flood-opacity="0.9"/>
+                        </filter>
+                      </defs>
+
+                      <!-- Base Silhouette -->
+                      <path d="M 120,20 C 70,22 28,52 30,85 C 32,100 48,110 65,110 C 65,122 85,128 115,122 C 145,125 185,120 205,105 C 220,95 220,70 190,40 C 160,25 140,20 120,20 Z" fill="#ffffff" stroke="#fbcfe8" stroke-width="3.5"/>
+
+                      <!-- Frontal Lobe (Blue) -->
+                      <path d="M 120,20 C 75,22 30,52 30,85 C 30,95 45,102 65,100 C 85,98 105,95 120,90 Z" fill="#cfe2f8" stroke="#38bdf8" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="66" y="58" fill="#0369a1" font-size="11.5" font-weight="bold" text-anchor="middle">פרונטלית</text>
+
+                      <!-- Parietal Lobe (Yellow) -->
+                      <path d="M 120,20 C 145,20 175,25 190,42 C 180,65 155,75 120,78 Z" fill="#fef08a" stroke="#eab308" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="150" y="48" fill="#854d0e" font-size="11" font-weight="bold" text-anchor="middle">פריאטלית</text>
+
+                      <!-- Occipital Lobe (Pink) -->
+                      <path d="M 190,42 C 215,55 222,80 205,102 C 185,98 175,85 170,72 C 180,60 185,50 190,42 Z" fill="#fbcfe8" stroke="#f43f5e" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="195" y="80" fill="#9f1239" font-size="10" font-weight="bold" text-anchor="middle">אוקסיפיטלית</text>
+
+                      <!-- Temporal Lobe (Green) -->
+                      <path d="M 65,100 C 75,115 105,122 140,118 C 165,115 178,105 180,88 C 150,85 120,90 65,100 Z" fill="#bbf7d0" stroke="#22c55e" stroke-width="2" stroke-linejoin="round"/>
+                      <text x="105" y="106" fill="#166534" font-size="11" font-weight="bold" text-anchor="middle">טמפורלית</text>
+
+                      <!-- Cerebellum & Brainstem -->
+                      <ellipse cx="180" cy="118" rx="19" ry="12" fill="#fff1f2" stroke="#fda4af" stroke-width="1.5"/>
+                      <text x="180" y="122" fill="#9d4b6c" font-size="9" text-anchor="middle">מוחון</text>
+                      <path d="M 130,118 L 132,138 L 145,138 L 142,118 Z" fill="#ffe4e6" stroke="#fda4af" stroke-width="1.5"/>
+
+                      <!-- Orientation -->
+                      <text x="35" y="145" fill="#64748b" font-size="9" text-anchor="middle">← קדימה</text>
+                      <text x="205" y="145" fill="#64748b" font-size="9" text-anchor="middle">אחורה →</text>
+
+                      <!-- LESION MARKER AT WERNICKE (Temporal Lobe) -->
+                      <g filter="url(#lesionGlowWernicke)">
+                        <circle cx="152" cy="94" r="14" fill="#fee2e2" stroke="#ef4444" stroke-width="2" stroke-dasharray="3 2"/>
+                        <circle cx="152" cy="94" r="7.5" fill="#dc2626"/>
+                        <path d="M 147,89 L 157,99 M 157,89 L 147,99" stroke="#ffffff" stroke-width="2.2" stroke-linecap="round"/>
+                      </g>
+                      <!-- Callout -->
+                      <path d="M 152,108 L 152,142 L 105,142" fill="none" stroke="#dc2626" stroke-width="1.8" stroke-dasharray="2 2"/>
+                      <rect x="58" y="130" width="94" height="22" rx="6" fill="#dc2626" stroke="#ffffff" stroke-width="1" filter="url(#lesionGlowWernicke)"/>
+                      <text x="105" y="145" fill="#ffffff" font-size="11" font-weight="900" text-anchor="middle">⚡ פגיעה בורניקה</text>
+                    </svg>
+                  </div>
+
+                  <!-- Speech Bubble with Fluent Gibberish (Random Hebrew, English, Symbols, Sounds) -->
+                  <div class="bg-white border-2 border-emerald-300 rounded-xl p-3 shadow-xs flex flex-col justify-between h-full">
+                    <div class="flex items-center justify-between text-xs text-emerald-950 font-extrabold mb-1">
+                      <span class="flex items-center gap-1">🗣️ כיצד נשמע הדיבור?</span>
+                      <span class="text-[10px] px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800 font-bold">הבנה פגועה — דיבור שוטף</span>
+                    </div>
+                    
+                    <!-- Comic Speech Bubble with Gibberish -->
+                    <div class="relative bg-emerald-50/90 border border-emerald-200 rounded-xl p-2.5 my-1 text-slate-800">
+                      <div class="text-xs sm:text-sm font-extrabold text-slate-900 tracking-wide leading-relaxed" dir="ltr" style="text-align: right;">
+                        💬 &quot;בְּלָארְג פְלוּפּ טְרֶנְדִיל! #@! klirp-glups שְׁלָאמְפּ טוֹרְקִי זֶנְטִיבָל... %$&amp;*! flim-drap פְּרֶנְטִיקוֹ? 🎵&quot;
+                      </div>
+                      <div class="text-[11px] text-emerald-800 mt-1 font-semibold">
+                        (מדבר בשטף ובמהירות, אינטונציה טבעית לגמרי — אך אין שום תוכן, רק צלילים!)
+                      </div>
+                    </div>
+                    
+                    <div class="text-[11px] sm:text-xs text-slate-600 leading-relaxed mt-1">
+                      💡 <strong>סלט מילים (Word Salad):</strong> המילים יוצאות מהפה בקלות ובשטף כי הפקת התנועה (ברוקה) תקינה, אך אין בהן שום משמעות כי פענוח השפה (ורניקה) פגוע לחלוטין.
+                    </div>
+                  </div>
+                </div>
+              </div>
+
             </div>
           </div>
 
@@ -3865,13 +4046,28 @@
     btnNeglectNormal.addEventListener('click', () => setNeglectMode(false));
     btnNeglectDamaged.addEventListener('click', () => setNeglectMode(true));
 
-    document.getElementById('btn-mini-blindsight').addEventListener('click', () => {
-      document.getElementById('mini-blindsight-output').classList.toggle('hidden');
-    });
+    const btnMiniBlindsight = document.getElementById('btn-mini-blindsight');
+    const miniBlindsightOutput = document.getElementById('mini-blindsight-output');
+    if (btnMiniBlindsight && miniBlindsightOutput) {
+      btnMiniBlindsight.addEventListener('click', () => {
+        const isHidden = miniBlindsightOutput.classList.toggle('hidden');
+        btnMiniBlindsight.textContent = isHidden ? 'למידע נוסף' : '▲ הסתר מידע נוסף';
+      });
+    }
 
-    document.getElementById('btn-mini-aphasia').addEventListener('click', () => {
-      document.getElementById('mini-aphasia-output').classList.toggle('hidden');
-    });
+    const btnMiniAphasia = document.getElementById('btn-mini-aphasia');
+    const miniAphasiaOutput = document.getElementById('mini-aphasia-output');
+    if (btnMiniAphasia && miniAphasiaOutput) {
+      btnMiniAphasia.addEventListener('click', () => {
+        const isHidden = miniAphasiaOutput.classList.toggle('hidden');
+        const span = btnMiniAphasia.querySelector('span');
+        if (span) {
+          span.textContent = isHidden 
+            ? '🔍 למידע נוסף, סרטוטי מוח והדגמת דיבור (ברוקה מול ורניקה)' 
+            : '▲ הסתר מידע נוסף והדגמות';
+        }
+      });
+    }
   </script>
 </body>
 </html>
