@@ -2183,7 +2183,7 @@
               </div>
               <h4 class="text-sm sm:text-base font-extrabold text-emerald-950">אפזיה (Aphasia) — הפרעות שפה</h4>
               <p class="text-xs sm:text-sm text-slate-700 mt-1.5 leading-relaxed">
-                פגיעה באזורי השפה (לרוב בהמיספרה שמאל): <strong>אפזיית ברוקה</strong> (אונה פרונטלית) פוגעת בהפקת הדיבור, ואילו <strong>אפזיית ורניקה</strong> (אונה טמפורלית) פוגעת בהבנת השפה.
+                פגיעה באזורי השפה (לרוב ב<span class="text-[#1d4ed8] font-bold" style="color:#1d4ed8 !important; font-weight:700 !important;">המיספרה שמאל</span>): פגיעה באזור ברוקה <mark class="bg-[#cfe2f8] text-sky-950 px-1.5 py-0.5 rounded font-bold box-decoration-clone" style="background-color:#cfe2f8 !important; color:#082f49 !important;">באונה הפרונטלית</mark> עלולה לפגוע בהפקת הדיבור, בעוד שהבנת הדיבור עשויה להישמר; פגיעה באזור ורניקה <mark class="bg-[#bbf7d0] text-emerald-950 px-1.5 py-0.5 rounded font-bold box-decoration-clone" style="background-color:#bbf7d0 !important; color:#022c22 !important;">באונה הטמפורלית</mark> עלולה לפגוע בהבנת הדיבור, בעוד שהדיבור נשאר שוטף אך לא מובן.
               </p>
             </div>
             <button id="btn-mini-aphasia" type="button" class="mt-3 w-full py-1.5 px-3 rounded-lg bg-white hover:bg-emerald-100 text-emerald-900 border border-emerald-300 text-xs font-bold transition">
@@ -3626,43 +3626,52 @@
     const d1ArrowRed = document.getElementById('d1-arrow-red-path');
 
     function highlightDiagram1(side) {
+      // Always reset all elements to 100% full opacity and clear filters first
+      d1LeftHem.style.filter = '';
+      d1RightHem.style.filter = '';
+      d1LeftBody.style.filter = '';
+      d1RightBody.style.filter = '';
+      d1LeftHem.style.opacity = '1';
+      d1RightHem.style.opacity = '1';
+      d1LeftBody.style.opacity = '1';
+      d1RightBody.style.opacity = '1';
+      d1ArrowBlue.style.opacity = '1';
+      d1ArrowRed.style.opacity = '1';
+
       if (side === 'blue') {
         d1LeftHem.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
         d1RightBody.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
-        d1RightHem.style.opacity = '0.45';
-        d1LeftBody.style.opacity = '0.45';
-        d1ArrowRed.style.opacity = '0.25';
-        d1ArrowBlue.style.opacity = '1';
+        d1RightHem.style.opacity = '0.35';
+        d1LeftBody.style.opacity = '0.35';
+        d1ArrowRed.style.opacity = '0.2';
       } else if (side === 'red') {
         d1RightHem.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
         d1LeftBody.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
-        d1LeftHem.style.opacity = '0.45';
-        d1RightBody.style.opacity = '0.45';
-        d1ArrowBlue.style.opacity = '0.25';
-        d1ArrowRed.style.opacity = '1';
-      } else {
-        d1LeftHem.style.filter = '';
-        d1RightHem.style.filter = '';
-        d1LeftBody.style.filter = '';
-        d1RightBody.style.filter = '';
-        d1LeftHem.style.opacity = '1';
-        d1RightHem.style.opacity = '1';
-        d1LeftBody.style.opacity = '1';
-        d1RightBody.style.opacity = '1';
-        d1ArrowBlue.style.opacity = '1';
-        d1ArrowRed.style.opacity = '1';
+        d1LeftHem.style.opacity = '0.35';
+        d1RightBody.style.opacity = '0.35';
+        d1ArrowBlue.style.opacity = '0.2';
       }
     }
 
     let d1State = null;
-    [d1LeftHem, d1RightBody].forEach(el => el.addEventListener('click', () => {
+    [d1LeftHem, d1RightBody].forEach(el => el.addEventListener('click', (e) => {
+      e.stopPropagation();
       d1State = d1State === 'blue' ? null : 'blue';
       highlightDiagram1(d1State);
     }));
-    [d1RightHem, d1LeftBody].forEach(el => el.addEventListener('click', () => {
+    [d1RightHem, d1LeftBody].forEach(el => el.addEventListener('click', (e) => {
+      e.stopPropagation();
       d1State = d1State === 'red' ? null : 'red';
       highlightDiagram1(d1State);
     }));
+
+    const d1Svg = document.getElementById('diagram1-body-svg');
+    if (d1Svg) {
+      d1Svg.addEventListener('click', () => {
+        d1State = null;
+        highlightDiagram1(null);
+      });
+    }
 
     const d2LeftHem = document.getElementById('d2-left-hem');
     const d2RightHem = document.getElementById('d2-right-hem');
@@ -3672,43 +3681,52 @@
     const d2ArrowRed = document.getElementById('d2-arrow-red-path');
 
     function highlightDiagram2(side) {
+      // Always reset all elements to 100% full opacity and clear filters first
+      d2LeftHem.style.filter = '';
+      d2RightHem.style.filter = '';
+      d2LeftNose.style.filter = '';
+      d2RightNose.style.filter = '';
+      d2LeftHem.style.opacity = '1';
+      d2RightHem.style.opacity = '1';
+      d2LeftNose.style.opacity = '1';
+      d2RightNose.style.opacity = '1';
+      d2ArrowBlue.style.opacity = '1';
+      d2ArrowRed.style.opacity = '1';
+
       if (side === 'blue') {
         d2LeftHem.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
         d2LeftNose.style.filter = 'drop-shadow(0 0 10px rgba(59,130,246,0.9))';
-        d2RightHem.style.opacity = '0.45';
-        d2RightNose.style.opacity = '0.45';
-        d2ArrowRed.style.opacity = '0.25';
-        d2ArrowBlue.style.opacity = '1';
+        d2RightHem.style.opacity = '0.35';
+        d2RightNose.style.opacity = '0.35';
+        d2ArrowRed.style.opacity = '0.2';
       } else if (side === 'red') {
         d2RightHem.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
         d2RightNose.style.filter = 'drop-shadow(0 0 10px rgba(244,63,94,0.9))';
-        d2LeftHem.style.opacity = '0.45';
-        d2LeftNose.style.opacity = '0.45';
-        d2ArrowBlue.style.opacity = '0.25';
-        d2ArrowRed.style.opacity = '1';
-      } else {
-        d2LeftHem.style.filter = '';
-        d2RightHem.style.filter = '';
-        d2LeftNose.style.filter = '';
-        d2RightNose.style.filter = '';
-        d2LeftHem.style.opacity = '1';
-        d2RightHem.style.opacity = '1';
-        d2LeftNose.style.opacity = '1';
-        d2RightNose.style.opacity = '1';
-        d2ArrowBlue.style.opacity = '1';
-        d2ArrowRed.style.opacity = '1';
+        d2LeftHem.style.opacity = '0.35';
+        d2LeftNose.style.opacity = '0.35';
+        d2ArrowBlue.style.opacity = '0.2';
       }
     }
 
     let d2State = null;
-    [d2LeftHem, d2LeftNose].forEach(el => el.addEventListener('click', () => {
+    [d2LeftHem, d2LeftNose].forEach(el => el.addEventListener('click', (e) => {
+      e.stopPropagation();
       d2State = d2State === 'blue' ? null : 'blue';
       highlightDiagram2(d2State);
     }));
-    [d2RightHem, d2RightNose].forEach(el => el.addEventListener('click', () => {
+    [d2RightHem, d2RightNose].forEach(el => el.addEventListener('click', (e) => {
+      e.stopPropagation();
       d2State = d2State === 'red' ? null : 'red';
       highlightDiagram2(d2State);
     }));
+
+    const d2Svg = document.getElementById('diagram2-nose-svg');
+    if (d2Svg) {
+      d2Svg.addEventListener('click', () => {
+        d2State = null;
+        highlightDiagram2(null);
+      });
+    }
 
     // =========================================================================
     // 5. DIAGRAM 3: INTERACTIVE VISUAL PATHWAYS (Uniform Rose-Brown -> Blue/Red Flow)
